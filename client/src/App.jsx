@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AppRoutes from './app/routes/AppRoutes';
 import './styles/index.css';
-
+ 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
