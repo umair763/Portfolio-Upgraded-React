@@ -45,7 +45,7 @@ function Layout({ children }) {
 		{ path: "/", icon: <FaUser size={18} />, label: "About" },
 		{ path: "/resume", icon: <FaFileAlt size={18} />, label: "Resume" },
 		{ path: "/work", icon: <FaBriefcase size={18} />, label: "Work" },
-		{ path: "/awards", icon: <FaTrophy size={18} />, label: "Awards" },
+		{ path: "/awards", icon: <FaTrophy size={18} />, label: "Certificates" },
 		{ path: "/contact", icon: <FaEnvelope size={18} />, label: "Contact" },
 	];
 
@@ -128,7 +128,7 @@ function Layout({ children }) {
 							{/* Profile image */}
 							<div className="relative h-56 bg-gradient-to-r rounded-t-xl">
 								<div
-									className="absolute inset-0 opacity-70"
+									className="absolute inset-0 rounded-t-lg"
 									style={{
 										backgroundImage: `url(${img1})`,
 										backgroundSize: "cover",
