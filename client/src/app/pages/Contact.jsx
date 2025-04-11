@@ -55,9 +55,9 @@ const Contact = () => {
 								<div>
 									<h3 className="font-medium">Email</h3>
 									<a
-										href="mailto:contact@example.com"
-										className="text-text-light hover:text-primary transition-colors">
-										contact@example.com
+										href="mailto:muhammadumairkhan945@gmail.com"
+										className="text-text-light break-words break-all">
+										muhammadumairkhan945@gmail.com
 									</a>
 								</div>
 							</div>
@@ -74,7 +74,7 @@ const Contact = () => {
 									<a
 										href="tel:+11234567890"
 										className="text-text-light hover:text-primary transition-colors">
-										+1 (123) 456-7890
+										+92 (340) 5688540
 									</a>
 								</div>
 							</div>
@@ -88,7 +88,7 @@ const Contact = () => {
 								</div>
 								<div>
 									<h3 className="font-medium">Location</h3>
-									<p className="text-text-light">New York, NY, United States</p>
+									<p className="text-text-light">E-9, Islamabd, Pakistan</p>
 								</div>
 							</div>
 						</div>
@@ -102,7 +102,7 @@ const Contact = () => {
 						<h2 className="text-xl font-bold mb-6">Connect with Me</h2>
 						<div className="flex flex-col gap-4">
 							<a
-								href="https://github.com/"
+								href="https://github.com/umair763"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="flex items-center p-3 rounded-lg border border-border hover:bg-gray-50 transition-colors">
@@ -114,7 +114,7 @@ const Contact = () => {
 							</a>
 
 							<a
-								href="https://linkedin.com/"
+								href="https://www.linkedin.com/in/muhammad-umair-khan-012549265/"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="flex items-center p-3 rounded-lg border border-border hover:bg-gray-50 transition-colors">

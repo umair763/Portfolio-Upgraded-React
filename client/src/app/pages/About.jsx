@@ -10,7 +10,7 @@ const About = () => {
     { label: 'Years Experience', value: '5+', icon: <FaUserGraduate /> },
     { label: 'Projects Completed', value: '30+', icon: <FaLaptopCode /> },
     { label: 'Happy Clients', value: '25+', icon: <FaUser /> },
-    { label: 'Awards', value: '3', icon: <FaAward /> },
+    { label: 'Certificates', value: '3', icon: <FaAward /> },
   ];
   
   // Journey timeline
