@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/package.json",  // Path to the client package.json
+      "use": "@vercel/node",         // Use Vercel’s Node.js builder
+      "config": {
+        "distDir": "client/dist"     // Path to the dist directory (output of build)
+      }
+    }
+  ],
+  "outputDirectory": "client/dist"   // Output directory for the built files
+}
