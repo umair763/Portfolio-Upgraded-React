@@ -109,3 +109,6 @@ The project is built to be easily customizable:
 - Add new sections by creating new components
 - Customize animations using Framer Motion
 
+## Project Links
+
+You can access the deployed web application here: [Web App Link](https://portfolio-upgraded-react.vercel.app/)
