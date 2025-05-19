@@ -302,7 +302,7 @@ const Contact = () => {
 			</div>
 
 			{/* FAQ Section */}
-			<section
+			{/* <section
 				className="bg-white rounded-xl p-8 shadow-sm"
 				data-aos="fade-up">
 				<h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
@@ -339,7 +339,7 @@ const Contact = () => {
 						</div>
 					))}
 				</div>
-			</section>
+			</section> */}
 		</div>
 	);
 };
