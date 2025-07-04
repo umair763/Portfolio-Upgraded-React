@@ -154,7 +154,7 @@ function Layout({ children }) {
 							<div className="pt-16 pb-6 text-center">
 								<h1 className="text-xl font-bold">Muhammad Umair</h1>
 								<div className="bg-gray-200 text-gray-700 rounded-full py-1 px-4 mx-auto w-max text-sm mt-2">
-									Front-End Developer
+									Full Stack Developer
 								</div>
 
 								{/* Social media links */}
