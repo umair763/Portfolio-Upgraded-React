@@ -14,6 +14,8 @@ import {
 	FaLinkedinIn,
 	FaInstagram,
 } from "react-icons/fa";
+import { SiFiverr } from "react-icons/si";
+
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
 import NavLink from "../components/NavLink";
@@ -65,11 +67,11 @@ function Layout({ children }) {
 			title: "Location",
 			value: "E-9 Islamabad, Pakistan",
 		},
-		{
-			icon: <FaCalendarAlt size={20} />,
-			title: "Birthday",
-			value: "Dec 19, 2002",
-		},
+		// {
+		// 	icon: <FaCalendarAlt size={20} />,
+		// 	title: "Birthday",
+		// 	value: "Dec 19, 2002",
+		// },
 	];
 
 	const socialLinks = [
@@ -77,6 +79,7 @@ function Layout({ children }) {
 		{ href: "https://github.com/umair763", icon: <FaGithub size={16} /> },
 		{ href: "https://www.linkedin.com/in/muhammad-umair-khan-012549265", icon: <FaLinkedinIn size={16} /> },
 		{ href: "https://www.instagram.com/u_k_584", icon: <FaInstagram size={16} /> },
+		{ href: "http://www.fiverr.com/s/99Wd0Ee", icon: <SiFiverr size={16} color="#1dbf73" /> }
 	];
 
 	const handleDownloadCV = () => {
