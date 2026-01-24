@@ -1,5 +1,5 @@
 import React from "react";
-import { HeroSection } from "../components/ui";
+import { HeroSection } from "../components/features/herosection";
 
 export const About = ({}) => {
   return (
