@@ -9,11 +9,18 @@ import {
   Mail,
   Dribbble,
   Instagram,
-  } from "lucide-react";
-  import { CheckCircle2, Zap, Layers, Rocket, Timer, FileCode } from "lucide-react";
+} from "lucide-react";
+import {
+  CheckCircle2,
+  Zap,
+  Layers,
+  Rocket,
+  Timer,
+  FileCode,
+} from "lucide-react";
 import { TextTyping } from "../ui";
 import { TextSlideup } from "../ui/text.slideup";
-  // ...existing code...
+// ...existing code...
 
 export const HeroSection = () => {
   const texts = [
@@ -52,17 +59,53 @@ export const HeroSection = () => {
           <div className="flex items-center gap-2 text-[#006580] text-base">
             <span className="inline-flex items-center gap-1">
               <span className="w-[220px]">
-                  <TextSlideup
-                    texts={[
-                      <span className="flex items-center gap-2"><CheckCircle2 size={18} className="inline-block align-middle shrink-0"/>Pixel-Perfect UI + Clean</span>,
-                      <span className="flex items-center gap-2"><Zap size={18} className="inline-block align-middle shrink-0"/>Performance First</span>,
-                      <span className="flex items-center gap-2"><Layers size={18} className="inline-block align-middle shrink-0"/>Modern Stack</span>,
-                      <span className="flex items-center gap-2"><Rocket size={18} className="inline-block align-middle shrink-0"/>Open for work</span>,
-                      <span className="flex items-center gap-2"><Timer size={18} className="inline-block align-middle shrink-0"/>20 hours response time</span>,
-                      <span className="flex items-center gap-2"><FileCode size={18} className="inline-block align-middle shrink-0"/>Code ownership</span>
-                    ]}
-                    interval={3000}
-                  />
+                <TextSlideup
+                  texts={[
+                    <span className="flex items-center gap-2">
+                      <CheckCircle2
+                        size={18}
+                        className="inline-block align-middle shrink-0"
+                      />
+                      Pixel-Perfect UI + Clean
+                    </span>,
+                    <span className="flex items-center gap-2">
+                      <Zap
+                        size={18}
+                        className="inline-block align-middle shrink-0"
+                      />
+                      Performance First
+                    </span>,
+                    <span className="flex items-center gap-2">
+                      <Layers
+                        size={18}
+                        className="inline-block align-middle shrink-0"
+                      />
+                      Modern Stack
+                    </span>,
+                    <span className="flex items-center gap-2">
+                      <Rocket
+                        size={18}
+                        className="inline-block align-middle shrink-0"
+                      />
+                      Open for work
+                    </span>,
+                    <span className="flex items-center gap-2">
+                      <Timer
+                        size={18}
+                        className="inline-block align-middle shrink-0"
+                      />
+                      20 hours response time
+                    </span>,
+                    <span className="flex items-center gap-2">
+                      <FileCode
+                        size={18}
+                        className="inline-block align-middle shrink-0"
+                      />
+                      Code ownership
+                    </span>,
+                  ]}
+                  interval={3000}
+                />
               </span>
             </span>
           </div>
@@ -113,7 +156,7 @@ export const HeroSection = () => {
         {/* Right: Image with Circle */}
         <div className="flex-1 flex items-end justify-center relative min-w-[350px]">
           {/* Light beige circle with shadow */}
-          <div className="absolute left-1/2 bottom-30 -translate-x-1/2 translate-y-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] lg:w-[520px] lg:h-[520px] rounded-full bg-[#ede8dc] border border-gray-200 shadow-[0_8px_32px_0_rgba(0,0,0,0.18)] z-0"></div>
+          <div className="absolute left-1/2 bottom-30 -translate-x-1/2 translate-y-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] lg:w-[520px] lg:h-[520px] rounded-full bg-[[#e4d5b7] shadow-[0_8px_92px_0_rgba(0,0,0,0.18)] z-0"></div>
           <img
             src={profileImg}
             alt="Profile"
@@ -129,7 +172,6 @@ export const HeroSection = () => {
       {/* Animated SVG Waves at Bottom */}
       <div className="absolute left-0 right-0 bottom-0 w-full overflow-hidden pointer-events-none select-none z-20">
         <div className="relative w-full h-[110px]">
-          {/* Wave 0 - Bottommost, full opacity, #e4d5b7 */}
           <svg
             className="absolute left-0 top-0 w-full h-full"
             viewBox="0 0 1920 110"
@@ -137,9 +179,9 @@ export const HeroSection = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 70 Q480 100 960 70T1920 70V110H0V70Z"
+              d="M0 70 Q320 100 480 80 Q640 60 960 70 Q1280 80 1600 60 Q1760 50 1920 70V110H0V70Z"
               fill="#e4d5b7"
-              fillOpacity="1"
+              fillOpacity="0.74"
             />
           </svg>
           {/* Wave 1 */}
@@ -150,8 +192,8 @@ export const HeroSection = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 60 Q480 120 960 60T1920 60V110H0V60Z"
-              fill="#006580"
+              d="M0 60 Q240 120 480 90 Q720 60 960 60 Q1200 60 1440 90 Q1680 120 1920 60V110H0V60Z"
+              fill="#e4d5b7"
               fillOpacity="0.35"
             />
           </svg>
@@ -163,8 +205,8 @@ export const HeroSection = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 80 Q480 40 960 80T1920 80V110H0V80Z"
-              fill="#006580"
+              d="M0 80 Q320 40 640 90 Q960 140 1280 80 Q1600 20 1920 80V110H0V80Z"
+              fill="#e4d5b7"
               fillOpacity="0.48"
             />
           </svg>
@@ -176,8 +218,8 @@ export const HeroSection = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 100 Q480 60 960 100T1920 100V110H0V100Z"
-              fill="#006580"
+              d="M0 100 Q240 60 480 110 Q720 160 960 100 Q1200 40 1440 110 Q1680 180 1920 100V110H0V100Z"
+              fill="#e4d5b7"
               fillOpacity="0.22"
             />
           </svg>
@@ -189,8 +231,8 @@ export const HeroSection = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 90 Q480 110 960 90T1920 90V110H0V90Z"
-              fill="#006580"
+              d="M0 90 Q320 110 640 70 Q960 30 1280 90 Q1600 150 1920 90V110H0V90Z"
+              fill="#e4d5b7"
               fillOpacity="0.19"
             />
           </svg>
