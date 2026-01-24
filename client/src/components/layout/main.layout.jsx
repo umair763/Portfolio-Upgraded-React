@@ -9,7 +9,7 @@ export const MainLayout = () => {
   return (
     <div className="bg-[#e4d5b7]">
       <div className="flex flex-col flex-1 min-h-screen">
-        <div className="flex flex-col flex-1 gap-8">
+        <div className="flex flex-col flex-1">
           <section id="about" className="scroll-mt-24">
             <About />
           </section>

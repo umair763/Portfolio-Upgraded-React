@@ -1,6 +1,7 @@
 import React from "react";
 import { HeroSection } from "../components/features/herosection";
 import { JourneyCard } from "../components/ui";
+import { Waves } from "../components/common/waves";
 
 export const About = () => {
   return (
@@ -153,8 +154,11 @@ export const About = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="relative">
           <JourneyCard />
+          <div className="absolute left-0 bottom-0 w-full pointer-events-none">
+            <Waves />
+          </div>
         </div>
       </section>
     </div>

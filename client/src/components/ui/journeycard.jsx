@@ -205,10 +205,10 @@ export const JourneyCard = () => {
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] py-16 md:py-24">
+    <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] pb-16">
       <div className="mx-auto w-full max-w-7xl px-6">
         <div className="text-center mb-10">
-          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-black/90 mb-3">
+          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580] mb-2 mt-26">
             My Journey
           </h2>
           <p className="text-lg md:text-xl text-black/70 max-w-2xl mx-auto">
