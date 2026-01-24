@@ -1,52 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="Muhammad Umair - Front-End Developer Portfolio showcasing projects, skills, and professional experience" />
-		<meta
-			name="keywords"
-			content="Muhammad Umair, Frontend Developer, Web Developer, Portfolio, React, JavaScript" />
-		<title>Muhammad Umair | Front-End Developer</title>
-
-		<!-- Orbitron font for futuristic monogram -->
-		<link
-			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
-			rel="stylesheet" />
-
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-		<!-- Dynamic SVG Favicon Script -->
-		<script>
-			const svgFavicon = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 100 100">
-        <rect width="100" height="100" fill="#0D1117" rx="20"/>
-        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
-              font-family="'Orbitron', sans-serif" font-size="42" fill="#00FFC6">
-          MU
-        </text>
-      </svg>`;
-
-			const blob = new Blob([svgFavicon], { type: "image/svg+xml" });
-			const url = URL.createObjectURL(blob);
-			const link = document.createElement("link");
-			link.rel = "icon";
-			link.type = "image/svg+xml";
-			link.href = url;
-			document.head.appendChild(link);
-		</script>
-	</head>
-
-	<body>
-		<div id="root"></div>
-		<script
-			type="module"
-			src="/src/main.jsx"></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>client</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
-  <rect width="400" height="200" fill="#6366F1" />
-  <text x="200" y="100" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="white">Chrome Extension</text>
-  <circle cx="200" cy="50" r="20" fill="white" />
-  <rect x="130" y="120" width="140" height="10" fill="white" rx="5" />
-  <rect x="130" y="140" width="140" height="10" fill="white" rx="5" />
-  <rect x="130" y="160" width="140" height="10" fill="white" rx="5" />
-</svg>
