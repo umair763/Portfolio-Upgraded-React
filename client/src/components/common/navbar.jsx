@@ -1,9 +1,100 @@
-import React from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { User, BadgeCheck, FolderKanban, Briefcase, Mail } from 'lucide-react';
 
-export const navbar = ({}) => {
+const TRACK_IDS = ['about', 'skills', 'projects', 'services', 'contact'];
+
+export const navbar = () => {
+  const [activeSection, setActiveSection] = useState('#about');
+
+  const navItems = useMemo(
+    () => [
+      { label: 'About', href: '#about', icon: <User size={26} /> },
+      { label: 'Skills', href: '#skills', icon: <BadgeCheck size={26} /> },
+      { label: 'Projects', href: '#projects', icon: <FolderKanban size={26} /> },
+      { label: 'Services', href: '#services', icon: <Briefcase size={26} /> },
+      { label: 'Contact', href: '#contact', icon: <Mail size={26} /> },
+    ],
+    [],
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let ticking = false;
+    const computeActive = () => {
+      const viewportH = window.innerHeight || 800;
+      const offsetLine = Math.round(viewportH * 0.35);
+
+      const candidates = TRACK_IDS.map((id) => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        const rect = el.getBoundingClientRect();
+        const distToOffset = Math.abs(rect.top - offsetLine);
+        const crossesOffset = rect.top <= offsetLine && rect.bottom >= offsetLine;
+        const center = rect.top + rect.height / 2;
+        const centerDist = Math.abs(center - viewportH / 2);
+        return { id, distToOffset, crossesOffset, centerDist };
+      }).filter(Boolean);
+
+      if (candidates.length === 0) return;
+
+      const crossing = candidates.filter((c) => c.crossesOffset);
+      const chosenList = crossing.length > 0 ? crossing : candidates;
+      chosenList.sort((a, b) => a.distToOffset - b.distToOffset || a.centerDist - b.centerDist);
+      const chosen = chosenList[0];
+      const next = `#${chosen.id}`;
+      setActiveSection((prev) => (prev === next ? prev : next));
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          computeActive();
+          ticking = false;
+        });
+      }
+    };
+
+    const timer = window.setTimeout(() => computeActive(), 100);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
+  const scrollToHash = (hash) => {
+    const id = hash.replace('#', '');
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (history.replaceState) history.replaceState(null, '', hash);
+    else window.location.hash = hash;
+  };
+
   return (
-    <>
-      <h1>Hello from navbar</h1>
-    </>
+    <nav
+      className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-gray-100 border border-gray-200 rounded-3xl shadow-md flex flex-col items-center py-6 px-2 gap-6 w-[60px]"
+    >
+      {navItems.map((item) => {
+        const isActive = activeSection === item.href;
+        return (
+          <button
+            key={item.label}
+            title={item.label}
+            onClick={() => scrollToHash(item.href)}
+            className={`rounded-full  p-2 transition-colors duration-200 flex items-center justify-center w-12 h-12
+              ${isActive ? 'bg-[#006580]/15 text-[#006580] shadow-lg ring-1 ring-[#006580]/30' : 'hover:bg-gray-200 text-gray-800'}`}
+            aria-label={item.label}
+          >
+            {item.icon}
+          </button>
+        );
+      })}
+    </nav>
   );
 };

@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
+import { HeroSection } from "../components/ui";
 
-export const about = ({}) => {
+export const About = ({}) => {
   return (
     <>
-      <h1>Hello from about</h1>
+      <div>
+        <HeroSection />
+      </div>
     </>
   );
 };
