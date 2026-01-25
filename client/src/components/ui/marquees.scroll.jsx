@@ -31,7 +31,13 @@ export const MarqueesScroll = ({
   const safeItems = useMemo(() => (Array.isArray(items) ? items : []), [items]);
 
   useLayoutEffect(() => {
-    if (!sectionRef.current || !stickyRef.current || !viewportRef.current || !trackRef.current) return;
+    if (
+      !sectionRef.current ||
+      !stickyRef.current ||
+      !viewportRef.current ||
+      !trackRef.current
+    )
+      return;
     if (!safeItems.length) return;
 
     const ctx = gsap.context(() => {
@@ -72,7 +78,7 @@ export const MarqueesScroll = ({
             scrub: 0.9,
             invalidateOnRefresh: true,
           },
-        }
+        },
       );
 
       // Ensure correct sizes when fonts/images load and on resize.
@@ -108,14 +114,16 @@ export const MarqueesScroll = ({
     <section
       ref={sectionRef}
       className="relative w-full"
-      style={sectionHeightPx ? { height: `${sectionHeightPx}px` } : { minHeight: "220vh" }}
-    > 
+      style={
+        sectionHeightPx
+          ? { height: `${sectionHeightPx}px` }
+          : { minHeight: "220vh" }
+      }
+    >
       <div
         ref={stickyRef}
         className="sticky top-0 h-dvh w-full overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b]" />
-        <div className="absolute inset-0 opacity-60 bg-[radial-gradient(circle_at_20%_20%,rgba(0,101,128,0.16),transparent_55%),radial-gradient(circle_at_80%_40%,rgba(14,165,233,0.10),transparent_55%)]" />
 
         <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-6">
           <div ref={viewportRef} className="w-full overflow-hidden">
@@ -124,7 +132,10 @@ export const MarqueesScroll = ({
               className={`flex items-stretch ${gapClassName} will-change-transform`}
             >
               {safeItems.map((item, idx) => (
-                <div key={item.id ?? `${item.title}-${idx}`} className={`shrink-0 ${cardClassName}`}>
+                <div
+                  key={item.id ?? `${item.title}-${idx}`}
+                  className={`shrink-0 ${cardClassName}`}
+                >
                   <ServiceCard
                     icon={item.icon}
                     title={item.title}

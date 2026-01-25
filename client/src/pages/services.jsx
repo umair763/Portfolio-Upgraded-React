@@ -2,6 +2,8 @@ import React from "react";
 import { Waves } from "../components/common/waves";
 import { MarqueesScroll } from "../components/ui/marquees.scroll";
 import { Code2, Server, CloudCog } from "lucide-react";
+import { StackedCard } from "../components/ui/stacked.card";
+
 export const Services = () => {
   const services = [
     {
@@ -66,6 +68,18 @@ export const Services = () => {
         </div>
         <div className="mt-10">
           <MarqueesScroll items={services} />
+        </div>
+        {/* Header */}
+        <div className="text-center">
+          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
+            How I Work
+          </h2>
+          <p className="mt-2 text-lg md:text-xl text-black/70">
+            A structured approach to deliver quality results
+          </p>
+          <div className="">
+            <StackedCard />
+          </div>
         </div>
       </div>
       <div className="w-full pointer-events-none relative z-10 pt-20">
