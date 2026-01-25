@@ -4,3 +4,5 @@ export * from "./journeycard";
 export * from "./technicalcard";
 export * from "./creativecard";
 export * from "./stacked.scroll.cards";
+export * from "./service.card";
+export * from "./marquees.scroll";

@@ -1,10 +1,11 @@
 import React from "react";
 import { StackedScrollCards } from "../components/ui";
+import { Waves } from "../components/common/waves";
 
 export const Projects = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] pb-16">
-      <div className="relative mx-auto w-full px-6 pb-24">
+    <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b]">
+      <div className="relative mx-auto w-full px-6 ">
         {/* Header */}
         <div className="text-center">
           <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
@@ -30,6 +31,9 @@ export const Projects = () => {
         <div className="w-full">
           <StackedScrollCards />
         </div>
+      </div>
+      <div className="w-full pointer-events-none relative z-10">
+        <Waves />
       </div>
     </section>
   );
