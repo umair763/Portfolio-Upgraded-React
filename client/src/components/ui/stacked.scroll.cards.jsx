@@ -1,0 +1,283 @@
+import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
+
+function clampIndex(index, length) {
+  if (length <= 0) return 0;
+  return (index % length + length) % length;
+}
+
+function Carousel({ images = [], alt = 'Project preview' }) {
+  const safeImages = images?.length ? images : [];
+  const [active, setActive] = useState(0);
+
+  const go = useCallback(
+    (dir) => {
+      setActive((prev) => clampIndex(prev + dir, safeImages.length));
+    },
+    [safeImages.length]
+  );
+
+  if (!safeImages.length) {
+    return (
+      <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-slate-950/90 ring-1 ring-white/10">
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="h-[70%] w-[86%] rounded-[18px] bg-gradient-to-br from-slate-800/70 via-slate-900/60 to-slate-800/70 ring-1 ring-white/10" />
+        </div>
+      </div>
+    );
+  }
+
+  const activeSrc = safeImages[active];
+
+  return (
+    <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-slate-950/90 shadow-[0_30px_80px_rgba(0,0,0,0.35)] ring-1 ring-white/10">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.28),transparent_60%),radial-gradient(circle_at_90%_40%,rgba(34,211,238,0.22),transparent_55%),radial-gradient(circle_at_40%_90%,rgba(14,165,233,0.20),transparent_55%)]" />
+
+      <div className="relative h-full w-full p-5">
+        <div className="relative h-full w-full overflow-hidden rounded-[20px] bg-gradient-to-b from-slate-900/80 to-slate-950/80 ring-1 ring-white/10">
+          <img
+            src={activeSrc}
+            alt={alt}
+            className="h-full w-full object-contain"
+            loading="lazy"
+            draggable={false}
+          />
+
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white backdrop-blur-md ring-1 ring-white/20 transition hover:bg-white/15"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => go(1)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white backdrop-blur-md ring-1 ring-white/20 transition hover:bg-white/15"
+            aria-label="Next image"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
+          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-black/25 px-3 py-2 backdrop-blur-md ring-1 ring-white/10">
+            {safeImages.map((_, i) => (
+              <button
+                key={`${safeImages[i]}-${i}`}
+                type="button"
+                onClick={() => setActive(i)}
+                className={
+                  i === active
+                    ? 'h-2 w-6 rounded-full bg-white/90'
+                    : 'h-2 w-2 rounded-full bg-white/35 hover:bg-white/55'
+                }
+                aria-label={`Go to image ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Card({ item, reversed }) {
+  const {
+    title,
+    subtitle,
+    description,
+    tags = [],
+    ctaLabel = 'View Project',
+    ctaHref,
+    images = [],
+  } = item;
+
+  return (
+    <div
+      className={
+        'grid h-[90%] w-full grid-cols-1 items-center gap-10 rounded-4xl bg-white/85 p-10 shadow-[0_30px_90px_rgba(2,6,23,0.20)] ring-1 ring-slate-900/10 backdrop-blur-xl md:grid-cols-2 md:p-14'
+      }
+    >
+      <div className={reversed ? 'order-2 md:order-2' : 'order-2 md:order-1'}>
+        <div className="max-w-xl">
+          {subtitle ? (
+            <p className="text-sm font-medium tracking-wide text-slate-500">{subtitle}</p>
+          ) : null}
+          <h2 className="mt-3 text-[44px] font-semibold leading-[1.05] tracking-tight text-slate-900 md:text-[56px]">
+            {title}
+          </h2>
+          {description ? (
+            <p className="mt-6 text-[15px] leading-7 text-slate-600 md:text-[16px]">{description}</p>
+          ) : null}
+
+          {tags.length > 0 ? (
+            <div className="mt-7 flex flex-wrap gap-2">
+              {tags.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-700"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          ) : null}
+
+          {ctaHref ? (
+            <a
+              href={ctaHref}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"
+            >
+              {ctaLabel}
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          ) : (
+            <button
+              type="button"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"
+            >
+              {ctaLabel}
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className={reversed ? 'order-1 md:order-1' : 'order-1 md:order-2'}>
+        <div className="h-[340px] w-full md:h-[420px]">
+          <Carousel images={images} alt={`${title} preview`} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Animation logic (GSAP + ScrollTrigger)
+ * - Uses a sticky container (CSS) and ties timeline progress to scroll position
+ * - Each subsequent card starts below the viewport and slides up to overlap
+ * - Scrubbed timeline means reverse scroll plays back step-by-step automatically
+ */
+function useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCount }) {
+  useLayoutEffect(() => {
+    if (!sectionRef.current || !stickyRef.current) return;
+    if (!cardCount || cardCount < 1) return;
+
+    const ctx = gsap.context(() => {
+      const cardEls = cardElsRef.current.filter(Boolean);
+      if (!cardEls.length) return;
+
+      // Initial state: first card visible, others start below.
+      cardEls.forEach((el, i) => {
+        gsap.set(el, {
+          zIndex: i + 1,
+          yPercent: i === 0 ? 0 : 120,
+          rotate: 0,
+          transformOrigin: '50% 50%',
+        });
+      });
+
+      const tl = gsap.timeline({
+        defaults: { ease: 'power2.out' },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.9,
+          // Sticky is handled by CSS; ScrollTrigger only drives the timeline.
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Each transition takes an equal slice of scroll.
+      for (let i = 1; i < cardEls.length; i += 1) {
+        tl.to(
+          cardEls[i],
+          {
+            yPercent: 0,
+            duration: 1,
+          },
+          i - 1
+        );
+      }
+
+      // Keep ScrollTrigger in sync with layout changes (fonts/images/resizes).
+      ScrollTrigger.refresh();
+    }, stickyRef);
+
+    return () => ctx.revert();
+  }, [sectionRef, stickyRef, cardElsRef, cardCount]);
+}
+
+export const StackedScrollCards = ({ items }) => {
+  const data = useMemo(() => {
+    if (Array.isArray(items) && items.length) return items;
+
+    // Demo content (replace with your real projects).
+    return [
+      {
+        id: 'claude-code-config',
+        title: 'Claude Code Config',
+        description:
+          'A comprehensive CLI tool for installing and managing Claude Code configurations. Interactive wizard that sets up AI agents, skills, commands, MCP servers, permissions, and project standards in minutes.',
+        tags: ['Node.js', 'TypeScript', 'Commander.js', 'Inquirer.js', 'Claude Code'],
+        ctaLabel: 'View Project',
+        images: ['/src/assets/images/noBG.png'],
+      },
+      {
+        id: 'zodsmith-builder',
+        title: 'ZodSmith Builder',
+        description:
+          'Visual builder for creating Zod schemas and TypeScript types with an intuitive drag-and-drop interface. Design data structures visually and generate production-ready code instantly.',
+        tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', '+3 more'],
+        ctaLabel: 'View Project',
+        images: ['/src/assets/images/noBG.png', '/src/assets/images/react.svg'],
+      },
+    ];
+  }, [items]);
+
+  const sectionRef = useRef(null);
+  const stickyRef = useRef(null);
+  const cardElsRef = useRef([]);
+
+  const setCardEl = useCallback((index) => {
+    return (el) => {
+      cardElsRef.current[index] = el;
+    };
+  }, []);
+
+  useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCount: data.length });
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative w-full"
+      style={{ height: `${Math.max(1, data.length) * 100}vh` }}
+    >
+      <div ref={stickyRef} className="sticky top-0 h-dvh w-full overflow-hidden">
+        <div className="pointer-events-none absolute inset-0" />
+
+        <div className="relative mx-auto flex h-full max-w-6xl items-center px-6">
+          <div className="relative h-[82vh] w-full">
+            {data.map((item, index) => (
+              <div
+                key={item.id ?? index}
+                ref={setCardEl(index)}
+                className="absolute inset-0 will-change-transform"
+                style={{ pointerEvents: index === data.length - 1 ? 'auto' : 'auto' }}
+              >
+                <Card item={item} reversed={index % 2 === 1} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
