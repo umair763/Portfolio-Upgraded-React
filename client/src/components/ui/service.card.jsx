@@ -1,7 +1,5 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Check, ChevronRight } from "lucide-react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
 
 /**
  * Reusable ServiceCard
@@ -47,45 +45,6 @@ export const ServiceCard = ({
   };
 
   const [hovered, setHovered] = useState(false);
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
-  }, []);
-
-  const particlesOptions = useMemo(() => {
-    const base = {
-      fullScreen: { enable: false },
-      detectRetina: true,
-      fpsLimit: 60,
-      particles: {
-        number: { value: hovered ? 60 : 18, density: { enable: false } },
-        color: { value: "#000000" },
-        size: { value: hovered ? 16 : 10 },
-        opacity: { value: 1 },
-        move: {
-          enable: hovered,
-          speed: hovered ? 0.9 : 0.2,
-          direction: "none",
-          random: true,
-          straight: false,
-          outModes: { default: "out" },
-        },
-        shape: { type: "circle" },
-      },
-      interactivity: {
-        detectsOn: "canvas",
-        events: {
-          onHover: { enable: hovered, mode: "repulse" },
-          onClick: { enable: false },
-          resize: true,
-        },
-        modes: {
-          repulse: { distance: 80, duration: 0.6 },
-        },
-      },
-    };
-
-    return base;
-  }, [hovered]);
 
   return (
     <article
@@ -93,28 +52,11 @@ export const ServiceCard = ({
       onMouseLeave={() => setHovered(false)}
       className={`relative max-w-3xl rounded-2xl border p-8 transition-all duration-300 ${className} ${
         hovered
-          ? "border-sky-300/60 bg-sky-50/80 shadow-[0_20px_60px_rgba(2,6,23,0.18)] cursor-pointer"
-          : "border-slate-200/60 bg-gradient-to-br from-slate-50 to-slate-100 shadow-sm"
+          ? "border-sky-300/60 shadow-[0_20px_60px_rgba(2,6,23,0.18)] cursor-pointer"
+          : "border-slate-200/60 shadow-sm"
       }`}
-      style={
-        hovered
-          ? {
-              // dotted CSS grid becomes visible on hover only
-              backgroundImage:
-                "radial-gradient(circle at 1px 1px, rgba(15,23,42,0.06) 1px, transparent 1px)",
-              backgroundSize: "14px 14px",
-            }
-          : undefined
-      }
     >
-      <div className="pointer-events-none absolute inset-0 rounded-2xl overflow-hidden">
-        {hovered ? (
-          <div className="absolute inset-0 opacity-100">
-            <Particles init={particlesInit} options={particlesOptions} />
-          </div>
-        ) : null}
-        <div className="absolute inset-0 rounded-2xl ring-1 ring-slate-200/30" />
-      </div>
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-slate-200/30" />
 
       {/* Centered small view shown when hovered: only icon + title */}
 

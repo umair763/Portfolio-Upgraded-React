@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ServiceCard } from "./service.card";
+import PixelCard from "./pixel.card";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,19 +133,18 @@ export const MarqueesScroll = ({
               className={`flex items-stretch ${gapClassName} will-change-transform`}
             >
               {safeItems.map((item, idx) => (
-                <div
-                  key={item.id ?? `${item.title}-${idx}`}
-                  className={`shrink-0 ${cardClassName}`}
-                >
-                  <ServiceCard
-                    icon={item.icon}
-                    title={item.title}
-                    description={item.description}
-                    checkmark={item.checkmark}
-                    ctaLabel={item.ctaLabel}
-                    ctaHref={item.ctaHref}
-                    className="max-w-none"
-                  />
+                <div key={item.id ?? `${item.title}-${idx}`} className={`shrink-0`}>
+                  <PixelCard className={`${cardClassName} rounded-2xl bg-white`} variant="blue" gap={8} speed={60}>
+                    <ServiceCard
+                      icon={item.icon}
+                      title={item.title}
+                      description={item.description}
+                      checkmark={item.checkmark}
+                      ctaLabel={item.ctaLabel}
+                      ctaHref={item.ctaHref}
+                      className="w-full h-full"
+                    />
+                  </PixelCard>
                 </div>
               ))}
             </div>
