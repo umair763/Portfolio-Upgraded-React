@@ -138,7 +138,7 @@ export const StackedCard = ({ cards = CARD_DATA }) => {
           rotation = -10;
         }
         gsap.to(card, {
-          scale: scale,
+          scale,
           rotationX: rotation,
           transformOrigin: "top center",
           ease: "none",
@@ -162,53 +162,33 @@ export const StackedCard = ({ cards = CARD_DATA }) => {
 
   return (
     <>
-      <div className="w-full mb-20 " />
-      <div ref={wrapperRef} className="wrapper w-full mb-20 ">
-        <div className="cards w-full max-w-5xl mx-auto px-12">
+      <div className="spacer w-full " />
+      <div ref={wrapperRef} className="wrapper w-full py-[100px] ">
+        <div className="cards w-[90%] max-w-[1000px] mx-auto px-[50px]">
           {cards.map((card, i) => (
             <div
               key={`${card.number}-${i}`}
               ref={(el) => (cardWrapperRefs.current[i] = el)}
-              className={`card-wrapper w-full mb-12 last:mb-0 perspective-[500px]`}
+              className={`card-wrapper w-full mb-[50px] last:mb-0 perspective-[500px]`}
             >
               <SpotlightCard
                 ref={(el) => (cardRefs.current[i] = el)}
-                className={`card relative w-full h-[460px] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br ${card.gradient} flex flex-col items-center text-center p-8 transition-transform duration-500 hover:-translate-y-3 hover:scale-[1.02]`}
+                className={`card w-full h-[400px] flex justify-center items-center text-[30px] rounded-xl text-black shadow-xl bg-gradient-to-br ${card.gradient}`}
                 spotlightColor={"rgba(0, 229, 255, 0.08)"}
               >
-                {/* subtle decorative glows */}
-                <div className="absolute -left-24 -top-12 w-72 h-72 rounded-full bg-white/5 blur-3xl opacity-40 pointer-events-none" />
-                <div className="absolute -right-10 -bottom-16 w-56 h-56 rounded-full bg-white/6 blur-2xl opacity-30 pointer-events-none" />
-
-                {/* top centered number badge */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2">
-                  <div className="px-3 py-1 rounded-full bg-white/6 text-lg mt-2 font-mono text-white ring-1 ring-white/10 backdrop-blur-sm">
-                    {card.number}
-                  </div>
+                {/* Card content layout preserved */}
+                <div className="flex flex-col items-center w-full text-white">
+                  <div className="font-mono mb-2 ">{card.number}</div>
+                  <div className="mb-6 text-5xl" aria-hidden>{card.icon && React.createElement(card.icon, { size: 48, color: "#ffffff" })}</div>
+                  <h3 className="mb-4 text-2xl font-semibold">{card.title}</h3>
+                  <p className="text-base max-w-[80%] mx-auto text-center ">{card.description}</p>
                 </div>
-
-                {/* icon in frosted glass circle */}
-                <div className="mt-10 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-white/8 backdrop-blur-md ring-1 ring-white/10 flex items-center justify-center shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
-                    {card.icon && React.createElement(card.icon, { size: 36, color: "white", strokeWidth: 1.5 })}
-                  </div>
-                </div>
-
-                <h3 className="mt-6 text-3xl sm:text-4xl font-extrabold tracking-tight text-white drop-shadow-lg">
-                  {card.title}
-                </h3>
-
-                <p className="mt-4 text-sm md:text-base leading-relaxed text-white/80 max-w-[65%] mx-auto">
-                  {card.description}
-                </p>
-
-                {/* glowing underline accent */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-24 h-1 rounded-full bg-white/20 blur-sm opacity-60" />
               </SpotlightCard>
             </div>
           ))}
         </div>
       </div>
+      <div className="spacer w-full mb-20" />
     </>
   );
 };
