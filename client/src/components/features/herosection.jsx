@@ -24,9 +24,17 @@ import { TextTyping } from "../ui";
 import { TextSlideup } from "../ui/text.slideup";
 import DynamicBg from "../ui/dynamic.bg";
 import { Waves } from "../common/waves";
+import { motion, useAnimation, useReducedMotion } from "framer-motion";
 
 export const HeroSection = () => {
+  const MotionDiv = motion.div;
+  const MotionH1 = motion.h1;
+  const MotionP = motion.p;
+
   const [showScrollHint, setShowScrollHint] = useState(true);
+  const prefersReducedMotion = useReducedMotion();
+  const leftControls = useAnimation();
+  const rightControls = useAnimation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -44,17 +52,79 @@ export const HeroSection = () => {
     "design api, data modeling, deployment on aws",
   ];
 
+  const leftContainerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: prefersReducedMotion ? 0 : 0.08,
+      },
+    },
+  };
+
+  const leftItemVariants = {
+    hidden: {
+      opacity: 0,
+      x: prefersReducedMotion ? 0 : -28,
+      y: prefersReducedMotion ? 0 : 10,
+      filter: prefersReducedMotion ? "none" : "blur(8px)",
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      filter: "blur(0px)",
+      transition: prefersReducedMotion
+        ? { duration: 0.01 }
+        : { type: "spring", stiffness: 140, damping: 8, mass: 0.7 },
+    },
+  };
+
+  const rightVariants = {
+    hidden: {
+      opacity: 0,
+      x: prefersReducedMotion ? 0 : 28,
+      scale: prefersReducedMotion ? 1 : 0.985,
+      filter: prefersReducedMotion ? "none" : "blur(10px)",
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: prefersReducedMotion
+        ? { duration: 0.01 }
+        : { type: "spring", stiffness: 100, damping: 18, mass: 0.75 },
+    },
+  };
+
   return (
     <section className="relative w-full md:h-screen lg:h-screen overflow-hidden bg-[#d9b99b]">
       {/* Content */}
       <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-end justify-between relative z-30 px-6 pt-16 pb-0 h-full min-h-[calc(100vh-110px)]">
         {/* Left: Text */}
-        <div className="flex-1 flex flex-col items-start justify-end gap-6 max-w-xl pb-[140px]">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-[#006580] leading-tight font-['Proza_Libre']">
+        <MotionDiv
+          className="flex-1 flex flex-col items-start justify-end gap-6 max-w-xl pb-[140px] will-change-transform"
+          variants={leftContainerVariants}
+          initial="hidden"
+          animate={leftControls}
+          viewport={{ amount: 0.4, once: false }}
+          onViewportEnter={() => leftControls.start("show")}
+          onViewportLeave={() => leftControls.start("hidden")}
+        >
+          <MotionH1
+            variants={leftItemVariants}
+            className="text-5xl md:text-7xl font-extrabold text-[#006580] leading-tight font-['Proza_Libre']"
+          >
             Muhammad
             <br /> Umair
-          </h1>
-          <p className="text-2xl font-semibold text-[#1a2a36] mt-2 font-bold">
+          </MotionH1>
+
+          <MotionP
+            variants={leftItemVariants}
+            className="text-2xl font-semibold text-[#1a2a36] mt-2 font-bold"
+          >
             I build
             <span className="font-mono text-[#006580] ml-1 font-bold">
               <TextTyping
@@ -64,13 +134,21 @@ export const HeroSection = () => {
                 speed={60} // Typing speed
               />
             </span>
-          </p>
-          <p className="text-2xl text-[#2d3c4a] max-w-lg mt-1 font-bold">
+          </MotionP>
+
+          <MotionP
+            variants={leftItemVariants}
+            className="text-2xl text-[#2d3c4a] max-w-lg mt-1 font-bold"
+          >
             Building <span className="italic">beautiful</span>,
             <span className="font-bold">performant</span> and accessible web
             experiences, from idea to deployment.
-          </p>
-          <div className="flex items-center gap-1 text-[#006580] mt-3">
+          </MotionP>
+
+          <MotionDiv
+            variants={leftItemVariants}
+            className="flex items-center gap-1 text-[#006580] mt-3"
+          >
             <span className="inline-flex items-center gap-1">
               <span className="w-[220px] font-bold">
                 <TextSlideup
@@ -122,9 +200,10 @@ export const HeroSection = () => {
                 />
               </span>
             </span>
-          </div>
+
+          </MotionDiv>
           {/* Buttons */}
-          <div className="flex gap-4 mt-2">
+          <MotionDiv variants={leftItemVariants} className="flex gap-4 mt-2">
             <button
               className="bg-[#19628a] cursor-pointer text-white font-semibold px-6 py-2 rounded-xl shadow hover:bg-[#0e4662] transition"
               onClick={() => {
@@ -159,9 +238,13 @@ export const HeroSection = () => {
               <ArrowDownToLine size={20} />
               Resume
             </button>
-          </div>
+
+          </MotionDiv>
           {/* Socials */}
-          <div className="flex gap-4 text-2xl text-[#006580] flex-wrap">
+          <MotionDiv
+            variants={leftItemVariants}
+            className="flex gap-4 text-2xl text-[#006580] flex-wrap"
+          >
             <a
               href="#"
               className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
@@ -204,12 +287,21 @@ export const HeroSection = () => {
             >
               <Twitter size={20} />
             </a>
-          </div>
-        </div>
+
+          </MotionDiv>
+        </MotionDiv>
         {/* Right: Image with Circle */}
-        <div className="flex-1 flex items-end justify-center relative min-w-[350px]">
+        <MotionDiv
+          className="flex-1 w-full min-w-0 md:min-w-[350px] flex items-end justify-center relative will-change-transform"
+          variants={rightVariants}
+          initial="hidden"
+          animate={rightControls}
+          viewport={{ amount: 0.35, once: false }}
+          onViewportEnter={() => rightControls.start("show")}
+          onViewportLeave={() => rightControls.start("hidden")}
+        >
           {/* Light beige circle with shadow */}
-          <div className="absolute left-1/2 bottom-30 -translate-x-1/2 translate-y-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] lg:w-[520px] lg:h-[520px] rounded-full bg-[[#e4d5b7] shadow-[0_8px_92px_0_rgba(0,0,0,0.18)] z-0"></div>
+          <div className="absolute left-1/2 bottom-30 -translate-x-1/2 translate-y-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] lg:w-[520px] lg:h-[520px] rounded-full bg-[#e4d5b7] shadow-[0_8px_92px_0_rgba(0,0,0,0.18)] z-0"></div>
           <img
             src={profileImg}
             alt="Profile"
@@ -220,7 +312,7 @@ export const HeroSection = () => {
           {/* <div className="absolute bottom-[10px] left-1/2 -translate-x-1/2 bg-white/90 rounded-full shadow-lg px-8 py-3 flex items-center gap-2 border border-gray-200 z-20">
             <span className="font-bold text-[#006580]">UI/UX</span> <span className="text-[#1a2a36]">Designer</span>
           </div> */}
-        </div>
+        </MotionDiv>
       </div>
       <DynamicBg
         lineColor="#006580"

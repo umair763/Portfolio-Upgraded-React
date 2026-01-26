@@ -28,8 +28,8 @@ const socialLinks = [
     label: "LinkedIn",
   },
   { icon: Github, href: "https://github.com/umair763", label: "GitHub" },
-  { icon: Globe, href: "https://upwork.com", label: "Upwork" },
-  { icon: Gamepad2, href: "https://discord.com", label: "Discord" },
+  { icon: Globe, href: "https://www.upwork.com/freelancers/~0118077421d2458c2f", label: "Upwork" },
+  { icon: Gamepad2, href: "https://discord.com/channels/@me", label: "Discord" },
   { icon: X, href: "https://x.com/Umairkhan039", label: "X" },
   {
     icon: MessageCircle,

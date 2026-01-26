@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { HeroSection } from "../components/features/herosection";
 import { JourneyCard } from "../components/ui";
 import { Waves } from "../components/common/waves";
@@ -8,8 +9,8 @@ export const About = () => {
     <div className="w-full">
       <HeroSection />
 
-      <section className="w-full bg-[#e4d5b7] py-16 md:py-24">
-        <div className="mx-auto w-full max-w-7xl px-6">
+      <section className="w-full bg-[#e4d5b7] py-16 md:py-24 overflow-x-hidden">
+        <div className="mx-auto w-full max-w-7xl px-6 overflow-x-hidden">
           {/* Header */}
           <div className="text-center">
             <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
@@ -21,10 +22,55 @@ export const About = () => {
           </div>
 
           {/* Content */}
-          <div className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <motion.div 
+            className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center overflow-x-hidden"
+            initial="hidden"
+            whileInView="visible"
+            exit="hidden"
+            viewport={{ amount: 0.3 }}
+            variants={{
+              hidden: {
+                transition: {
+                  staggerChildren: 0.1,
+                  staggerDirection: -1,
+                },
+              },
+              visible: {
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
             {/* Code Card */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-[520px] rounded-2xl bg-black/80 shadow-[0_18px_45px_rgba(0,0,0,0.20)] overflow-hidden">
+            <motion.div 
+              className="flex justify-center lg:justify-end"
+              variants={{
+                hidden: {
+                  x: -100,
+                  opacity: 0,
+                  transition: {
+                    duration: 0.6,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  },
+                },
+                visible: {
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  },
+                },
+              }}
+            >
+              <motion.div 
+                className="w-full max-w-[520px] rounded-2xl bg-black/80 shadow-[0_18px_45px_rgba(0,0,0,0.20)] overflow-hidden"
+                initial={{ scale: 0.95 }}
+                whileInView={{ scale: 1 }}
+                exit={{ scale: 0.95 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 <div className="flex items-center gap-2 px-5 py-4 border-b border-white/10">
                   <span className="h-3 w-3 rounded-full bg-red-500" />
                   <span className="h-3 w-3 rounded-full bg-yellow-500" />
@@ -97,15 +143,47 @@ export const About = () => {
                   {"\n"}
                   <span className="text-white">{"}"};</span>
                 </pre>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Introduction */}
-            <div className="text-[#006580]">
-              <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+            <motion.div 
+              className="text-[#006580]"
+              variants={{
+                hidden: {
+                  x: 100,
+                  opacity: 0,
+                  transition: {
+                    duration: 0.6,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  },
+                },
+                visible: {
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  },
+                },
+              }}
+            >
+              <motion.h3 
+                className="text-4xl md:text-5xl font-extrabold tracking-tight"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                exit={{ y: 20, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
                 My Introduction
-              </h3>
-              <div className="mt-6 space-y-5 text-base md:text-lg leading-relaxed text-black/70">
+              </motion.h3>
+              <motion.div 
+                className="mt-6 space-y-5 text-base md:text-lg leading-relaxed text-black/70"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                exit={{ y: 30, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
                 <p>
                   I am an <span className="font-semibold text-black/85">IT graduate</span> with a CGPA of <span className="font-semibold text-black/85">3.5+</span>, reflecting my dedication and discipline. My technical expertise lies in the <span className="font-semibold text-black/85">MERN</span> stack (MongoDB, Express.js, React, Node.js), with a particular focus on <span className="font-semibold text-black/85">backend development</span>. I have a good understanding of designing <span className="font-semibold text-black/85">RESTful APIs</span>, <span className="font-semibold text-black/85">database modeling</span>, and <span className="font-semibold text-black/85">cloud deployment</span> using AWS. Rather than just writing scripts, I prioritize clean coding practices and conventions.
                 </p>
@@ -120,9 +198,15 @@ export const About = () => {
                   and stay
                   <span className="font-semibold text-black/85"> curious</span>.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <motion.div 
+                className="mt-8 flex flex-wrap gap-3"
+                initial={{ y: 0, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                exit={{ y: 0, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
                 <span className="inline-flex items-center rounded-full bg-[#e4d5b7] px-4 py-2 text-sm font-semibold text-black/75 shadow-sm">
                   Clean UI
                 </span>
@@ -135,9 +219,9 @@ export const About = () => {
                 <span className="inline-flex items-center rounded-full bg-[#d9b99b] px-4 py-2 text-sm font-semibold text-black/75 shadow-sm">
                   Modern Stack
                 </span>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
         <div className="relative">
           <JourneyCard />

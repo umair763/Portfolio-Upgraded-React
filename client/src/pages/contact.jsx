@@ -7,7 +7,7 @@ import {
   FaGithub,
   FaTwitter,
   FaWhatsapp,
-  FaPaperPlane,
+  FaEnvelope,
 } from "react-icons/fa";
 
 export const Contact = () => {
@@ -98,7 +98,7 @@ export const Contact = () => {
                   </div>
                   <div className="flex gap-4">
                     <a
-                      href="https://linkedin.com/in/muhammadumairkhan945"
+                      href="https://www.linkedin.com/in/muhammad-umair-khan-012549265/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-blue-100 hover:bg-blue-200 text-[#b78654] rounded-full p-2 transition-colors"
@@ -106,7 +106,7 @@ export const Contact = () => {
                       <FaLinkedin className="w-5 h-5" />
                     </a>
                     <a
-                      href="https://github.com/muhammadumairkhan945"
+                      href="https://github.com/umair763"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-blue-100 hover:bg-blue-200 text-[#b78654] rounded-full p-2 transition-colors"
@@ -114,7 +114,7 @@ export const Contact = () => {
                       <FaGithub className="w-5 h-5" />
                     </a>
                     <a
-                      href="https://twitter.com/muhammadumairkhan945"
+                      href="https://x.com/Umairkhan039"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-blue-100 hover:bg-blue-200 text-[#b78654] rounded-full p-2 transition-colors"
@@ -133,7 +133,7 @@ export const Contact = () => {
                       href="mailto:muhammadumairkhan945@gmail.com"
                       className="bg-blue-100 hover:bg-blue-200 text-[#b78654] rounded-full p-2 transition-colors"
                     >
-                      <FaPaperPlane className="w-5 h-5" />
+                      <FaEnvelope className="w-5 h-5" />
                     </a>
                   </div>
                 </div>
