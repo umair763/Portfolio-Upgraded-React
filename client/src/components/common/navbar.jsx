@@ -1,24 +1,29 @@
-import { useEffect, useMemo, useState } from 'react';
-import { User, BadgeCheck, FolderKanban, Briefcase, Mail } from 'lucide-react';
+import { useEffect, useMemo, useState } from "react";
+import { User, BadgeCheck, FolderKanban, Briefcase, Mail, ArrowDown, ArrowUp } from "lucide-react";
 
-const TRACK_IDS = ['about', 'skills', 'projects', 'services', 'contact'];
+const TRACK_IDS = ["about", "skills", "projects", "services", "contact"];
 
 export const navbar = () => {
-  const [activeSection, setActiveSection] = useState('#about');
+  const [atTop, setAtTop] = useState(true);
+  const [activeSection, setActiveSection] = useState("#about");
 
   const navItems = useMemo(
     () => [
-      { label: 'About', href: '#about', icon: <User size={26} /> },
-      { label: 'Skills', href: '#skills', icon: <BadgeCheck size={26} /> },
-      { label: 'Projects', href: '#projects', icon: <FolderKanban size={26} /> },
-      { label: 'Services', href: '#services', icon: <Briefcase size={26} /> },
-      { label: 'Contact', href: '#contact', icon: <Mail size={26} /> },
+      { label: "About", href: "#about", icon: <User size={26} /> },
+      { label: "Skills", href: "#skills", icon: <BadgeCheck size={26} /> },
+      {
+        label: "Projects",
+        href: "#projects",
+        icon: <FolderKanban size={26} />,
+      },
+      { label: "Services", href: "#services", icon: <Briefcase size={26} /> },
+      { label: "Contact", href: "#contact", icon: <Mail size={26} /> },
     ],
     [],
   );
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     let ticking = false;
     const computeActive = () => {
@@ -30,7 +35,8 @@ export const navbar = () => {
         if (!el) return null;
         const rect = el.getBoundingClientRect();
         const distToOffset = Math.abs(rect.top - offsetLine);
-        const crossesOffset = rect.top <= offsetLine && rect.bottom >= offsetLine;
+        const crossesOffset =
+          rect.top <= offsetLine && rect.bottom >= offsetLine;
         const center = rect.top + rect.height / 2;
         const centerDist = Math.abs(center - viewportH / 2);
         return { id, distToOffset, crossesOffset, centerDist };
@@ -40,13 +46,17 @@ export const navbar = () => {
 
       const crossing = candidates.filter((c) => c.crossesOffset);
       const chosenList = crossing.length > 0 ? crossing : candidates;
-      chosenList.sort((a, b) => a.distToOffset - b.distToOffset || a.centerDist - b.centerDist);
+      chosenList.sort(
+        (a, b) =>
+          a.distToOffset - b.distToOffset || a.centerDist - b.centerDist,
+      );
       const chosen = chosenList[0];
       const next = `#${chosen.id}`;
       setActiveSection((prev) => (prev === next ? prev : next));
     };
 
     const onScroll = () => {
+      setAtTop(window.scrollY < 40);
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(() => {
@@ -57,44 +67,59 @@ export const navbar = () => {
     };
 
     const timer = window.setTimeout(() => computeActive(), 100);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
   const scrollToHash = (hash) => {
-    const id = hash.replace('#', '');
+    const id = hash.replace("#", "");
     const el = document.getElementById(id);
     if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (history.replaceState) history.replaceState(null, '', hash);
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (history.replaceState) history.replaceState(null, "", hash);
     else window.location.hash = hash;
   };
 
   return (
-    <nav
-      className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-gray-100 border border-gray-200 rounded-3xl shadow-md flex flex-col items-center py-6 px-2 gap-6 w-[60px]"
-    >
-      {navItems.map((item) => {
-        const isActive = activeSection === item.href;
-        return (
-          <button
-            key={item.label}
-            title={item.label}
-            onClick={() => scrollToHash(item.href)}
-            className={`rounded-full  p-2 transition-colors duration-200 flex items-center justify-center w-12 h-12
-              ${isActive ? 'bg-[#006580]/15 text-[#006580] shadow-lg ring-1 ring-[#006580]/30' : 'hover:bg-gray-200 text-gray-800'}`}
-            aria-label={item.label}
-          >
-            {item.icon}
-          </button>
-        );
-      })}
-    </nav>
+    <>
+      <nav className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-gray-100 border border-gray-200 rounded-4xl shadow-md flex flex-col items-center py-6 px-2 gap-6 w-[60px]">
+        {navItems.map((item) => {
+          const isActive = activeSection === item.href;
+          return (
+            <button
+              key={item.label}
+              title={item.label}
+              onClick={() => scrollToHash(item.href)}
+              className={` cursor-pointer rounded-full p-2 transition-colors duration-200 flex items-center justify-center w-10 h-10
+                ${isActive ? " bg-[#006580]/15 text-[#006580] shadow-lg ring-1 ring-[#006580]/30" : "hover:bg-gray-200 text-gray-800"}`}
+              aria-label={item.label}
+            >
+              {item.icon}
+            </button>
+          );
+        })}
+      </nav>
+      {/* Scroll to top/bottom button */}
+      <button
+        className="fixed right-4 cursor-pointer top-[calc(50%+180px)] z-50 bg-[#006580] text-white rounded-full shadow-lg w-12 h-12 flex items-center justify-center hover:bg-[#19628a] transition-colors border-2 border-white"
+        style={{ outline: 'none' }}
+        aria-label={atTop ? 'Scroll to bottom' : 'Scroll to top'}
+        onClick={() => {
+          if (atTop) {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
+      >
+        {atTop ? <ArrowDown size={28} /> : <ArrowUp size={28} />}
+      </button>
+    </>
   );
 };

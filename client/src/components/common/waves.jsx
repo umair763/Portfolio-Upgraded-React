@@ -5,7 +5,7 @@ export const Waves = ({}) => {
     <>
       {/* Animated SVG Waves at Bottom */}
       <div className="absolute left-0 right-0 bottom-0 w-full overflow-hidden pointer-events-none select-none z-20">
-        <div className="relative w-full h-[110px]">
+        <div className="relative w-full h-[110px] -mb-4">
           <svg
             className="absolute left-0 top-0 w-full h-full"
             viewBox="0 0 1920 110"

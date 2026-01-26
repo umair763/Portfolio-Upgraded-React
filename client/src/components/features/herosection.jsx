@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import profileImg from "../../assets/images/noBG.png";
 import {
   Linkedin,
@@ -10,6 +10,7 @@ import {
   Dribbble,
   Instagram,
 } from "lucide-react";
+import { ArrowDownToLine } from "lucide-react";
 import {
   CheckCircle2,
   Zap,
@@ -24,6 +25,17 @@ import { Waves } from "../common/waves";
 // ...existing code...
 
 export const HeroSection = () => {
+  const [showScrollHint, setShowScrollHint] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // show hint when near the top, hide when user scrolls down
+      if (window.scrollY > 20) setShowScrollHint(false);
+      else setShowScrollHint(true);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const texts = [
     "scalable web app",
     "fast modern websites",
@@ -41,9 +53,9 @@ export const HeroSection = () => {
             Muhammad
             <br /> Umair
           </h1>
-          <p className="text-xl md:text-2xl font-semibold text-[#1a2a36]">
-            I build{" "}
-            <span className="font-mono text-[#006580]">
+          <p className="text-2xl font-semibold text-[#1a2a36] mt-2">
+            I build
+            <span className="font-mono text-[#006580] ml-1">
               <TextTyping
                 texts={texts}
                 wait={1000} // Time to wait before switching text
@@ -52,12 +64,12 @@ export const HeroSection = () => {
               />{" "}
             </span>
           </p>
-          <p className="text-lg md:text-xl text-[#2d3c4a] max-w-lg">
+          <p className="text-2xl text-[#2d3c4a] max-w-lg mt-1">
             Building <span className="italic">beautiful</span>,
             <span className="font-bold">performant</span> and accessible web
             experiences, from idea to deployment.
           </p>
-          <div className="flex items-center gap-2 text-[#006580] text-base">
+          <div className="flex items-center gap-2 text-[#006580] text-base mt-3">
             <span className="inline-flex items-center gap-1">
               <span className="w-[220px]">
                 <TextSlideup
@@ -112,45 +124,36 @@ export const HeroSection = () => {
           </div>
           {/* Buttons */}
           <div className="flex gap-4 mt-2">
-            <button className="bg-[#19628a] text-white font-semibold px-6 py-2 rounded-xl shadow hover:bg-[#0e4662] transition">
+            <button className="bg-[#19628a] cursor-pointer text-white font-semibold px-6 py-2 rounded-2xl shadow hover:bg-[#0e4662] transition">
               View Projects
             </button>
-            <button className="bg-gray-100 text-[#1a2a36] font-semibold px-6 py-2 rounded-xl shadow hover:bg-gray-200 transition">
+            <button className="bg-gray-100/30 cursor-pointer text-[#1a2a36] font-semibold px-6 py-2 rounded-2xl border border-white shadow hover:bg-gray-200 transition">
               Get in Touch
             </button>
-            <button className="bg-sky-500 text-white font-semibold px-6 py-2 rounded-xl shadow hover:bg-sky-600 transition flex items-center gap-2">
-              <svg
-                width="20"
-                height="20"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 5v14m7-7H5" />
-              </svg>
+            <button className="bg-sky-500 cursor-pointer text-white font-semibold px-6 py-2 rounded-2xl shadow hover:bg-sky-600 transition flex items-center gap-2">
+              <ArrowDownToLine size={20} />
               Resume
             </button>
           </div>
           {/* Socials */}
-          <div className="flex gap-3 mt-4 text-2xl text-[#006580] flex-wrap">
+          <div className="flex gap-4 text-2xl text-[#006580] flex-wrap">
             <a href="#" className="hover:text-[#19628a]" aria-label="LinkedIn">
-              <Linkedin size={26} />
+              <Linkedin size={20} />
             </a>
             <a href="#" className="hover:text-[#19628a]" aria-label="Github">
-              <Github size={26} />
+              <Github size={20} />
             </a>
             <a href="#" className="hover:text-[#19628a]" aria-label="Mail">
-              <Mail size={26} />
+              <Mail size={20} />
             </a>
             <a href="#" className="hover:text-[#19628a]" aria-label="Facebook">
-              <Facebook size={26} />
+              <Facebook size={20} />
             </a>
             <a href="#" className="hover:text-[#19628a]" aria-label="Instagram">
-              <Instagram size={26} />
+              <Instagram size={20} />
             </a>
             <a href="#" className="hover:text-[#19628a]" aria-label="Twitter">
-              <Twitter size={26} />
+              <Twitter size={20} />
             </a>
           </div>
         </div>
@@ -171,6 +174,28 @@ export const HeroSection = () => {
         </div>
       </div>
       <Waves />
+      {/* Scroll hint (bottom center) */}
+      <div
+        aria-hidden
+        className={`absolute left-1/2 -translate-x-1/2 bottom-6 z-30 flex flex-col items-center gap-2 transition-opacity duration-300 ease-out ${
+          showScrollHint ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => {
+          window.scrollTo({ top: window.innerHeight - 60, behavior: 'smooth' });
+          setShowScrollHint(false);
+        }}
+      >
+        <span className="text-sm text-[#1a2a36] font-medium">Scroll</span>
+        <svg
+          className="w-6 h-6 text-[#1a2a36] scroll-arrow"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M19 12l-7 7-7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
     </section>
   );
 };
