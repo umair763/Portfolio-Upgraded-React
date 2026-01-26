@@ -7,3 +7,4 @@ export * from "./stacked.scroll.cards";
 export * from "./service.card";
 export * from "./marquees.scroll";
 export { default as PixelCard } from "./pixel.card";
+export * from "./contact.form";

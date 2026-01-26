@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { About, Skills, Projects, Services, Contact } from '../../pages';
-import { navbar as Navbar } from '../common/navbar';
-import { footer as Footer } from '../common/footer';
-
+import { About, Skills, Projects, Services, Contact } from "../../pages";
+import { navbar as Navbar } from "../common/navbar";
+import { Footer } from "../common/footer";
 
 export const MainLayout = () => {
   return (
@@ -30,8 +29,8 @@ export const MainLayout = () => {
           <Footer />
         </div>
       </div>
-    {/* Navbar is now hovered above all content, not inside the layout columns */}
-    <Navbar />
+      {/* Navbar is now hovered above all content, not inside the layout columns */}
+      <Navbar />
     </div>
   );
 };
