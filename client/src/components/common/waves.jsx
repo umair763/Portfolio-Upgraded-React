@@ -1,10 +1,10 @@
 import React from "react";
 
-export const Waves = ({}) => {
+export const Waves = ({ className = '' }) => {
   return (
     <>
       {/* Animated SVG Waves at Bottom */}
-      <div className="absolute left-0 right-0 bottom-0 w-full overflow-hidden pointer-events-none select-none z-20">
+      <div className={`absolute left-0 right-0 bottom-0 w-full overflow-hidden pointer-events-none select-none ${className}`}>
         <div className="relative w-full h-[110px] -mb-4">
           <svg
             className="absolute left-0 top-0 w-full h-full"

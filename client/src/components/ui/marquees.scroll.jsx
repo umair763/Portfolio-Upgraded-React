@@ -123,7 +123,7 @@ export const MarqueesScroll = ({
     >
       <div
         ref={stickyRef}
-        className="sticky top-0 h-dvh w-full overflow-hidden"
+        className="sticky top-0 h-[70dvh] w-full overflow-hidden"
       >
 
         <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-6">

@@ -9,6 +9,7 @@ import {
   Mail,
   Dribbble,
   Instagram,
+  ChevronDown,
 } from "lucide-react";
 import { ArrowDownToLine } from "lucide-react";
 import {
@@ -21,8 +22,8 @@ import {
 } from "lucide-react";
 import { TextTyping } from "../ui";
 import { TextSlideup } from "../ui/text.slideup";
+import DynamicBg from "../ui/dynamic.bg";
 import { Waves } from "../common/waves";
-// ...existing code...
 
 export const HeroSection = () => {
   const [showScrollHint, setShowScrollHint] = useState(true);
@@ -33,8 +34,8 @@ export const HeroSection = () => {
       if (window.scrollY > 20) setShowScrollHint(false);
       else setShowScrollHint(true);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const texts = [
     "scalable web app",
@@ -44,72 +45,72 @@ export const HeroSection = () => {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#d9b99b]">
+    <section className="relative w-full h-screen overflow-hidden bg-[#d9b99b]">
       {/* Content */}
-      <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-end justify-between relative z-10 px-6 pt-16 pb-0 h-full min-h-[calc(100vh-110px)]">
+      <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-end justify-between relative z-30 px-6 pt-16 pb-0 h-full min-h-[calc(100vh-110px)]">
         {/* Left: Text */}
         <div className="flex-1 flex flex-col items-start justify-end gap-6 max-w-xl pb-[140px]">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-[#006580] leading-tight">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-[#006580] leading-tight font-['Proza_Libre']">
             Muhammad
             <br /> Umair
           </h1>
-          <p className="text-2xl font-semibold text-[#1a2a36] mt-2">
+          <p className="text-2xl font-semibold text-[#1a2a36] mt-2 font-bold">
             I build
-            <span className="font-mono text-[#006580] ml-1">
+            <span className="font-mono text-[#006580] ml-1 font-bold">
               <TextTyping
                 texts={texts}
                 wait={1000} // Time to wait before switching text
                 waitbt={50} // Time to wait before typing the next char
                 speed={60} // Typing speed
-              />{" "}
+              />
             </span>
           </p>
-          <p className="text-2xl text-[#2d3c4a] max-w-lg mt-1">
+          <p className="text-2xl text-[#2d3c4a] max-w-lg mt-1 font-bold">
             Building <span className="italic">beautiful</span>,
             <span className="font-bold">performant</span> and accessible web
             experiences, from idea to deployment.
           </p>
-          <div className="flex items-center gap-2 text-[#006580] text-base mt-3">
+          <div className="flex items-center gap-1 text-[#006580] mt-3">
             <span className="inline-flex items-center gap-1">
-              <span className="w-[220px]">
+              <span className="w-[220px] font-bold">
                 <TextSlideup
-                  texts={[
-                    <span className="flex items-center gap-2">
+                  texts={[ 
+                    <span className="flex items-center gap-1 font-bold">
                       <CheckCircle2
                         size={18}
-                        className="inline-block align-middle shrink-0"
+                        className="inline-block align-middle shrink-0 "
                       />
-                      Pixel-Perfect UI + Clean
+                      Pixel-Perfect UI
                     </span>,
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-2 font-bold">
                       <Zap
                         size={18}
                         className="inline-block align-middle shrink-0"
                       />
                       Performance First
                     </span>,
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-2 font-bold">
                       <Layers
                         size={18}
                         className="inline-block align-middle shrink-0"
                       />
                       Modern Stack
                     </span>,
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-2 font-bold">
                       <Rocket
                         size={18}
                         className="inline-block align-middle shrink-0"
                       />
                       Open for work
                     </span>,
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-1 font-bold">
                       <Timer
                         size={18}
                         className="inline-block align-middle shrink-0"
                       />
                       20 hours response time
                     </span>,
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-1 font-bold">
                       <FileCode
                         size={18}
                         className="inline-block align-middle shrink-0"
@@ -124,35 +125,83 @@ export const HeroSection = () => {
           </div>
           {/* Buttons */}
           <div className="flex gap-4 mt-2">
-            <button className="bg-[#19628a] cursor-pointer text-white font-semibold px-6 py-2 rounded-2xl shadow hover:bg-[#0e4662] transition">
+            <button
+              className="bg-[#19628a] cursor-pointer text-white font-semibold px-6 py-2 rounded-xl shadow hover:bg-[#0e4662] transition"
+              onClick={() => {
+                const el = document.getElementById('projects');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  if (history.replaceState) history.replaceState(null, '', '#projects');
+                  else window.location.hash = '#projects';
+                } else {
+                  window.location.assign('/projects');
+                }
+              }}
+            >
               View Projects
             </button>
-            <button className="bg-gray-100/30 cursor-pointer text-[#1a2a36] font-semibold px-6 py-2 rounded-2xl border border-white shadow hover:bg-gray-200 transition">
+            <button
+              className="bg-gray-100/50 cursor-pointer text-[#1a2a36] font-semibold px-6 py-2 rounded-xl shadow hover:bg-gray-200 transition"
+              onClick={() => {
+                const el = document.getElementById('contact');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  if (history.replaceState) history.replaceState(null, '', '#contact');
+                  else window.location.hash = '#contact';
+                } else {
+                  window.location.assign('/contact');
+                }
+              }}
+            >
               Get in Touch
             </button>
-            <button className="bg-sky-500 cursor-pointer text-white font-semibold px-6 py-2 rounded-2xl shadow hover:bg-sky-600 transition flex items-center gap-2">
+            <button className="bg-sky-500 cursor-pointer text-white font-semibold px-6 py-2 rounded-xl shadow hover:bg-sky-600 transition flex items-center gap-2">
               <ArrowDownToLine size={20} />
               Resume
             </button>
           </div>
           {/* Socials */}
           <div className="flex gap-4 text-2xl text-[#006580] flex-wrap">
-            <a href="#" className="hover:text-[#19628a]" aria-label="LinkedIn">
+            <a
+              href="#"
+              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
+              aria-label="LinkedIn"
+            >
               <Linkedin size={20} />
             </a>
-            <a href="#" className="hover:text-[#19628a]" aria-label="Github">
+            <a
+              href="#"
+              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
+              aria-label="Github"
+            >
               <Github size={20} />
             </a>
-            <a href="#" className="hover:text-[#19628a]" aria-label="Mail">
+            <a
+              href="#"
+              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
+              aria-label="Mail"
+            >
               <Mail size={20} />
             </a>
-            <a href="#" className="hover:text-[#19628a]" aria-label="Facebook">
+            <a
+              href="#"
+              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
+              aria-label="Facebook"
+            >
               <Facebook size={20} />
             </a>
-            <a href="#" className="hover:text-[#19628a]" aria-label="Instagram">
+            <a
+              href="#"
+              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
+              aria-label="Instagram"
+            >
               <Instagram size={20} />
             </a>
-            <a href="#" className="hover:text-[#19628a]" aria-label="Twitter">
+            <a
+              href="#"
+              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
+              aria-label="Twitter"
+            >
               <Twitter size={20} />
             </a>
           </div>
@@ -173,28 +222,37 @@ export const HeroSection = () => {
           </div> */}
         </div>
       </div>
-      <Waves />
+      <DynamicBg
+        lineColor="#006580"
+        backgroundColor="rgba(255,255,255,0.02)"
+        waveSpeedX={0.0125}
+        waveSpeedY={0.01}
+        waveAmpX={40}
+        waveAmpY={20}
+        friction={0.9}
+        tension={0.01}
+        maxCursorMove={120}
+        xGap={12}
+        yGap={36}
+        className="z-10 pointer-events-none opacity-40"
+      />
+      {/* Waves overlay on top of everything */}
+      <Waves className="z-50 pointer-events-none" />
       {/* Scroll hint (bottom center) */}
       <div
         aria-hidden
-        className={`absolute left-1/2 -translate-x-1/2 bottom-6 z-30 flex flex-col items-center gap-2 transition-opacity duration-300 ease-out ${
-          showScrollHint ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`absolute left-1/2 -translate-x-1/2 bottom-6 z-30 flex flex-col items-center gap-2 transition-opacity duration-300 ease-out  ${
+          showScrollHint ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => {
-          window.scrollTo({ top: window.innerHeight - 60, behavior: 'smooth' });
+          window.scrollTo({ top: window.innerHeight - 60, behavior: "smooth" });
           setShowScrollHint(false);
         }}
       >
-        <span className="text-sm text-[#1a2a36] font-medium">Scroll</span>
-        <svg
-          className="w-6 h-6 text-[#1a2a36] scroll-arrow"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M19 12l-7 7-7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <span className="text-sm text-[#1a2a36] font-medium font-extrabold">
+          Scroll
+        </span>
+        <ChevronDown className="w-6 h-6 text-[#1a2a36] scroll-arrow font-extrabold" />
       </div>
     </section>
   );

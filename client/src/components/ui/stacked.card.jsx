@@ -9,6 +9,12 @@ import {
   FlaskConical,
   Rocket,
 } from "lucide-react";
+import discoverImg from "../../assets/images/discovery.jpg";
+import planningImg from "../../assets/images/planning.jpg";
+import designImg from "../../assets/images/design.webp";
+import developmentImg from "../../assets/images/development.jpg";
+import testingImg from "../../assets/images/testing.webp";
+import launchImg from "../../assets/images/deployment.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,7 +25,8 @@ const CARD_DATA = [
     title: "Discovery",
     description:
       "Understanding your goals, audience, and requirements through in-depth consultation.",
-    gradient: "from-[#0b1220] via-[#0f1720] to-[#08101a]",
+    gradient: "from-[#34A6F4] to-[#34A6F4]",
+    image: discoverImg,
   },
   {
     number: "02",
@@ -27,7 +34,8 @@ const CARD_DATA = [
     title: "Planning",
     description:
       "Creating a detailed roadmap with milestones, deliverables, and timelines.",
-    gradient: "from-[#071428] via-[#0b2a3a] to-[#06202b]",
+    gradient: "from-[#ED6AFF] to-[#ED6AFF]",
+    image: planningImg,
   },
   {
     number: "03",
@@ -35,7 +43,8 @@ const CARD_DATA = [
     title: "Design",
     description:
       "Crafting wireframes and visual designs that align with your brand identity.",
-    gradient: "from-[#241712] via-[#3b2a20] to-[#271714]",
+    gradient: "from-[#FF637E] to-[#FF637E]",
+    image: designImg,
   },
   {
     number: "04",
@@ -43,7 +52,8 @@ const CARD_DATA = [
     title: "Development",
     description:
       "Building your solution with clean, efficient, and well-documented code.",
-    gradient: "from-[#0b1020] via-[#17203a] to-[#0f1624]",
+    gradient: "from-[#615FFF] to-[#615FFF]",
+    image: developmentImg,
   },
   {
     number: "05",
@@ -51,7 +61,8 @@ const CARD_DATA = [
     title: "Testing",
     description:
       "Rigorous quality assurance across devices, browsers, and performance metrics.",
-    gradient: "from-[#062019] via-[#0b3b2b] to-[#07311f]",
+    gradient: "from-[#6A7282] to-[#6A7282]",
+    image: testingImg,
   },
   {
     number: "06",
@@ -59,7 +70,8 @@ const CARD_DATA = [
     title: "Launch",
     description:
       "Deploying your project and providing training for a smooth handoff.",
-    gradient: "from-[#1a1120] via-[#2a1830] to-[#16101f]",
+    gradient: "from-[#45556C] to-[#45556C]",
+    image: launchImg,
   },
 ];
 
@@ -173,11 +185,16 @@ export const StackedCard = ({ cards = CARD_DATA }) => {
             >
               <SpotlightCard
                 ref={(el) => (cardRefs.current[i] = el)}
-                className={`card w-full h-[400px] flex justify-center items-center text-[30px] rounded-xl text-black shadow-xl bg-gradient-to-br ${card.gradient}`}
+                className={`card w-full h-[400px] flex justify-center items-center text-[30px] rounded-xl text-black shadow-xl bg-gradient-to-br ${card.gradient} relative`}
                 spotlightColor={"rgba(0, 229, 255, 0.08)"}
               >
+                {/* Card background image overlay */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 z-0 rounded-xl"
+                  style={{ backgroundImage: `url(${card.image})` }}
+                />
                 {/* Card content layout preserved */}
-                <div className="flex flex-col items-center w-full text-white">
+                <div className="flex flex-col items-center w-full text-white relative z-10">
                   <div className="font-mono mb-2 ">{card.number}</div>
                   <div className="mb-6 text-5xl" aria-hidden>{card.icon && React.createElement(card.icon, { size: 48, color: "#ffffff" })}</div>
                   <h3 className="mb-4 text-2xl font-semibold">{card.title}</h3>

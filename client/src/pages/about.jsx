@@ -9,7 +9,7 @@ export const About = () => {
       <HeroSection />
 
       <section className="w-full bg-[#e4d5b7] py-16 md:py-24">
-        <div className="mx-auto w-full max-w-6xl px-6">
+        <div className="mx-auto w-full max-w-7xl px-6">
           {/* Header */}
           <div className="text-center">
             <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
@@ -37,20 +37,18 @@ export const About = () => {
                   className="px-6 py-6 text-[13px] leading-6 whitespace-pre-wrap font-mono"
                   style={{ background: "transparent" }}
                 >
-                  <span className="text-[#c792ea]">const</span>{" "}
-                  <span className="text-[#82aaff]">developer</span>{" "}
+                  <span className="text-[#c792ea]">const</span>
+                  <span className="text-[#82aaff]">developer</span>
                   <span className="text-white">= {"{"}</span>
                   {"\n"}
                   &nbsp;&nbsp;<span className="text-[#ffcb6b]">
                     nickName
                   </span>: <span className="text-[#c3e88d]">'Beardguy'</span>,
                   {"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">
-                    fullName
-                  </span>:{" "}
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">fullName</span>:
                   <span className="text-[#c3e88d]">'Muhammad Umair'</span>,
                   {"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">role</span>:{" "}
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">role</span>:
                   <span className="text-[#c3e88d]">'Full-Stack Developer'</span>
                   ,{"\n"}
                   &nbsp;&nbsp;<span className="text-[#ffcb6b]">
@@ -61,7 +59,7 @@ export const About = () => {
                   </span>
                   <span className="text-[#89ddff]">]</span>,{"\n"}
                   &nbsp;&nbsp;
-                  <span className="text-[#ffcb6b]">availability</span>:{" "}
+                  <span className="text-[#ffcb6b]">availability</span>:
                   <span className="text-[#c3e88d]">
                     'Open to opportunities'
                   </span>
@@ -69,28 +67,28 @@ export const About = () => {
                   &nbsp;&nbsp;<span className="text-[#ffcb6b]">hardWorker</span>
                   : <span className="text-[#f78c6c]">true</span>,{"\n"}
                   &nbsp;&nbsp;
-                  <span className="text-[#ffcb6b]">quickLearning</span>:{" "}
+                  <span className="text-[#ffcb6b]">quickLearning</span>:
                   <span className="text-[#f78c6c]">true</span>,{"\n"}
                   &nbsp;&nbsp;
-                  <span className="text-[#ffcb6b]">problemSolver</span>:{" "}
+                  <span className="text-[#ffcb6b]">problemSolver</span>:
                   <span className="text-[#f78c6c]">true</span>,{"\n"}
                   &nbsp;&nbsp;<span className="text-[#ffcb6b]">
                     hireable
-                  </span>: <span className="text-[#82aaff]">function</span>(){" "}
+                  </span>: <span className="text-[#82aaff]">function</span>()
                   <span className="text-white">{"{"}</span>
                   {"\n"}
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-[#89ddff]">return</span>{" "}
+                  <span className="text-[#89ddff]">return</span>
                   <span className="text-[#f78c6c]">true</span>;{"\n"}
                   &nbsp;&nbsp;<span className="text-white">{"}"},</span>
                   {"\n"}
                   &nbsp;&nbsp;<span className="text-[#ffcb6b]">
                     connect
-                  </span>: <span className="text-[#82aaff]">function</span>(){" "}
+                  </span>: <span className="text-[#82aaff]">function</span>()
                   <span className="text-white">{"{"}</span>
                   {"\n"}
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-[#89ddff]">return</span>{" "}
+                  <span className="text-[#89ddff]">return</span>
                   <span className="text-[#c3e88d]">
                     "Let's build something amazing together!"
                   </span>
@@ -109,27 +107,14 @@ export const About = () => {
               </h3>
               <div className="mt-6 space-y-5 text-base md:text-lg leading-relaxed text-black/70">
                 <p>
-                  I'm a{" "}
-                  <span className="font-semibold text-black/85">developer</span>{" "}
-                  focused on building modern, fast, and accessible web
-                  experiences. I love working on
-                  <span className="font-semibold text-black/85">
-                    {" "}
-                    frontend
-                  </span>{" "}
-                  where code meets design.
+                  I am an <span className="font-semibold text-black/85">IT graduate</span> with a CGPA of <span className="font-semibold text-black/85">3.5+</span>, reflecting my dedication and discipline. My technical expertise lies in the <span className="font-semibold text-black/85">MERN</span> stack (MongoDB, Express.js, React, Node.js), with a particular focus on <span className="font-semibold text-black/85">backend development</span>. I have a good understanding of designing <span className="font-semibold text-black/85">RESTful APIs</span>, <span className="font-semibold text-black/85">database modeling</span>, and <span className="font-semibold text-black/85">cloud deployment</span> using AWS. Rather than just writing scripts, I prioritize clean coding practices and conventions.
                 </p>
                 <p>
-                  I enjoy crafting{" "}
-                  <span className="font-semibold text-black/85">
-                    pixel-perfect
-                  </span>{" "}
-                  interfaces, optimizing performance, and keeping code clean and
-                  maintainable. I’m always learning and iterating.
+                  With a keen interest in problem-solving and designing architecture for complex systems, I am continuously refining my ability to understand system operations while considering key factors like <span className="font-semibold text-black/85">security</span>, <span className="font-semibold text-black/85">scalability</span>, and <span className="font-semibold text-black/85">reliability</span>. Always striving to improve, I'm eager to take on new challenges and build efficient, robust systems.
                 </p>
                 <p>
-                  In short: I build with{" "}
-                  <span className="font-semibold text-black/85">purpose</span>,
+                  In short: I build with
+                  <span className="font-semibold text-black/85 ml-1">purpose</span>,
                   design with
                   <span className="font-semibold text-black/85"> intent</span>,
                   and stay

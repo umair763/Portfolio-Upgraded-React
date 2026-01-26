@@ -83,30 +83,6 @@ const DEFAULT_ITEMS = [
     bubbleBg: "#FDE68A",
     bubbleFg: "#0B1220",
   },
-  {
-    id: "branding",
-    labelLines: ["Branding"],
-    Icon: FaPalette,
-    value: 0.7,
-    bubbleBg: "#FCA5A5",
-    bubbleFg: "#0B1220",
-  },
-  {
-    id: "social",
-    labelLines: ["Social", "Media &", "Flyers"],
-    Icon: SiCanva,
-    value: 0.7,
-    bubbleBg: "#A5B4FC",
-    bubbleFg: "#0B1220",
-  },
-  {
-    id: "automation",
-    labelLines: ["Automation"],
-    Icon: FaRobot,
-    value: 0.7,
-    bubbleBg: "#F9A8D4",
-    bubbleFg: "#0B1220",
-  },
 ];
 
 function clamp01(n) {

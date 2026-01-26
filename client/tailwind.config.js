@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'proza': ['Proza Libre', 'serif'],
+      },
       keyframes: {
         wave1: {
           '0%,100%': { transform: 'translateX(0)' },

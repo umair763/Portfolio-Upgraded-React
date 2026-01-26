@@ -15,25 +15,28 @@ import {
 } from "lucide-react";
 
 const exploreLinks = [
-  { label: "Services", href: "#" },
-  { label: "Projects", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Goodies", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const socialLinks = [
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Github, href: "https://github.com", label: "GitHub" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/muhammad-umair-khan-012549265/",
+    label: "LinkedIn",
+  },
+  { icon: Github, href: "https://github.com/umair763", label: "GitHub" },
   { icon: Globe, href: "https://upwork.com", label: "Upwork" },
   { icon: Gamepad2, href: "https://discord.com", label: "Discord" },
-  { icon: X, href: "https://x.com", label: "X" },
-  { icon: Coffee, href: "https://buymeacoffee.com", label: "Coffee" },
+  { icon: X, href: "https://x.com/Umairkhan039", label: "X" },
   {
     icon: MessageCircle,
-    href: "https://wa.me/543442453797",
+    href: "https://wa.me/03405688540",
     label: "WhatsApp",
   },
-  { icon: Mail, href: "mailto:hello@qazuoR.com", label: "Mail" },
+  { icon: Mail, href: "mailto:muhammadumairkhan945@gmail.com", label: "Mail" },
 ];
 
 export const Footer = () => {
@@ -48,10 +51,12 @@ export const Footer = () => {
             About <span className="font-normal">—</span>
           </h3>
           <p className="text-[15px] text-gray-800 leading-relaxed">
-            Hi, I'm a passionate full-stack developer specializing in modern web
-            apps and UI/UX. I love building clean, scalable solutions and
-            collaborating on creative projects. Let's connect and make something
-            awesome together!
+            I’m a full-stack developer specializing in the MERN stack (MongoDB,
+            Express.js, React, Node.js), with a focus on backend development. I
+            prioritize clean, scalable code, adhering to best practices.
+            Passionate about solving complex problems, I design systems that are
+            secure, scalable, and reliable. Always learning, I’m ready to take
+            on new challenges and build efficient solutions.
           </p>
         </div>
         {/* Explore + Contact me stacked in one column */}
@@ -63,9 +68,25 @@ export const Footer = () => {
             <ul className="space-y-1 text-[15px] mb-8">
               {exploreLinks.map((link, i) => (
                 <li key={i}>
-                  <a href={link.href} className="hover:underline text-gray-800">
+                  <button
+                    className="hover:underline text-gray-800 cursor-pointer"
+                    onClick={() => {
+                      const el = document.getElementById(link.href.slice(1));
+                      if (el) {
+                        el.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                        if (history.replaceState)
+                          history.replaceState(null, "", link.href);
+                        else window.location.hash = link.href;
+                      } else {
+                        window.location.assign(link.href);
+                      }
+                    }}
+                  >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -77,19 +98,19 @@ export const Footer = () => {
             <div className="mb-2 flex items-center gap-2 text-[15px]">
               <span className="font-medium">E:</span>
               <a
-                href="mailto:hello@qazuoR.com"
+                href="mailto:muhammadumairkhan945@gmail.com"
                 className="hover:underline text-gray-800"
               >
-                hello@qazuoR.com
+                muhammadumairkhan945@gmail.com
               </a>
             </div>
             <div className="mb-4 flex items-center gap-2 text-[15px]">
               <span className="font-medium">P:</span>
               <a
-                href="tel:+543442453797"
+                href="tel:+92304588540"
                 className="hover:underline text-gray-800"
               >
-                +54 3442 453797
+                +92 340 588540
               </a>
             </div>
             <div className="flex gap-2 flex-wrap mt-2">
@@ -100,7 +121,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="inline-flex items-center justify-center w-8 h-8 rounded bg-gray-200 hover:bg-blue-700 hover:text-white text-gray-800 transition-colors"
+                  className="inline-flex p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580] items-center justify-center w-8 h-8 rounded transition-colors"
                 >
                   <Icon className="w-4 h-4" />
                 </a>

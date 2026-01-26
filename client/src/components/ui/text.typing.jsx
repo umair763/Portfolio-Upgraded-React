@@ -40,7 +40,7 @@ export const TextTyping = ({ texts = [], wait = 2000, speed = 50 }) => {
   }, [texts, index, subIndex]);
 
   return (
-    <span className="text-xl font-semibold text-darkgreen opacity-100">
+    <span className="text-xl font-bold text-darkgreen opacity-100">
       {displayed}
       <span className={blink ? 'opacity-100' : 'opacity-0'}>|</span>
     </span>
