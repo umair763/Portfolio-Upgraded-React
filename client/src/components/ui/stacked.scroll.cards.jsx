@@ -105,23 +105,28 @@ function Card({ item, reversed }) {
   return (
     <div
       className={
-        "grid h-[90%] w-full grid-cols-1 items-center gap-10 rounded-4xl bg-white/85 p-10 shadow-[0_30px_90px_rgba(2,6,23,0.20)] ring-1 ring-slate-900/10 backdrop-blur-xl md:grid-cols-2 md:p-14"
+        "grid h-full w-full min-h-0 grid-cols-1 items-center gap-6 overflow-hidden rounded-4xl bg-white/85 p-6 shadow-[0_30px_90px_rgba(2,6,23,0.20)] ring-1 ring-slate-900/10 backdrop-blur-xl sm:gap-8 sm:p-8 md:grid-cols-2 md:gap-10 md:p-14"
       }
     >
-      <div className={reversed ? "order-2 md:order-2" : "order-2 md:order-1"}>
-        <div className="max-w-xl">
+      <div
+        className={
+          (reversed ? "order-2 md:order-2" : "order-2 md:order-1") +
+          " min-h-0"
+        }
+      >
+        <div className="min-h-0 max-w-xl">
           {subtitle ? (
             <p className="text-sm font-medium tracking-wide text-slate-500">
               {subtitle}
             </p>
           ) : null}
-          <h2 className="mt-3 text-[44px] font-semibold leading-[1.05] tracking-tight text-slate-900 md:text-[56px]">
+          <h2 className="mt-3 text-lg font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-2xl md:text-4xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-6 text-[15px] leading-7 text-slate-600 md:text-[16px]">
-              {description}
-            </p>
+            <div className="mt-5 min-h-0 max-h-[26vh] overflow-auto pr-1 text-[14px] leading-7 text-slate-600 sm:max-h-[28vh] md:max-h-none md:overflow-visible md:pr-0 md:text-[16px]">
+              <p>{description}</p>
+            </div>
           ) : null}
 
           {tags.length > 0 ? (
@@ -129,7 +134,7 @@ function Card({ item, reversed }) {
               {tags.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-700"
+                  className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-medium text-sky-700 sm:text-xs"
                 >
                   {t}
                 </span>
@@ -142,7 +147,7 @@ function Card({ item, reversed }) {
               href={ctaHref}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 sm:mt-8 sm:w-fit"
             >
               {ctaLabel}
               <ExternalLink className="h-4 w-4" />
@@ -150,7 +155,7 @@ function Card({ item, reversed }) {
           ) : (
             <button
               type="button"
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 sm:mt-8 sm:w-fit"
             >
               {ctaLabel}
               <ChevronRight className="h-4 w-4" />
@@ -159,8 +164,13 @@ function Card({ item, reversed }) {
         </div>
       </div>
 
-      <div className={reversed ? "order-1 md:order-1" : "order-1 md:order-2"}>
-        <div className="h-[340px] w-full md:h-[420px]">
+      <div
+        className={
+          (reversed ? "order-1 md:order-1" : "order-1 md:order-2") +
+          " min-h-0"
+        }
+      >
+        <div className="h-[220px] w-full min-h-0 sm:h-[280px] md:h-[420px]">
           <Carousel images={images} alt={`${title} preview`} />
         </div>
       </div>
@@ -365,7 +375,7 @@ export const StackedScrollCards = ({ items }) => {
         <div className="pointer-events-none absolute inset-0" />
 
         <div className="relative mx-auto flex h-full max-w-7xl items-center px-6">
-          <div className="relative h-[82vh] w-full">
+          <div className="relative h-[92vh] w-full sm:h-[88vh] md:h-[82vh]">
             {data.map((item, index) => (
               <div
                 key={item.id ?? index}

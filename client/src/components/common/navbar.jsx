@@ -7,6 +7,8 @@ export const navbar = () => {
   const [atTop, setAtTop] = useState(true);
   const [activeSection, setActiveSection] = useState("#about");
 
+  const [isMobile, setIsMobile] = useState(false);
+
   const navItems = useMemo(
     () => [
       { label: "About", href: "#about", icon: <User size={26} /> },
@@ -24,6 +26,11 @@ export const navbar = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    const onMedia = () => {
+      setIsMobile(window.matchMedia("(max-width: 767px)").matches);
+    };
+    onMedia();
 
     let ticking = false;
     const computeActive = () => {
@@ -69,11 +76,13 @@ export const navbar = () => {
     const timer = window.setTimeout(() => computeActive(), 100);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onMedia);
 
     return () => {
       window.clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onMedia);
     };
   }, []);
 
@@ -88,7 +97,9 @@ export const navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-gray-100 border border-gray-200 rounded-4xl shadow-md flex flex-col items-center py-6 px-2 gap-6 w-[60px]">
+      <nav className="fixed z-50 border border-gray-200 bg-gray-100 shadow-md backdrop-blur-md
+        bottom-3 left-1/2 -translate-x-1/2 rounded-4xl px-4 py-3 flex flex-row items-center justify-center gap-4 w-[calc(100%-1.5rem)] max-w-[520px]
+        md:top-1/2 md:right-4 md:left-auto md:bottom-auto md:-translate-x-0 md:-translate-y-1/2 md:flex-col md:px-2 md:py-6 md:gap-6 md:w-[60px]">
         {navItems.map((item) => {
           const isActive = activeSection === item.href;
           return (
@@ -96,18 +107,26 @@ export const navbar = () => {
               key={item.label}
               title={item.label}
               onClick={() => scrollToHash(item.href)}
-              className={` cursor-pointer rounded-full p-2 transition-colors duration-200 flex items-center justify-center w-10 h-10
-                ${isActive ? " bg-[#006580]/15 text-[#006580] shadow-lg ring-1 ring-[#006580]/30" : "hover:bg-gray-200 text-gray-800"}`}
+              className={`cursor-pointer rounded-full transition-colors duration-200 flex items-center justify-center
+                w-10 h-10 md:w-10 md:h-10
+                ${isActive ? "bg-[#006580]/15 text-[#006580] shadow-lg ring-1 ring-[#006580]/30" : "hover:bg-gray-200 text-gray-800"}`}
               aria-label={item.label}
             >
-              {item.icon}
+              {isMobile ? (
+                <span className="[&>svg]:h-[22px] [&>svg]:w-[22px]">{item.icon}</span>
+              ) : (
+                item.icon
+              )}
             </button>
           );
         })}
       </nav>
       {/* Scroll to top/bottom button */}
       <button
-        className="fixed right-4 cursor-pointer top-[calc(50%+180px)] z-50 bg-[#006580] text-white rounded-full shadow-lg w-12 h-12 flex items-center justify-center hover:bg-[#19628a] transition-colors border-2 border-white"
+        className="fixed z-50 bg-[#006580] text-white rounded-full shadow-lg w-12 h-12 flex items-center justify-center hover:bg-[#19628a] transition-colors border-2 border-white cursor-pointer
+          right-4 top-[calc(50%+180px)]
+          md:right-4 md:top-[calc(50%+180px)]
+          max-md:right-4 max-md:bottom-[92px] max-md:top-auto"
         style={{ outline: 'none' }}
         aria-label={atTop ? 'Scroll to bottom' : 'Scroll to top'}
         onClick={() => {

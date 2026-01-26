@@ -45,7 +45,7 @@ export const HeroSection = () => {
   ];
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-[#d9b99b]">
+    <section className="relative w-full md:h-screen lg:h-screen overflow-hidden bg-[#d9b99b]">
       {/* Content */}
       <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-end justify-between relative z-30 px-6 pt-16 pb-0 h-full min-h-[calc(100vh-110px)]">
         {/* Left: Text */}
