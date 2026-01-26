@@ -8,6 +8,23 @@ import React, {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import lungCancer1 from "../../assets/images/lungcancerdetection-1.png";
+import lungCancer2 from "../../assets/images/lungcancerdetection-2.png";
+import lungCancer3 from "../../assets/images/lungcancerdetection-3.png";
+import h2h1 from "../../assets/images/h2h-1.png";
+import h2h2 from "../../assets/images/h2h-2.png";
+import h2h3 from "../../assets/images/h2h-3.png";
+import h2h4 from "../../assets/images/h2h-4.png";
+import therapist1 from "../../assets/images/therapist-1.png";
+import therapist2 from "../../assets/images/therapist-2.png";
+import fyp1 from "../../assets/images/FYP-1.png";
+import fyp2 from "../../assets/images/FYP-2.png";
+import fyp3 from "../../assets/images/FYP-3.png";
+import fyp4 from "../../assets/images/FYP-4.png";
+import fyp5 from "../../assets/images/FYP-5.png";
+import tof1 from "../../assets/images/tof-1.png";
+import tof2 from "../../assets/images/tof-2.png";
+import tof3 from "../../assets/images/tof-3.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -253,11 +270,7 @@ export const StackedScrollCards = ({ items }) => {
           "The model is a Convolutional Neural Network (CNN) built for classifying lung cancer images into three categories: Adenocarcinoma, Benign, and Squamous Cell Carcinoma. It utilizes multiple Conv2D and MaxPooling2D layers for feature extraction, with BatchNormalization and Dropout for regularization. The model is trained using data augmentation and optimized with Adam. It achieves high accuracy (~97%) on the test set, providing reliable predictions for lung cancer classification.",
         tags: ["FlASK", "KERAS", "CNN", "HTML", "JS", "CSS"],
         ctaLabel: "View Project",
-        images: [
-          "/src/assets/images/lungcancerdetection-1.png",
-          "/src/assets/images/lungcancerdetection-2.png",
-          "/src/assets/images/lungcancerdetection-3.png",
-        ],
+        images: [lungCancer1, lungCancer2, lungCancer3],
       },
       {
         id: "Heart2Heart",
@@ -273,12 +286,7 @@ export const StackedScrollCards = ({ items }) => {
           "PAYPAL",
         ],
         ctaLabel: "View Project",
-        images: [
-          "/src/assets/images/h2h-1.png",
-          "/src/assets/images/h2h-2.png",
-          "/src/assets/images/h2h-3.png",
-          "/src/assets/images/h2h-4.png",
-        ],
+        images: [h2h1, h2h2, h2h3, h2h4],
       },
       {
         id: "rachael-fryrear-counseling",
@@ -293,10 +301,7 @@ export const StackedScrollCards = ({ items }) => {
           "REQUIREMENTS GATHERING",
         ],
         ctaLabel: "View Project",
-        images: [
-          "/src/assets/images/therapist-1.png",
-          "/src/assets/images/therapist-2.png",
-        ],
+        images: [therapist1, therapist2],
       },
       {
         id: "ai-powered-multi-platform-management-&-insights",
@@ -316,13 +321,7 @@ export const StackedScrollCards = ({ items }) => {
           "RoBERTa Transformer",
         ],
         ctaLabel: "View Project",
-        images: [
-          "/src/assets/images/FYP-1.png",
-          "/src/assets/images/FYP-2.png",
-          "/src/assets/images/FYP-3.png",
-          "/src/assets/images/FYP-4.png",
-          "/src/assets/images/FYP-5.png",
-        ],
+        images: [fyp1, fyp2, fyp3, fyp4, fyp5],
       },
       {
         id: "theothersfarhan",
@@ -336,11 +335,7 @@ export const StackedScrollCards = ({ items }) => {
           "REQUIREMENTS GATHERING",
         ],
         ctaLabel: "View Project",
-        images: [
-          "/src/assets/images/tof-1.png",
-          "/src/assets/images/tof-2.png",
-          "/src/assets/images/tof-3.png",
-        ],
+        images: [tof1, tof2, tof3],
       },
     ];
   }, [items]);
