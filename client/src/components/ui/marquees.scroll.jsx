@@ -13,14 +13,14 @@ gsap.registerPlugin(ScrollTrigger);
  * How to use:
  * <MarqueesScroll
  *   items={[{ icon, title, description, checkmark, ctaLabel, ctaHref }]}
- *   cardClassName="w-[620px] max-w-none"
- *   gapClassName="gap-10"
+ *   cardClassName="w-[320px] sm:w-[620px] max-w-none"
+ *   gapClassName="gap-4 sm:gap-10"
  * />
  */
 export const MarqueesScroll = ({
   items = [],
-  cardClassName = "w-[620px] max-w-none",
-  gapClassName = "gap-10",
+  cardClassName = "w-[320px] sm:w-[620px] max-w-none",
+  gapClassName = "gap-4 sm:gap-10",
   startOffsetPx = 80,
 }) => {
   const sectionRef = useRef(null);
@@ -154,4 +154,4 @@ export const MarqueesScroll = ({
     </section>
   );
 };
- 
+  
