@@ -3,7 +3,7 @@ import React from "react";
 import { About, Skills, Projects, Services, Contact } from "../../pages";
 import { navbar as Navbar } from "../common/navbar";
 import { Footer } from "../common/footer";
-
+ 
 export const MainLayout = () => {
   return (
     <div className="bg-[#e4d5b7]">

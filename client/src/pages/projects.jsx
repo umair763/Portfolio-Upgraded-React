@@ -1,11 +1,11 @@
 import React from "react";
 import { StackedScrollCards } from "../components/ui";
 import { Waves } from "../components/common/waves";
-
+ 
 export const Projects = () => {
   return (
     <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b]">
-      <div className="relative mx-auto w-full px-6 ">
+      <div className="relative mx-auto w-full px-0 md:px-6 lg:px-6">
         {/* Header */}
         <div className="text-center">
           <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">

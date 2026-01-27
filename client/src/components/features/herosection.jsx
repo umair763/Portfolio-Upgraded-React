@@ -105,7 +105,7 @@ export const HeroSection = () => {
       <div className="container mx-auto max-w-7xl flex flex-col md:flex-row items-end justify-between relative z-30 px-6 pt-16 pb-0 h-full min-h-[calc(100vh-110px)]">
         {/* Left: Text */}
         <MotionDiv
-          className="flex-1 flex flex-col items-start justify-end gap-6 max-w-xl pb-[140px] will-change-transform"
+          className="flex-1 flex flex-col items-start justify-end gap-3 max-w-xl pb-[140px] will-change-transform"
           variants={leftContainerVariants}
           initial="hidden"
           animate={leftControls}
@@ -115,7 +115,7 @@ export const HeroSection = () => {
         >
           <MotionH1
             variants={leftItemVariants}
-            className="text-5xl md:text-7xl font-extrabold text-[#006580] leading-tight font-['Proza_Libre']"
+            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#006580] leading-tight font-['Proza_Libre']"
           >
             Muhammad
             <br /> Umair
@@ -123,7 +123,7 @@ export const HeroSection = () => {
 
           <MotionP
             variants={leftItemVariants}
-            className="text-2xl font-semibold text-[#1a2a36] mt-2 font-bold"
+            className="text-lg md:text-2xl font-semibold text-[#1a2a36] mt-2 font-bold"
           >
             I build
             <span className="font-mono text-[#006580] ml-1 font-bold">
@@ -138,7 +138,7 @@ export const HeroSection = () => {
 
           <MotionP
             variants={leftItemVariants}
-            className="text-2xl text-[#2d3c4a] max-w-lg mt-1 font-bold"
+            className="text-lg md:text-2xl lg:text-2xl text-[#2d3c4a] max-w-lg mt-1 font-bold"
           >
             Building <span className="italic">beautiful</span>,
             <span className="font-bold">performant</span> and accessible web
@@ -152,7 +152,7 @@ export const HeroSection = () => {
             <span className="inline-flex items-center gap-1">
               <span className="w-[220px] font-bold">
                 <TextSlideup
-                  texts={[ 
+                  texts={[
                     <span className="flex items-center gap-1 font-bold">
                       <CheckCircle2
                         size={18}
@@ -200,45 +200,45 @@ export const HeroSection = () => {
                 />
               </span>
             </span>
-
           </MotionDiv>
           {/* Buttons */}
           <MotionDiv variants={leftItemVariants} className="flex gap-4 mt-2">
             <button
-              className="bg-[#19628a] cursor-pointer text-white font-semibold px-6 py-2 rounded-xl shadow hover:bg-[#0e4662] transition"
+              className="bg-[#19628a] cursor-pointer text-white font-semibold text-[0.82rem] px-2 py-1 lg:px-6 lg:py-2 md:px-6 md:py-2 rounded-xl shadow hover:bg-[#0e4662] transition"
               onClick={() => {
-                const el = document.getElementById('projects');
+                const el = document.getElementById("projects");
                 if (el) {
-                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  if (history.replaceState) history.replaceState(null, '', '#projects');
-                  else window.location.hash = '#projects';
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  if (history.replaceState)
+                    history.replaceState(null, "", "#projects");
+                  else window.location.hash = "#projects";
                 } else {
-                  window.location.assign('/projects');
+                  window.location.assign("/projects");
                 }
               }}
             >
               View Projects
             </button>
             <button
-              className="bg-gray-100/50 cursor-pointer text-[#1a2a36] font-semibold px-6 py-2 rounded-xl shadow hover:bg-gray-200 transition"
+              className="bg-gray-100/50 cursor-pointer text-[#1a2a36] font-semibold text-[0.82rem] px-2 py-1 lg:px-6 lg:py-2 md:px-6 md:py-2  rounded-xl shadow hover:bg-gray-200 transition"
               onClick={() => {
-                const el = document.getElementById('contact');
+                const el = document.getElementById("contact");
                 if (el) {
-                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  if (history.replaceState) history.replaceState(null, '', '#contact');
-                  else window.location.hash = '#contact';
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  if (history.replaceState)
+                    history.replaceState(null, "", "#contact");
+                  else window.location.hash = "#contact";
                 } else {
-                  window.location.assign('/contact');
+                  window.location.assign("/contact");
                 }
               }}
             >
               Get in Touch
             </button>
-            <button className="bg-sky-500 cursor-pointer text-white font-semibold px-6 py-2 rounded-xl shadow hover:bg-sky-600 transition flex items-center gap-2">
+            <button className="bg-sky-500 cursor-pointer text-white font-semibold text-[0.82rem] px-2 py-1 lg:px-6 lg:py-2 md:px-6 md:py-2  rounded-xl shadow hover:bg-sky-600 transition flex items-center gap-2">
               <ArrowDownToLine size={20} />
               Resume
             </button>
-
           </MotionDiv>
           {/* Socials */}
           <MotionDiv
@@ -287,7 +287,6 @@ export const HeroSection = () => {
             >
               <Twitter size={20} />
             </a>
-
           </MotionDiv>
         </MotionDiv>
         {/* Right: Image with Circle */}
@@ -329,7 +328,9 @@ export const HeroSection = () => {
         className="z-10 pointer-events-none opacity-40"
       />
       {/* Waves overlay on top of everything */}
-      <Waves className="z-50 pointer-events-none" />
+      <div className="-mt-6 md:-mt-0 lg:-mt-0">
+        <Waves className="z-50 pointer-events-none" />
+      </div>
       {/* Scroll hint (bottom center) */}
       <div
         aria-hidden

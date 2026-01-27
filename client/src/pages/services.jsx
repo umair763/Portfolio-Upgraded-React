@@ -55,7 +55,7 @@ export const Services = () => {
 
   return (
     <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] mt-20 ">
-      <div className="relative mx-auto w-full px-6 ">
+      <div className="relative mx-auto w-full px-1 md:px-6 lg:px-6">
         {/* Header */}
         <div className="text-center">
           <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
@@ -77,7 +77,7 @@ export const Services = () => {
           <p className="mt-2 text-lg md:text-xl text-black/70">
             A structured approach to deliver quality results
           </p>
-          <div className="">
+          <div className="ml-0 mr-0">
             <StackedCard />
           </div>
         </div>

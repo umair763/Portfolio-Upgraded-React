@@ -176,12 +176,12 @@ export const StackedCard = ({ cards = CARD_DATA }) => {
     <>
       <div className="spacer w-full " />
       <div ref={wrapperRef} className="wrapper w-full py-[100px] ">
-        <div className="cards w-[90%] max-w-[1000px] mx-auto px-[50px]">
+        <div className="cards w-[90%] max-w-[1000px] min-w-[300px] mx-auto">
           {cards.map((card, i) => (
             <div
               key={`${card.number}-${i}`}
               ref={(el) => (cardWrapperRefs.current[i] = el)}
-              className={`card-wrapper w-full mb-[50px] last:mb-0 perspective-[500px]`}
+              className={`card-wrapper w-full mb-[50px] last:mb-0 perspective-[100px]`}
             >
               <SpotlightCard
                 ref={(el) => (cardRefs.current[i] = el)}

@@ -1,5 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import { User, BadgeCheck, FolderKanban, Briefcase, Mail, ArrowDown, ArrowUp } from "lucide-react";
+import {
+  User,
+  BadgeCheck,
+  FolderKanban,
+  Briefcase,
+  Mail,
+  ArrowDown,
+  ArrowUp,
+} from "lucide-react";
 
 const TRACK_IDS = ["about", "skills", "projects", "services", "contact"];
 
@@ -97,9 +105,11 @@ export const navbar = () => {
 
   return (
     <>
-      <nav className="fixed z-50 border border-gray-200 bg-gray-100 shadow-md backdrop-blur-md
+      <nav
+        className="fixed z-50 border border-gray-200 bg-gray-100 shadow-md backdrop-blur-md
         bottom-3 left-1/2 -translate-x-1/2 rounded-4xl px-4 py-3 flex flex-row items-center justify-center gap-4 w-[calc(100%-1.5rem)] max-w-[520px]
-        md:top-1/2 md:right-4 md:left-auto md:bottom-auto md:-translate-x-0 md:-translate-y-1/2 md:flex-col md:px-2 md:py-6 md:gap-6 md:w-[60px]">
+        md:top-1/2 md:right-4 md:left-auto md:bottom-auto md:-translate-x-0 md:-translate-y-1/2 md:flex-col md:px-2 md:py-6 md:gap-6 md:w-[60px] h-[50px] md:h-[350px] lg:h-[350px]"
+      >
         {navItems.map((item) => {
           const isActive = activeSection === item.href;
           return (
@@ -113,7 +123,9 @@ export const navbar = () => {
               aria-label={item.label}
             >
               {isMobile ? (
-                <span className="[&>svg]:h-[22px] [&>svg]:w-[22px]">{item.icon}</span>
+                <span className="[&>svg]:h-[22px] [&>svg]:w-[22px]">
+                  {item.icon}
+                </span>
               ) : (
                 item.icon
               )}
@@ -127,13 +139,16 @@ export const navbar = () => {
           right-4 top-[calc(50%+180px)]
           md:right-4 md:top-[calc(50%+180px)]
           max-md:right-4 max-md:bottom-[92px] max-md:top-auto"
-        style={{ outline: 'none' }}
-        aria-label={atTop ? 'Scroll to bottom' : 'Scroll to top'}
+        style={{ outline: "none" }}
+        aria-label={atTop ? "Scroll to bottom" : "Scroll to top"}
         onClick={() => {
           if (atTop) {
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              behavior: "smooth",
+            });
           } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }
         }}
       >

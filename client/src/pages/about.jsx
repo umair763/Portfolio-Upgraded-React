@@ -9,7 +9,7 @@ export const About = () => {
     <div className="w-full">
       <HeroSection />
 
-      <section className="w-full bg-[#e4d5b7] py-16 md:py-24 overflow-x-hidden">
+      <section className="w-full bg-[#e4d5b7] py-10 overflow-x-hidden">
         <div className="mx-auto w-full max-w-7xl px-6 overflow-x-hidden">
           {/* Header */}
           <div className="text-center">

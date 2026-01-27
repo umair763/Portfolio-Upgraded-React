@@ -60,7 +60,7 @@ export const Footer = () => {
           </p>
         </div>
         {/* Explore + Contact me stacked in one column */}
-        <div>
+        <div className="">
           <div>
             <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
               Explore <span className="font-normal">—</span>
@@ -121,7 +121,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="inline-flex p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580] items-center justify-center w-8 h-8 rounded transition-colors"
+                  className="inline-flex p-1 rounded-lg mb-5 text-gray-200 hover:text-white bg-[#006580] items-center justify-center w-8 h-8 rounded transition-colors"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
