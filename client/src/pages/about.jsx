@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { HeroSection } from "../components/features/herosection";
 import { JourneyCard } from "../components/ui";
 import { Waves } from "../components/common/waves";
-
+ 
 export const About = () => {
   return (
     <div className="w-full">

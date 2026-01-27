@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useAnimation, useReducedMotion } from "framer-motion";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
@@ -106,13 +106,13 @@ export const JourneyCard = () => {
   const MotionSection = motion.section;
   const MotionDiv = motion.div;
   const prefersReducedMotion = useReducedMotion();
-  const cardControls = useAnimation();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [direction, setDirection] = useState("right");
   const viewportRef = useRef(null);
-  const [viewportWidth, setViewportWidth] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState(null);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Keep navigation consistent: always ascending by date.
   const milestones = useMemo(() => {
@@ -145,16 +145,36 @@ export const JourneyCard = () => {
     return map;
   }, [milestonesWithUnits]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = viewportRef.current;
     if (!el) return;
 
-    const update = () => setViewportWidth(el.getBoundingClientRect().width);
-    update();
+    let rafId = 0;
+    const measure = () => {
+      setViewportWidth(el.getBoundingClientRect().width);
+      setIsInitialized(true);
+    };
+    const scheduleMeasure = () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(measure);
+    };
 
-    const ro = new ResizeObserver(() => update());
-    ro.observe(el);
-    return () => ro.disconnect();
+    scheduleMeasure();
+
+    if (typeof ResizeObserver !== "undefined") {
+      const ro = new ResizeObserver(() => scheduleMeasure());
+      ro.observe(el);
+      return () => {
+        if (rafId) window.cancelAnimationFrame(rafId);
+        ro.disconnect();
+      };
+    }
+
+    window.addEventListener("resize", scheduleMeasure);
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", scheduleMeasure);
+    };
   }, []);
 
   useEffect(() => {
@@ -178,15 +198,15 @@ export const JourneyCard = () => {
   const activeUnit = currentMilestone.unit;
 
   const unitWidth =
-    viewportWidth && viewportWidth < 640
+    viewportWidth !== null && viewportWidth < 640
       ? 10
-      : viewportWidth && viewportWidth < 1024
+      : viewportWidth !== null && viewportWidth < 1024
         ? 12
         : 14;
 
   // Align tick centers to the fixed center needle.
   // With paddingLeft = (viewport/2 - unitWidth/2), unit=0 tick center is exactly at viewport center.
-  const paddingPx = viewportWidth ? viewportWidth / 2 - unitWidth / 2 : 0;
+  const paddingPx = viewportWidth !== null ? viewportWidth / 2 - unitWidth / 2 : 0;
   const translateX = -(activeUnit * unitWidth);
 
   const goPrev = () => {
@@ -209,12 +229,14 @@ export const JourneyCard = () => {
   const containerVariants = {
     hidden: {
       opacity: 0,
-      x: prefersReducedMotion ? 0 : 470,
+      x: 0,
+      y: prefersReducedMotion ? 0 : 32,
       filter: prefersReducedMotion ? "none" : "blur(12px)",
     },
-    visible: {
+    visible: { 
       opacity: 1,
       x: 0,
+      y: 0,
       filter: "blur(0px)",
       transition: prefersReducedMotion
         ? { duration: 0.4 }
@@ -249,15 +271,36 @@ export const JourneyCard = () => {
     },
   };
 
+  const cardSlideVariants = {
+    enter: (dir) => ({
+      opacity: 0,
+      x: prefersReducedMotion ? 0 : dir === "right" ? 42 : -42,
+      scale: prefersReducedMotion ? 1 : 0.98,
+    }),
+    center: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: prefersReducedMotion
+        ? { duration: 0.01 }
+        : { type: "spring", stiffness: 55, damping: 26, mass: 1.1 },
+    },
+    exit: (dir) => ({
+      opacity: 0,
+      x: prefersReducedMotion ? 0 : dir === "right" ? -42 : 42,
+      scale: prefersReducedMotion ? 1 : 0.98,
+      transition: prefersReducedMotion
+        ? { duration: 0.01 }
+        : { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+    }),
+  };
+
   return (
     <MotionSection className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] pb-16 will-change-transform">
       <MotionDiv
         variants={containerVariants}
         initial="hidden"
-        animate={cardControls}
-        viewport={{ amount: 0.25, once: false }}
-        onViewportEnter={() => cardControls.start("visible")}
-        onViewportLeave={() => cardControls.start("hidden")}
+        animate="visible"
       >
         <div className="mx-auto w-full max-w-7xl px-6">
           <div className="text-center mb-10">
@@ -270,6 +313,7 @@ export const JourneyCard = () => {
           </div>
 
           {/* Controls */}
+          {isInitialized && (
           <div className="flex items-center justify-center gap-3 mb-6">
             <button
               onClick={goPrev}
@@ -302,8 +346,10 @@ export const JourneyCard = () => {
               {currentIndex + 1} / {milestones.length}
             </span>
           </div>
+          )}
 
           {/* Dots */}
+          {isInitialized && (
           <div className="flex items-center justify-center gap-3 mb-10 flex-wrap">
             {milestones.map((m, index) => {
               const isActive = index === currentIndex;
@@ -333,12 +379,17 @@ export const JourneyCard = () => {
               );
             })}
           </div>
+          )}
 
           {/* Timeline */}
           <div
             ref={viewportRef}
             className="relative mx-auto max-w-6xl overflow-hidden"
+            style={{ minHeight: '210px' }}
           >
+            {!isInitialized ? (
+              <div className="relative h-[210px]" />
+            ) : (
             <div className="relative h-[210px]">
               {/* Baseline */}
               <div className="absolute left-0 right-0 top-[110px] h-px bg-black/25" />
@@ -467,7 +518,7 @@ export const JourneyCard = () => {
                             color: milestone.color,
                             opacity: isActive ? 1 : 0.62,
                             fontSize:
-                              viewportWidth && viewportWidth < 640 ? 11 : 13,
+                              viewportWidth !== null && viewportWidth < 640 ? 11 : 13,
                           }}
                           aria-label={`Select ${milestone.label}`}
                         >
@@ -522,23 +573,22 @@ export const JourneyCard = () => {
                 })}
               </div>
             </div>
+            )}
           </div>
 
           {/* Card */}
-          <MotionDiv
-            className="relative h-48 overflow-hidden mt-2 mb-10"
-            variants={milestoneCardVariants}
-          >
-            <div
-              key={currentIndex}
-              className={
-                "absolute inset-0 " +
-                (direction === "right"
-                  ? "animate-journeySlideInRight"
-                  : "animate-journeySlideInLeft")
-              }
-            >
-              <div className="max-w-xl mx-auto">
+          {isInitialized && (
+          <div className="relative mt-2 mb-10">
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={cardSlideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="max-w-xl mx-auto"
+              >
                 <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-[0_22px_50px_rgba(0,0,0,0.16)] px-7 py-7 md:px-10 md:py-8">
                   <div
                     className="text-center text-xs font-extrabold tracking-[0.22em] mb-2"
@@ -556,9 +606,10 @@ export const JourneyCard = () => {
                     {currentMilestone.description}
                   </p>
                 </div>
-              </div>
-            </div>
-          </MotionDiv>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          )}
 
           <div className="text-center">
             <p className="text-base md:text-lg text-black/70 max-w-xl mx-auto">
@@ -568,18 +619,6 @@ export const JourneyCard = () => {
           </div>
         </div>
 
-        <style>{`
-        @keyframes journeySlideInRight {
-          from { transform: translateX(42px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes journeySlideInLeft {
-          from { transform: translateX(-42px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        .animate-journeySlideInRight { animation: journeySlideInRight 420ms cubic-bezier(.22,1,.36,1); }
-        .animate-journeySlideInLeft { animation: journeySlideInLeft 420ms cubic-bezier(.22,1,.36,1); }
-      `}</style>
       </MotionDiv>
     </MotionSection>
   );
