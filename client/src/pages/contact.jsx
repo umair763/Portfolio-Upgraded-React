@@ -26,7 +26,7 @@ export const Contact = () => {
         </div>
         <div className="relative mx-auto w-full max-w-7xl md:px-6 pb-24">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-1 items-start mt-10 ml-4 mr-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-40 sm:gap-2 items-start mt-50 ml-4 mr-4">
             <HangingCardWrapper dropDelay={0} intensity={1.05}>
               <LinkedinCard />
             </HangingCardWrapper>
