@@ -8,3 +8,6 @@ export * from "./service.card";
 export * from "./marquees.scroll";
 export { default as PixelCard } from "./pixel.card";
 export * from "./contact.form";
+export * from "./Github.card";
+export * from "./linkedin.card";
+export * from "./hanging.card.wrapper";
