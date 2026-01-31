@@ -1896,9 +1896,9 @@ export const GithubCard = ({
               </div>
             </div>
 
-            {/* Connect Button */}
+            {/* Follow Button */}
             <button className="w-full bg-[#238636] hover:bg-[#2ea043] mt-1 cursor-pointer text-white font-semibold py-2 px-2 rounded-md transition-colors">
-              Connect
+              Follow
             </button>
           </div>
         </div>

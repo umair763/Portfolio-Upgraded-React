@@ -1,6 +1,6 @@
 import React from "react";
 import { Waves } from "../components/common/waves";
-import { ContactForm } from "../components/ui";
+import { ContactForm, HangingCardWrapper } from "../components/ui";
 import { Mail, Phone, MapPin } from "lucide-react";
 import {
   FaLinkedin,
@@ -25,9 +25,14 @@ export const Contact = () => {
           </p>
         </div>
         <div className="relative mx-auto w-full max-w-7xl md:px-6 pb-24">
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-1 items-start mt-10 ml-4 mr-4">
-            <LinkedinCard />
-            <GithubCard />
+            <HangingCardWrapper dropDelay={0} intensity={1.05}>
+              <LinkedinCard />
+            </HangingCardWrapper>
+            <HangingCardWrapper dropDelay={0.12} intensity={1.2}>
+              <GithubCard />
+            </HangingCardWrapper>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mt-10 ml-4 mr-4">
             {/* Left Column: Contact Info */}
