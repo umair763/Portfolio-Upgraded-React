@@ -7,6 +7,7 @@ import {
   useTexture,
   Environment,
   Lightformer,
+  useAnimations,
 } from "@react-three/drei";
 import {
   BallCollider,
@@ -35,6 +36,9 @@ export const Linkedin3dModel = ({
   const [isMobile, setIsMobile] = useState(
     () => typeof window !== "undefined" && window.innerWidth < 768,
   );
+  // Intersection trigger to replay built-in animation
+  const containerRef = useRef(null);
+  const [playSignal, setPlaySignal] = useState(0);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -42,8 +46,25 @@ export const Linkedin3dModel = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Replay original animation when entering viewport
+            setPlaySignal((s) => s + 1);
+          }
+        });
+      },
+      { threshold: 0.6 },
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="relative z-0 w-full h-screen flex justify-center items-center transform scale-100 origin-center">
+    <div ref={containerRef} className="relative z-0 w-full h-screen flex justify-center items-center transform scale-100 origin-center">
       <Canvas
         camera={{ position: position, fov: fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
@@ -53,8 +74,8 @@ export const Linkedin3dModel = ({
         }
       >
         <ambientLight intensity={Math.PI} />
-        <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-          <Band isMobile={isMobile} />
+        <Physics key={playSignal} gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+          <Band isMobile={isMobile} playSignal={playSignal} />
         </Physics>
         <Environment blur={0.75}>
           <Lightformer
@@ -90,13 +111,14 @@ export const Linkedin3dModel = ({
     </div>
   );
 }
-function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
+function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, playSignal = 0 }) {
   const band = useRef(),
     fixed = useRef(),
     j1 = useRef(),
     j2 = useRef(),
     j3 = useRef(),
     card = useRef();
+  const groupRef = useRef();
   const vec = new THREE.Vector3(),
     ang = new THREE.Vector3(),
     rot = new THREE.Vector3(),
@@ -108,7 +130,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     angularDamping: 4,
     linearDamping: 4,
   };
-  const { nodes, materials } = useGLTF(cardGLB);
+  const { nodes, materials, animations } = useGLTF(cardGLB);
+  const { actions, names } = useAnimations(animations, groupRef);
+  const defaultActionName = names && names.length ? names[0] : undefined;
   const texture = useTexture(lanyard);
   const [curve] = useState(
     () =>
@@ -121,6 +145,16 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   );
   const [dragged, drag] = useState(false);
   const [hovered, hover] = useState(false);
+
+  // Replay original built-in animation on playSignal change
+  useEffect(() => {
+    if (!defaultActionName) return;
+    const action = actions[defaultActionName];
+    if (action) {
+      action.reset();
+      action.play();
+    }
+  }, [playSignal, actions, defaultActionName]);
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
@@ -188,7 +222,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[0, 4, 0.2]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
@@ -207,6 +241,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
         >
           <CuboidCollider args={[0.8, 1.125, 0.01]} />
           <group
+            ref={groupRef}
             scale={2.25}
             position={[0, -1.2, -0.05]}
             onPointerOver={() => hover(true)}
