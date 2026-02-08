@@ -9,8 +9,7 @@ import {
   FaWhatsapp,
   FaEnvelope,
 } from "react-icons/fa";
-import { LinkedinCard } from "../components/ui";
-import { GithubCard } from "../components/ui";
+import { Lanyard } from "../components/ui";
 
 export const Contact = () => {
   return (
@@ -25,15 +24,8 @@ export const Contact = () => {
           </p>
         </div>
         <div className="relative mx-auto w-full max-w-7xl md:px-6 pb-24">
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-40 sm:gap-2 items-start mt-50 ml-4 mr-4">
-            <HangingCardWrapper dropDelay={0} intensity={1.05}>
-              <LinkedinCard />
-            </HangingCardWrapper>
-            <HangingCardWrapper dropDelay={0.12} intensity={1.2}>
-              <GithubCard />
-            </HangingCardWrapper>
-          </div>
+          <Lanyard />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mt-10 ml-4 mr-4">
             {/* Left Column: Contact Info */}
             <div className="rounded-2xl flex flex-col justify-between h-full">

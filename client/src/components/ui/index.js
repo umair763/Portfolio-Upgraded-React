@@ -11,3 +11,6 @@ export * from "./contact.form";
 export * from "./Github.card";
 export * from "./linkedin.card";
 export * from "./hanging.card.wrapper";
+export * from "./linkedin.3d.model";
+export * from "./github.3d.model";
+export * from "./lanyard";
