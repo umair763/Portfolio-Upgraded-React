@@ -241,8 +241,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, playSignal = 0 })
           <CuboidCollider args={[0.8, 1.125, 0.01]} />
           <group
             ref={groupRef}
-            scale={2.25}
-            position={[0, -1.2, -0.05]}
+            scale={3.5}
+            position={[-0.1, -2.7, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onPointerUp={(e) => (
@@ -286,7 +286,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, playSignal = 0 })
           useMap
           map={texture}
           repeat={[-4, 1]}
-          lineWidth={8}
+          lineWidth={12}
           transparent
           alphaTest={0.5}
         />
