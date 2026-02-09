@@ -235,7 +235,17 @@ export const HeroSection = () => {
             >
               Get in Touch
             </button>
-            <button className="bg-sky-500 cursor-pointer text-white font-semibold text-[0.82rem] px-2 py-1 lg:px-6 lg:py-2 md:px-6 md:py-2  rounded-xl shadow hover:bg-sky-600 transition flex items-center gap-2">
+            <button
+              className="bg-sky-500 cursor-pointer text-white font-semibold text-[0.82rem] px-2 py-1 lg:px-6 lg:py-2 md:px-6 md:py-2  rounded-xl shadow hover:bg-sky-600 transition flex items-center gap-2"
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = "/data/Muhammad_Umair_C_V.pdf";
+                link.download = "Muhammad_Umair_C_V.pdf";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+            >
               <ArrowDownToLine size={20} />
               Resume
             </button>
