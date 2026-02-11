@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Mail, User, Building2, Tag, MessageCircle, Send } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
 
@@ -20,14 +20,14 @@ const TAGS = [
 ];
 
 export const ContactForm = () => {
-  const initialForm = {
+  const initialForm = React.useMemo(() => ({
     name: "",
     email: "",
     company: "",
     subject: "",
     message: "",
     tags: [TAGS[0]],
-  };
+  }), []);
 
   const [form, setForm] = useState(initialForm);
   const [charCount, setCharCount] = useState(0);
@@ -52,26 +52,37 @@ export const ContactForm = () => {
   // Local flash message to show success/failure and allow auto-hide
   const [flash, setFlash] = useState(null);
 
+  // A resolver ref used to notify awaiting submit handler when Formspree state changes.
+  const submitResolverRef = useRef(null);
+
+  // Notify any pending submit promise when Formspree state updates. Do NOT call setState here.
   useEffect(() => {
-    if (state.succeeded) {
-      // Clear form fields on success and show message
+    if (submitResolverRef.current && (state.succeeded || (state.errors && state.errors.length > 0))) {
+      submitResolverRef.current({ succeeded: state.succeeded, errors: state.errors });
+      submitResolverRef.current = null;
+    }
+  }, [state.succeeded, state.errors]);
+
+  // Submit wrapper: attach a resolver, call Formspree submit, then handle result outside effects.
+  const handleSubmitWithReset = async (e) => {
+    const result = await new Promise((resolve) => {
+      submitResolverRef.current = resolve;
+      handleSubmit(e);
+    });
+    if (result.succeeded) {
       setForm(initialForm);
       setCharCount(0);
       setFlash({ type: "success", text: "Message sent — thank you!" });
-      const t = setTimeout(() => setFlash(null), 4000);
-      return () => clearTimeout(t);
-    }
-    if (state.errors && state.errors.length > 0) {
+      setTimeout(() => setFlash(null), 4000);
+    } else if (result.errors && result.errors.length > 0) {
       setFlash({ type: "error", text: "Failed to send message. Please try again." });
-      const t = setTimeout(() => setFlash(null), 4000);
-      return () => clearTimeout(t);
+      setTimeout(() => setFlash(null), 4000);
     }
-    return undefined;
-  }, [state.succeeded, state.errors]);
+  };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmitWithReset}
       className="max-w-xl w-full mx-auto bg-white rounded-2xl shadow-xl p-6 md:p-10 border border-gray-200 backdrop-blur-md"
     >
       <div className="flex flex-col sm:flex-row gap-4 mb-4 ">
