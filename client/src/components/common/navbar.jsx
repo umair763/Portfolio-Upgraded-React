@@ -137,7 +137,7 @@ export const navbar = () => {
       <button
         className="fixed z-50 bg-[#006580] text-white rounded-full shadow-lg w-12 h-12 flex items-center justify-center hover:bg-[#19628a] transition-colors border-2 border-white cursor-pointer
           right-4 top-[calc(50%+180px)]
-          md:right-4 md:top-[calc(50%+180px)]
+          md:right-5 md:top-[calc(50%+180px)]
           max-md:right-4 max-md:bottom-[92px] max-md:top-auto"
         style={{ outline: "none" }}
         aria-label={atTop ? "Scroll to bottom" : "Scroll to top"}
