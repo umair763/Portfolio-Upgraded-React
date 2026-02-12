@@ -16,10 +16,10 @@ export const Contact = () => {
     <>
       <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] pb-16 min-h-screen flex flex-col justify-between">
         <div className="text-center">
-          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
+          <h2 className="mt-5 text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
             Get In Touch
           </h2>
-          <p className="mt-2 text-lg md:text-xl text-black/70">
+          <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
             Have a project in mind? Let's work together!
           </p>
         </div>

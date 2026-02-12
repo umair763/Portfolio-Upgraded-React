@@ -1,9 +1,8 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { HeroSection } from "../components/features/herosection";
 import { JourneyCard } from "../components/ui";
 import { Waves } from "../components/common/waves";
- 
+
 export const About = () => {
   return (
     <div className="w-full">
@@ -13,17 +12,17 @@ export const About = () => {
         <div className="mx-auto w-full max-w-7xl px-6 overflow-x-hidden">
           {/* Header */}
           <div className="text-center">
-            <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
+            <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
               About Me
             </h2>
-            <p className="mt-3 text-lg md:text-xl text-black/70">
+            <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
               Get to know me through <span className="italic">code</span>
             </p>
           </div>
 
           {/* Content */}
-          <motion.div 
-            className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center overflow-x-hidden"
+          <motion.div
+            className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center overflow-x-hidden pb-4"
             initial="hidden"
             whileInView="visible"
             exit="hidden"
@@ -43,7 +42,7 @@ export const About = () => {
             }}
           >
             {/* Code Card */}
-            <motion.div 
+            <motion.div
               className="flex justify-center lg:justify-end"
               variants={{
                 hidden: {
@@ -64,7 +63,7 @@ export const About = () => {
                 },
               }}
             >
-              <motion.div 
+              <motion.div
                 className="w-full max-w-[520px] rounded-2xl bg-black/80 shadow-[0_18px_45px_rgba(0,0,0,0.20)] overflow-hidden"
                 initial={{ scale: 0.95 }}
                 whileInView={{ scale: 1 }}
@@ -147,7 +146,7 @@ export const About = () => {
             </motion.div>
 
             {/* Introduction */}
-            <motion.div 
+            <motion.div
               className="text-[#006580]"
               variants={{
                 hidden: {
@@ -168,7 +167,7 @@ export const About = () => {
                 },
               }}
             >
-              <motion.h3 
+              <motion.h3
                 className="text-4xl md:text-5xl font-extrabold tracking-tight"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -177,7 +176,7 @@ export const About = () => {
               >
                 My Introduction
               </motion.h3>
-              <motion.div 
+              <motion.div
                 className="mt-6 space-y-5 text-base md:text-lg leading-relaxed text-black/70"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -185,22 +184,64 @@ export const About = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <p>
-                  I am an <span className="font-semibold text-black/85">IT graduate</span> with a CGPA of <span className="font-semibold text-black/85">3.5+</span>, reflecting my dedication and discipline. My technical expertise lies in the <span className="font-semibold text-black/85">MERN</span> stack (MongoDB, Express.js, React, Node.js), with a particular focus on <span className="font-semibold text-black/85">backend development</span>. I have a good understanding of designing <span className="font-semibold text-black/85">RESTful APIs</span>, <span className="font-semibold text-black/85">database modeling</span>, and <span className="font-semibold text-black/85">cloud deployment</span> using AWS. Rather than just writing scripts, I prioritize clean coding practices and conventions.
+                  I am an{" "}
+                  <span className="font-semibold text-black/85">
+                    IT graduate
+                  </span>{" "}
+                  with a CGPA of{" "}
+                  <span className="font-semibold text-black/85">3.5+</span>,
+                  reflecting my dedication and discipline. My technical
+                  expertise lies in the{" "}
+                  <span className="font-semibold text-black/85">MERN</span>{" "}
+                  stack (MongoDB, Express.js, React, Node.js), with a particular
+                  focus on{" "}
+                  <span className="font-semibold text-black/85">
+                    backend development
+                  </span>
+                  . I have a good understanding of designing{" "}
+                  <span className="font-semibold text-black/85">
+                    RESTful APIs
+                  </span>
+                  ,{" "}
+                  <span className="font-semibold text-black/85">
+                    database modeling
+                  </span>
+                  , and{" "}
+                  <span className="font-semibold text-black/85">
+                    cloud deployment
+                  </span>{" "}
+                  using AWS. Rather than just writing scripts, I prioritize
+                  clean coding practices and conventions.
                 </p>
                 <p>
-                  With a keen interest in problem-solving and designing architecture for complex systems, I am continuously refining my ability to understand system operations while considering key factors like <span className="font-semibold text-black/85">security</span>, <span className="font-semibold text-black/85">scalability</span>, and <span className="font-semibold text-black/85">reliability</span>. Always striving to improve, I'm eager to take on new challenges and build efficient, robust systems.
+                  With a keen interest in problem-solving and designing
+                  architecture for complex systems, I am continuously refining
+                  my ability to understand system operations while considering
+                  key factors like{" "}
+                  <span className="font-semibold text-black/85">security</span>,{" "}
+                  <span className="font-semibold text-black/85">
+                    scalability
+                  </span>
+                  , and{" "}
+                  <span className="font-semibold text-black/85">
+                    reliability
+                  </span>
+                  . Always striving to improve, I'm eager to take on new
+                  challenges and build efficient, robust systems.
                 </p>
                 <p>
                   In short: I build with
-                  <span className="font-semibold text-black/85 ml-1">purpose</span>,
-                  design with
+                  <span className="font-semibold text-black/85 ml-1">
+                    purpose
+                  </span>
+                  , design with
                   <span className="font-semibold text-black/85"> intent</span>,
                   and stay
                   <span className="font-semibold text-black/85"> curious</span>.
                 </p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="mt-8 flex flex-wrap gap-3"
                 initial={{ y: 0, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}

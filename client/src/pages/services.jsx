@@ -58,10 +58,10 @@ export const Services = () => {
       <div className="relative mx-auto w-full px-0 md:px-6 lg:px-6">
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
             What I Can Do For You
           </h2>
-          <p className="mt-2 text-lg md:text-xl text-black/70">
+          <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
             Professional services to bring your vision to
             <span className="font-bold ml-1">life</span>
           </p>
@@ -71,10 +71,10 @@ export const Services = () => {
         </div>
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
             How I Work
           </h2>
-          <p className="mt-2 text-lg md:text-xl text-black/70">
+          <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
             A structured approach to deliver quality results
           </p>
           <div className="w-full h-full">

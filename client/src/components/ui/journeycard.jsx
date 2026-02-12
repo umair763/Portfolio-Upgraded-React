@@ -249,27 +249,6 @@ export const JourneyCard = () => {
     },
   };
 
-  const milestoneCardVariants = {
-    hidden: {
-      opacity: 0,
-      x: prefersReducedMotion ? 0 : 60,
-      scale: prefersReducedMotion ? 1 : 0.92,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: prefersReducedMotion
-        ? { duration: 0.01 }
-        : {
-            type: "spring",
-            stiffness: 45,
-            damping: 28,
-            mass: 1.2,
-            delay: 0.20, // ↑ slower stagger feel
-          },
-    },
-  };
 
   const cardSlideVariants = {
     enter: (dir) => ({
@@ -612,7 +591,7 @@ export const JourneyCard = () => {
           )}
 
           <div className="text-center">
-            <p className="text-base md:text-lg text-black/70 max-w-xl mx-auto">
+            <p className="text-base md:text-xl text-black/70 max-w-md font-semibold mx-auto">
               The journey continues — always learning, building, and leveling
               up.
             </p>

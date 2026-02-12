@@ -10,10 +10,10 @@ export const Skills = () => {
         <div className="relative mx-auto w-full max-w-6xl px-6 pb-24">
           {/* Header */}
           <div className="text-center">
-            <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580]">
+            <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
               Skills
             </h2>
-            <p className="mt-2 text-lg md:text-xl text-black/70">
+            <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
               Technologies I work <span className="italic">with</span>
             </p>
           </div>
