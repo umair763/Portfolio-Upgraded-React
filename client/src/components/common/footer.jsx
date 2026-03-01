@@ -110,7 +110,7 @@ export const Footer = () => {
                 href="tel:+92304588540"
                 className="hover:underline text-gray-800"
               >
-                +92 340 588540
+                +92 340 5688540
               </a>
             </div>
             <div className="flex gap-2 flex-wrap mt-2">
