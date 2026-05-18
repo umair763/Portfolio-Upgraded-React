@@ -24,6 +24,9 @@ import {
   SiExpress,
   SiMongodb,
   SiFirebase,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiNestjs,
 } from "react-icons/si";
 import { FaAws, FaMicrosoft } from "react-icons/fa";
 
@@ -123,6 +126,30 @@ const DEFAULT_ITEMS = [
     value: 0.77,
     bubbleBg: "#FFCA28",
     bubbleFg: "#222222",
+  },
+  {
+    id: "next",
+    labelLines: ["Next.js"],
+    Icon: SiNextdotjs,
+    value: 0.7,
+    bubbleBg: "#000000",
+    bubbleFg: "#FFFFFF",
+  },
+  {
+    id: "vue",
+    labelLines: ["Vue"],
+    Icon: SiVuedotjs,
+    value: 0.7,
+    bubbleBg: "#42B883",
+    bubbleFg: "#FFFFFF",
+  },
+  {
+    id: "nest",
+    labelLines: ["NestJS"],
+    Icon: SiNestjs,
+    value: 0.7,
+    bubbleBg: "#E0234E",
+    bubbleFg: "#FFFFFF",
   },
   {
     id: "azure",

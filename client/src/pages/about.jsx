@@ -184,35 +184,49 @@ export const About = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <p>
-                  I am an{" "}
-                  <span className="font-semibold text-black/85">
-                    IT graduate
-                  </span>{" "}
-                  with a CGPA of{" "}
-                  <span className="font-semibold text-black/85">3.5+</span>,
-                  reflecting my dedication and discipline. My technical
-                  expertise lies in the{" "}
-                  <span className="font-semibold text-black/85">MERN</span>{" "}
-                  stack (MongoDB, Express.js, React, Node.js), with a particular
-                  focus on{" "}
-                  <span className="font-semibold text-black/85">
-                    backend development
-                  </span>
-                  . I have a good understanding of designing{" "}
-                  <span className="font-semibold text-black/85">
-                    RESTful APIs
-                  </span>
-                  ,{" "}
-                  <span className="font-semibold text-black/85">
-                    database modeling
-                  </span>
-                  , and{" "}
-                  <span className="font-semibold text-black/85">
-                    cloud deployment
-                  </span>{" "}
-                  using AWS. Rather than just writing scripts, I prioritize
-                  clean coding practices and conventions.
-                </p>
+  I am a{" "}
+  <span className="font-semibold text-black/85">
+    Full Stack Developer
+  </span>{" "}
+  with over{" "}
+  <span className="font-semibold text-black/85">
+    3+ years of experience
+  </span>{" "}
+  building scalable and high-performance web applications. I have a keen eye
+  for crafting modern and intuitive{" "}
+  <span className="font-semibold text-black/85">
+    frontend experiences
+  </span>
+  , with experience designing and developing dashboards, landing pages,
+  analytics platforms, portfolios, and responsive user interfaces that balance
+  aesthetics with usability.
+  <br />
+  <br />
+  My core expertise lies in the{" "}
+  <span className="font-semibold text-black/85">
+    MERN Stack
+  </span>{" "}
+  (MongoDB, Express.js, React, Node.js), while also working extensively with{" "}
+  <span className="font-semibold text-black/85">
+    Next.js, NestJS, and Vue.js
+  </span>
+  . I specialize in developing robust{" "}
+  <span className="font-semibold text-black/85">
+    RESTful APIs
+  </span>
+  , designing efficient{" "}
+  <span className="font-semibold text-black/85">
+    database architectures
+  </span>
+  , and building scalable backend systems. I also have hands-on experience
+  with{" "}
+  <span className="font-semibold text-black/85">
+    cloud deployment and backend optimization
+  </span>{" "}
+  using AWS. Beyond writing code, I focus on clean architecture, maintainable
+  solutions, and industry best practices to deliver reliable and scalable
+  applications.
+</p>
                 <p>
                   With a keen interest in problem-solving and designing
                   architecture for complex systems, I am continuously refining
@@ -265,7 +279,7 @@ export const About = () => {
           </motion.div>
         </div>
         <div className="relative">
-          <JourneyCard />
+          {/* <JourneyCard /> */}
           <div className="absolute left-0 bottom-0 w-full pointer-events-none">
             <Waves />
           </div>
