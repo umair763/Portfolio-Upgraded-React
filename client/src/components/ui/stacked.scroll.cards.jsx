@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
@@ -25,6 +19,29 @@ import fyp5 from "../../assets/images/fyp-5.png";
 import tof1 from "../../assets/images/tof-1.png";
 import tof2 from "../../assets/images/tof-2.png";
 import tof3 from "../../assets/images/tof-3.png";
+import cc1 from "../../assets/images/cancerClassification (1).png";
+import cc2 from "../../assets/images/cancerClassification (2).png";
+import cc3 from "../../assets/images/cancerClassification (3).png";
+import pe1 from "../../assets/images/profitEdge (1).png";
+import pe2 from "../../assets/images/profitEdge (2).png";
+import pe3 from "../../assets/images/profitEdge (3).png";
+import pe4 from "../../assets/images/profitEdge (4).png";
+import pe5 from "../../assets/images/profitEdge (5).png";
+import qa1 from "../../assets/images/quickupAdmin (1).png";
+import qa2 from "../../assets/images/quickupAdmin (2).png";
+import qa3 from "../../assets/images/quickupAdmin (3).png";
+import rk1 from "../../assets/images/rollsKing (1).png";
+import rk2 from "../../assets/images/rollsKing (2).png";
+import rk3 from "../../assets/images/rollsKing (3).png";
+import sa1 from "../../assets/images/saasAdmin (1).png";
+import sa2 from "../../assets/images/saasAdmin (2).png";
+import sa3 from "../../assets/images/saasAdmin (3).png";
+import le1 from "../../assets/images/le (1).png";
+import le2 from "../../assets/images/le (2).png";
+import le3 from "../../assets/images/le (3).png";
+import le4 from "../../assets/images/le (4).png";
+import le5 from "../../assets/images/le (5).png";
+import le6 from "../../assets/images/le (6).png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,13 +79,7 @@ function Carousel({ images = [], alt = "Project preview" }) {
 
       <div className="relative h-full w-full p-1">
         <div className="relative h-full w-full overflow-hidden rounded-[20px] bg-gradient-to-b from-slate-900/80 to-slate-950/80 ring-1 ring-white/10">
-          <img
-            src={activeSrc}
-            alt={alt}
-            className="h-full w-full object-contain"
-            loading="lazy"
-            draggable={false}
-          />
+          <img src={activeSrc} alt={alt} className="h-full w-full object-contain" loading="lazy" draggable={false} />
 
           <button
             type="button"
@@ -93,11 +104,7 @@ function Carousel({ images = [], alt = "Project preview" }) {
                 key={`${safeImages[i]}-${i}`}
                 type="button"
                 onClick={() => setActive(i)}
-                className={
-                  i === active
-                    ? "h-2 w-6 rounded-full bg-white/90"
-                    : "h-2 w-2 rounded-full bg-white/35 hover:bg-white/55"
-                }
+                className={i === active ? "h-2 w-6 rounded-full bg-white/90" : "h-2 w-2 rounded-full bg-white/35 hover:bg-white/55"}
                 aria-label={`Go to image ${i + 1}`}
               />
             ))}
@@ -109,37 +116,18 @@ function Carousel({ images = [], alt = "Project preview" }) {
 }
 
 function Card({ item, reversed }) {
-  const {
-    title,
-    subtitle,
-    description,
-    tags = [],
-    ctaLabel = "View Project",
-    ctaHref,
-    images = [],
-  } = item;
+  const { title, subtitle, description, tags = [], ctaLabel = "View Project", ctaHref, images = [] } = item;
 
   return (
     <div
       className={
-        "grid h-full w-full min-h-0 grid-cols-1 items-center gap-6 overflow-hidden rounded-4xl bg-white/85 p-6 shadow-[0_30px_90px_rgba(2,6,23,0.20)] ring-1 ring-slate-900/10 backdrop-blur-xl sm:gap-8 sm:p-8 md:grid-cols-2 md:gap-10 md:p-14"
+        "grid h-full w-full min-h-0 grid-cols-1 items-center gap-6 overflow-hidden rounded-4xl bg-white/85 p-6 shadow-[0_10px_70px_rgba(2,6,23,0.02)] ring-1 ring-slate-900/10 backdrop-blur-xl sm:gap-8 sm:p-8 md:grid-cols-2 md:gap-10 md:p-14"
       }
     >
-      <div
-        className={
-          (reversed ? "order-2 md:order-2" : "order-2 md:order-1") +
-          " min-h-0"
-        }
-      >
+      <div className={(reversed ? "order-2 md:order-2" : "order-2 md:order-1") + " min-h-0"}>
         <div className="min-h-0 max-w-xl">
-          {subtitle ? (
-            <p className="text-sm font-medium tracking-wide text-slate-500">
-              {subtitle}
-            </p>
-          ) : null}
-          <h2 className="mt-3 text-lg font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-2xl md:text-4xl">
-            {title}
-          </h2>
+          {subtitle ? <p className="text-sm font-medium tracking-wide text-slate-500">{subtitle}</p> : null}
+          <h2 className="mt-3 text-lg font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-2xl md:text-4xl">{title}</h2>
           {description ? (
             <div className="mt-5 min-h-0 max-h-[26vh] overflow-auto pr-1 text-[14px] leading-7 text-slate-600 sm:max-h-[28vh] md:max-h-none md:overflow-visible md:pr-0 md:text-[16px]">
               <p>{description}</p>
@@ -149,10 +137,7 @@ function Card({ item, reversed }) {
           {tags.length > 0 ? (
             <div className="mt-7 flex flex-wrap gap-2">
               {tags.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-medium text-sky-700 sm:text-xs"
-                >
+                <span key={t} className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-medium text-sky-700 sm:text-xs">
                   {t}
                 </span>
               ))}
@@ -181,12 +166,7 @@ function Card({ item, reversed }) {
         </div>
       </div>
 
-      <div
-        className={
-          (reversed ? "order-1 md:order-1" : "order-1 md:order-2") +
-          " min-h-0"
-        }
-      >
+      <div className={(reversed ? "order-1 md:order-1" : "order-1 md:order-2") + " min-h-0"}>
         <div className="h-[220px] w-full min-h-0 sm:h-[280px] md:h-[420px]">
           <Carousel images={images} alt={`${title} preview`} />
         </div>
@@ -201,12 +181,7 @@ function Card({ item, reversed }) {
  * - Each subsequent card starts below the viewport and slides up to overlap
  * - Scrubbed timeline means reverse scroll plays back step-by-step automatically
  */
-function useStackedScrollAnimation({
-  sectionRef,
-  stickyRef,
-  cardElsRef,
-  cardCount,
-}) {
+function useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCount }) {
   useLayoutEffect(() => {
     if (!sectionRef.current || !stickyRef.current) return;
     if (!cardCount || cardCount < 1) return;
@@ -219,7 +194,7 @@ function useStackedScrollAnimation({
       cardEls.forEach((el, i) => {
         gsap.set(el, {
           zIndex: i + 1,
-          yPercent: i === 0 ? 0 : 120,
+          yPercent: i === 0 ? 0 : 150,
           rotate: 0,
           transformOrigin: "50% 50%",
         });
@@ -264,78 +239,117 @@ export const StackedScrollCards = ({ items }) => {
     // Demo content (replace with your real projects).
     return [
       {
-        id: "Lung-Cancer-Image-Classification",
-        title: "Lung Cancer Image Classiﬁcation",
+        id: "quickup-admin-dashboard",
+        title: "Quickup SaaS Admin Dashboard",
         description:
-          "The model is a Convolutional Neural Network (CNN) built for classifying lung cancer images into three categories: Adenocarcinoma, Benign, and Squamous Cell Carcinoma. It utilizes multiple Conv2D and MaxPooling2D layers for feature extraction, with BatchNormalization and Dropout for regularization. The model is trained using data augmentation and optimized with Adam. It achieves high accuracy (~97%) on the test set, providing reliable predictions for lung cancer classification.",
-        tags: ["FlASK", "KERAS", "CNN", "HTML", "JS", "CSS"],
+          "Enterprise delivery management dashboard for handling orders, deliveries, riders, invoices, reporting, and operational workflows. Built a scalable Vue 3 architecture with reusable components, API integrations, analytics modules, and business management features for a multi-role SaaS platform.",
+        tags: ["VUE 3", "TYPESCRIPT", "PINIA", "VUETIFY", "NESTJS", "MYSQL", "APEXCHARTS", "SCSS"],
         ctaLabel: "View Project",
-        images: [lungCancer1, lungCancer2, lungCancer3],
+        images: [qa1, qa2, qa3],
       },
       {
-        id: "Heart2Heart",
-        title: "Heart2Heart",
+        id: "quickup-saas-admin-dashboard",
+        title: "SaaS Admin Dashboard",
         description:
-          "The H2H Courses platform offers an interactive learning experience, featuring courses on communication, conflict resolution, and personal growth. Users can browse courses, view details, and track their progress, with registered (paid) courses allocated to their personalized dashboard. Firebase is used for user authentication and storing course data, allowing seamless tracking of user IDs and their registered courses. The platform integrates PayPal for secure payments. The platform is live at https://h2hcourses.com",
-        tags: [
-          "REACT",
-          "FRAMER MOTION",
-          "VITE",
-          "TAILWIND CSS",
-          "FIREBASE",
-          "PAYPAL",
-        ],
+          "Led frontend development of a multi-tenant SaaS admin dashboard, delivering 40+ modules within a one-week deadline. Refactored large components into reusable architecture, integrated NestJS APIs, optimized performance, and established scalable Vue, Vuetify, and SCSS patterns.",
+        tags: ["VUE 3", "TYPESCRIPT", "VUETIFY", "PINIA", "NESTJS", "SCSS", "REST API", "APEXCHARTS"],
         ctaLabel: "View Project",
-        images: [h2h1, h2h2, h2h3, h2h4],
+        images: [sa1, sa2, sa3],
       },
+
       {
-        id: "rachael-fryrear-counseling",
-        title: "Rachael Fryrear Counseling",
+        id: "quickup-food-delivery",
+        title: "Multi-Vendor Food Delivery Platform",
         description:
-          "I developed a personalized portfolio for Rachael Fryrear, creating a professional online presence for her counseling practice. I handled the complete design, including the color theme, page structure, and layout. The site features a clean, user-friendly interface that highlights the counselor’s services and specialties. I also integrated a third-party email service for easy client communication. This project helped me strengthen my frontend skills. The portfolio is live at https://rachaelfryrearcounseling.com",
-        tags: [
-          "REACT.JS",
-          "TAILWIND CSS",
-          "EMAIL FORMS",
-          "COMMUNICATION",
-          "REQUIREMENTS GATHERING",
-        ],
+          "Customer-facing SaaS ordering platform with authentication, OTP, Google OAuth, Stripe payments, order tracking, refunds, location-based discovery, and multi-currency support through REST API integrations.",
+        tags: ["VUE 3", "TYPESCRIPT", "PINIA", "NESTJS", "STRIPE", "JWT", "OTP"],
         ctaLabel: "View Project",
-        images: [therapist1, therapist2],
+        images: [rk1, rk2, rk3],
       },
+
       {
-        id: "ai-powered-multi-platform-management-&-insights",
-        title: "AI-Powered Multi-Platform Management & Insights",
+        id: "profit-edge",
+        title: "Profit Edge",
         description:
-          "This web-based platform simplifies content creation, engagement analysis, and user interaction tracking across social media. Some of the core features include real-time sentiment analysis of post comments (positive, negative, neutral) using AI models, side-by-side cross-platform post-level engagement metrics comparison, and an intuitive dashboard for users to make data-driven decisions based on reach, shares, and overall user interactions.",
-        tags: [
-          "REACT.JS",
-          "TAILWIND CSS",
-          "OAUTH",
-          "2FA",
-          "RTK",
-          "TOTP",
-          "NODECRON",
-          "NODEMAILER",
-          "SOCIAL MEDIA'S PUBLIC API",
-          "RoBERTa Transformer",
-        ],
+          "https://profit-edge-webdev.quickup.uk\nBuilt and integrated analytics dashboards for a finance platform using Vue 3, Vuetify, and NestJS APIs. Developed reusable frontend components, implemented business analytics, and optimized the application for maintainability and performance.",
+        tags: ["VUE 3", "TYPESCRIPT", "VUETIFY", "PINIA", "NESTJS", "REST API", "SCSS", "ANALYTICS"],
         ctaLabel: "View Project",
-        images: [fyp1, fyp2, fyp3, fyp4, fyp5],
+        images: [pe1, pe2, pe3, pe4, pe5],
       },
+
+      {
+        id: "laravel-shopping-ecommerce-platform",
+        title: "Laravel Shopping Inertia React E-commerce Platform",
+        description:
+          "A production-ready full-stack e-commerce platform featuring customer and admin portals, inventory management, shopping cart, payments, reviews, analytics, and domain-driven architecture. Built with Laravel, React, Inertia.js, and MySQL, emphasizing scalability, maintainability, and modern SPA user experience.",
+        tags: ["LARAVEL", "PHP", "REACT", "INERTIA.JS", "MYSQL", "TAILWIND CSS", "REACT QUERY", "ZOD"],
+        ctaLabel: "View Project",
+        images: [le1, le2, le3, le4, le5, le6],
+      },
+
       {
         id: "theothersfarhan",
         title: "theothersfarhan",
         description:
-          "I created a professional portfolio for a top-rated Upwork Video Editor & Content Creator with over 5 years of experience. The portfolio showcases a variety of services, including commercial video production, wedding cinematography, music videos, web series, and more. The site features dynamic content, smooth animations, and a user-friendly interface, allowing clients to easily explore the editor's work, request services, and contact directly, ensuring an engaging and professional online presence. The portfolio can be accessed at https://theothersfarhan.com",
-        tags: [
-          "REACT.JS",
-          "TAILWIND CSS",
-          "COMMUNICATION",
-          "REQUIREMENTS GATHERING",
-        ],
+          "Professional portfolio website for a top-rated video editor featuring animated interfaces, reusable components, responsive layouts, optimized assets, and a polished user experience. Live at https://theothersfarhan.com.",
+        tags: ["NEXT.JS", "REACT", "TAILWIND CSS", "FRAMER MOTION"],
         ctaLabel: "View Project",
         images: [tof1, tof2, tof3],
+      },
+
+      {
+        id: "ai-powered-multi-platform-management-insights",
+        title: "AI-Powered Multi-Platform Management & Insights",
+        description:
+          "A full-stack AI-powered social media management platform supporting publishing, scheduling, analytics, OAuth integrations, multi-platform management, and RoBERTa-based sentiment analysis with real-time dashboards. Live at https://socialsight.me.",
+        tags: [
+          "REACT",
+          "NODE.JS",
+          "EXPRESS",
+          "MONGODB",
+          "REDUX TOOLKIT",
+          "RTK QUERY",
+          "TAILWIND CSS",
+          "OAUTH",
+          "JWT",
+          "2FA",
+          "NODECRON",
+          "NODEMAILER",
+          "RoBERTa",
+          "PYTHON",
+        ],
+        ctaLabel: "View Project",
+        images: [fyp1, fyp2, fyp3, fyp4, fyp5],
+      },
+
+      {
+        id: "rachael-fryrear-counseling",
+        title: "Rachael Fryrear Counseling",
+        description:
+          "Designed and developed a responsive portfolio website for a licensed professional counselor, including branding, layout, service pages, and integrated email communication. Live at https://rachaelfryrearcounseling.com.",
+        tags: ["REACT", "TAILWIND CSS", "FRAMER MOTION", "EMAIL SERVICE"],
+        ctaLabel: "View Project",
+        images: [therapist1, therapist2],
+      },
+
+      {
+        id: "heart2heart",
+        title: "Heart2Heart",
+        description:
+          "A cloud-based e-learning platform allowing users to purchase courses, watch video lessons, track learning progress, and manage enrollments using Firebase Authentication, Firestore, and PayPal integration. Live at https://h2hcourses.com.",
+        tags: ["REACT", "VITE", "TAILWIND CSS", "FIREBASE", "FIRESTORE", "PAYPAL", "YOUTUBE API"],
+        ctaLabel: "View Project",
+        images: [h2h1, h2h2, h2h3, h2h4],
+      },
+
+      {
+        id: "lung-cancer-image-classification",
+        title: "Lung Cancer Image Classification",
+        description:
+          "A deep learning application that classifies lung cancer images into Adenocarcinoma, Benign, and Squamous Cell Carcinoma using a CNN achieving 97% accuracy, with a Flask web interface for real-time predictions.",
+        tags: ["PYTHON", "TENSORFLOW", "KERAS", "CNN", "FLASK", "HTML", "CSS", "JAVASCRIPT"],
+        ctaLabel: "View Project",
+        images: [cc1, cc2, cc3],
       },
     ];
   }, [items]);
@@ -358,15 +372,8 @@ export const StackedScrollCards = ({ items }) => {
   });
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full"
-      style={{ height: `${Math.max(1, data.length) * 100}vh` }}
-    >
-      <div
-        ref={stickyRef}
-        className="sticky top-0 h-dvh w-full overflow-hidden"
-      >
+    <section ref={sectionRef} className="relative w-full" style={{ height: `${Math.max(1, data.length) * 100}vh` }}>
+      <div ref={stickyRef} className="sticky top-0 h-dvh w-full overflow-hidden">
         <div className="pointer-events-none absolute inset-0" />
 
         <div className="relative mx-auto flex h-full max-w-7xl items-center px-6">

@@ -279,7 +279,7 @@ export const About = () => {
           </motion.div>
         </div>
         <div className="relative">
-          {/* <JourneyCard /> */}
+          <JourneyCard />
           <div className="absolute left-0 bottom-0 w-full pointer-events-none">
             <Waves />
           </div>

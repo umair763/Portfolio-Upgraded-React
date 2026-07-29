@@ -1,22 +1,25 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  ChevronLeft,
-  ChevronRight,
-  Pause,
-  Play,
   Award,
   BarChart,
-  Code,
+  BookOpen,
+  Brain,
+  Briefcase,
+  ChevronLeft,
+  ChevronRight,
   Film,
-  GraduationCap,
   Globe,
+  GraduationCap,
   HeartHandshake,
   Laptop,
   Medal,
+  Pause,
+  Play,
   Rocket,
   School,
   Shield,
+  Users,
 } from "lucide-react";
 
 const ACTIVE_COLOR = "#2563eb"; // blue-600
@@ -24,26 +27,20 @@ const UNITS_PER_YEAR = 10; // 9 small + 1 major
 
 const MILESTONES = [
   {
-    at: 2017.5,
-    label: "Jun 2017",
-    title: "Metric (General Science)",
-    description: "Fazaia Inter College\nIslamabad, Pakistan",
+    at: 2021.1,
+    label: "2021",
+    title: "Chose Software Engineering",
+    description:
+      "Committed to Software Engineering as my career.\nStarted learning programming from the ground up.",
     icon: School,
-    color: "rgb(71, 85, 105)",
-  },
-  {
-    at: 2021.6,
-    label: "Aug 2021",
-    title: "FSc (ICS)",
-    description: "Fazaia Inter College\nIslamabad, Pakistan",
-    icon: School,
-    color: "rgb(8, 145, 178)",
+    color: "rgb(79, 70, 229)",
   },
   {
     at: 2022.2,
     label: "2nd Semester, 2022",
     title: "Merit-Based Scholarship — 3rd Position",
-    description: "Bahria University\nAcademic Excellence.",
+    description:
+      "Bahria University\nAwarded for achieving a CGPA of 3.94/4.00.",
     icon: Award,
     color: "rgb(217, 119, 6)",
   },
@@ -52,42 +49,43 @@ const MILESTONES = [
     label: "3rd Semester, 2023",
     title: "Certificate of Appreciation — 2nd Position",
     description:
-      "Department of Computer Science, Bahria University\nProject Gala — DSA course.",
+      "Project Gala (DSA)\nSecured 2nd position among competing teams.",
     icon: Medal,
     color: "rgb(147, 51, 234)",
   },
   {
-    at: 2026,
-    label: "Graduated in 2026",
-    title: "Bachelors of Science in Information Technology",
-    description: "Bahria University Islamabad Campus\nIslamabad, Pakistan",
-    icon: GraduationCap,
-    color: "rgb(15, 118, 110)",
+    at: 2024.9,
+    label: "Dec 2024",
+    title: "Lung Cancer Image Classification",
+    description:
+      "Semester Project\nTensorFlow, Keras, Flask\nBuilt a CNN model with 97% accuracy.",
+    icon: Brain,
+    color: "rgb(220, 38, 38)",
   },
   {
     at: 2025.2,
     label: "Mar 2025",
     title: "Heart2Heart",
     description:
-      "Freelance — h2hcourses.com\nReact.js, Tailwind CSS v4, Firestore\n• Developed a responsive course platform.",
+      "h2hcourses.com\nReact, Tailwind CSS, Firebase\nBuilt a modern online course platform.",
     icon: HeartHandshake,
     color: "rgb(219, 39, 119)",
   },
   {
     at: 2025.6,
     label: "Aug 2025",
-    title: "AI-Powered Multi-Platform Management & Insights",
+    title: "AI-Powered SocialSight",
     description:
-      "Final Year Project — socialsight.me \nBuilt a centralized social media management platform.",
+      "socialsight.me\nReact, Node.js, Express, MongoDB, OAuth, AI\nBuilt a unified social media management platform.",
     icon: BarChart,
     color: "rgb(37, 99, 235)",
   },
   {
     at: 2025.8,
     label: "8th Semester, 2025",
-    title: "Merit-Based Laptop Award",
+    title: "PM Youth Laptop Scheme",
     description:
-      "Government of Pakistan\nMerit-Based Eligibility\n• Received laptop based on academic excellence and merit.",
+      "Government of Pakistan\nReceived a merit-based laptop award.",
     icon: Laptop,
     color: "rgb(22, 163, 74)",
   },
@@ -96,9 +94,72 @@ const MILESTONES = [
     label: "Nov 2025",
     title: "theothersfarhan",
     description:
-      "Freelance — theothers-farhan.com\nNext.js 16, React 19, Tailwind CSS v4, Framer Motion\n• Developed a professional videographer portfolio.",
+      "theothers-farhan.com\nNext.js, React, Tailwind CSS, Framer Motion\nBuilt a professional portfolio website.",
     icon: Film,
     color: "rgb(234, 88, 12)",
+  },
+  {
+    at: 2026.0,
+    label: "Jan 2026",
+    title: "Bachelor of Science in Information Technology",
+    description:
+      "Bahria University\nGraduated with a CGPA of 3.57/4.00.",
+    icon: GraduationCap,
+    color: "rgb(15, 118, 110)",
+  },
+  {
+    at: 2026.2,
+    label: "Mar 2026",
+    title: "Joined Quickup as Full Stack Developer Intern",
+    description:
+      "Quickup (UK)\nNestJS, Vue 3, MySQL, AWS\nStarted building enterprise SaaS applications.",
+    icon: Briefcase,
+    color: "rgb(37, 99, 235)",
+  },
+  {
+    at: 2026.3,
+    label: "Apr 2026",
+    title: "Multi-Vendor Food Delivery Platform",
+    description:
+      "customerweb.quickup.uk\nVue 3, TypeScript, Pinia, NestJS, Stripe\nBuilt customer ordering & authentication flows.",
+    icon: Globe,
+    color: "rgb(6, 182, 212)",
+  },
+  {
+    at: 2026.4,
+    label: "Jun 2026",
+    title: "Quickup SaaS Admin Dashboard",
+    description:
+      "saas-dashboard-dev.quickup.uk\nVue 3, TypeScript, Pinia, Vuetify, NestJS\nLed development of 40+ admin modules.",
+    icon: Users,
+    color: "rgb(14, 165, 233)",
+  },
+  {
+    at: 2026.45,
+    label: "Jun 2026",
+    title: "Frontend Team Lead",
+    description:
+      "Quickup SaaS\nManaged frontend delivery, GitHub workflow,\nteam coordination and AWS deployments.",
+    icon: Shield,
+    color: "rgb(59, 130, 246)",
+  },
+  {
+    at: 2026.6,
+    label: "Jul 2026",
+    title: "IEEE Access Journal Publication",
+    description:
+      "DOI: 10.1109/ACCESS.2026.3715064\nPublished research on AI-powered social media analytics.",
+    icon: BookOpen,
+    color: "rgb(16, 185, 129)",
+  },
+  {
+    at: 2026.8,
+    label: "Present",
+    title: "Full Stack SaaS Engineer",
+    description:
+      "NestJS, Vue, AWS, MySQL\nBuilding scalable cloud-based SaaS platforms.",
+    icon: Rocket,
+    color: "rgb(124, 58, 237)",
   },
 ];
 
