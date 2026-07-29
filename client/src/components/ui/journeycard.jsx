@@ -189,22 +189,23 @@ export const JourneyCard = () => {
   }, [milestones]);
 
   const milestonesWithUnits = useMemo(() => {
-    return milestones.map((m) => ({
+    const withRawUnits = milestones.map((m) => ({
       ...m,
       unit: (m.at - startYear) * UNITS_PER_YEAR,
     }));
-  }, [milestones, startYear]);
 
-  const milestoneKeyToIndexIn2025 = useMemo(() => {
-    const map = new Map();
-    let count = 0;
-    for (const m of milestonesWithUnits) {
-      if (Math.floor(m.at) !== 2025) continue;
-      map.set(`${m.at}-${m.title}`, count);
-      count += 1;
+    // Redistribute to ensure minimum 2-unit spacing between events
+    const redistributed = [];
+    let lastUnit = -Infinity;
+
+    for (const m of withRawUnits) {
+      const adjustedUnit = Math.max(m.unit, lastUnit + 2);
+      redistributed.push({ ...m, unit: adjustedUnit });
+      lastUnit = adjustedUnit;
     }
-    return map;
-  }, [milestonesWithUnits]);
+
+    return redistributed;
+  }, [milestones, startYear]);
 
   useLayoutEffect(() => {
     const el = viewportRef.current;
@@ -358,7 +359,7 @@ export const JourneyCard = () => {
             <button
               onClick={goPrev}
               disabled={currentIndex === 0}
-              className="w-10 h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed border border-black/10"
+              className="w-10 h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-black/10"
               aria-label="Previous milestone"
             >
               <ChevronLeft size={20} className="text-black/70" />
@@ -377,7 +378,7 @@ export const JourneyCard = () => {
             <button
               onClick={goNext}
               disabled={currentIndex === milestones.length - 1}
-              className="w-10 h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed border border-black/10"
+              className="w-10 h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-black/10"
               aria-label="Next milestone"
             >
               <ChevronRight size={20} className="text-black/70" />
@@ -527,12 +528,8 @@ export const JourneyCard = () => {
                       : null;
                   const showYearLabel = index === 0 || year !== prevYear;
 
-                  const isIn2025 = Math.floor(milestone.at) === 2025;
-                  // For 2025 only: bottom, top, bottom, top...
-                  const indexIn2025 = isIn2025
-                    ? (milestoneKeyToIndexIn2025.get(milestoneKey) ?? 0)
-                    : 0;
-                  const showIconTop = isIn2025 && indexIn2025 % 2 === 1;
+                  // Alternate icon positions: top, bottom, top, bottom...
+                  const showIconTop = index % 2 === 1;
                   // Give more space from the scale for readability.
                   const iconTopPx = showIconTop ? 60 : 156;
                   const activeNudge = showIconTop
