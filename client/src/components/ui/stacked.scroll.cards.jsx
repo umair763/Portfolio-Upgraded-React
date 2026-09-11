@@ -42,10 +42,10 @@ import le3 from "../../assets/images/le (3).png";
 import le4 from "../../assets/images/le (4).png";
 import le5 from "../../assets/images/le (5).png";
 import le6 from "../../assets/images/le (6).png";
-import sv1 from "../../assets/images/sv1.png";
-import sv2 from "../../assets/images/sv2.png";
-import sv3 from "../../assets/images/sv3.png";
-import sv4 from "../../assets/images/sv4.png";
+import sv1 from "../../assets/images/Sv1.png";
+import sv2 from "../../assets/images/Sv2.png";
+import sv3 from "../../assets/images/Sv3.png";
+import sv4 from "../../assets/images/Sv4.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
