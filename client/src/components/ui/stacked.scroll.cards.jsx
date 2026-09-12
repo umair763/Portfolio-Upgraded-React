@@ -2,6 +2,7 @@ import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { OptimizedCarousel } from "./optimized.image.carousel";
 import lungCancer1 from "../../assets/images/webp/lungcancerdetection-1.webp";
 import lungCancer2 from "../../assets/images/webp/lungcancerdetection-2.webp";
 import lungCancer3 from "../../assets/images/webp/lungcancerdetection-3.webp";
@@ -48,76 +49,6 @@ import sv3 from "../../assets/images/webp/Sv3.webp";
 import sv4 from "../../assets/images/webp/Sv4.webp";
 
 gsap.registerPlugin(ScrollTrigger);
-
-function clampIndex(index, length) {
-  if (length <= 0) return 0;
-  return ((index % length) + length) % length;
-}
-
-function Carousel({ images = [], alt = "Project preview" }) {
-  const safeImages = images?.length ? images : [];
-  const [active, setActive] = useState(0);
-
-  const go = useCallback(
-    (dir) => {
-      setActive((prev) => clampIndex(prev + dir, safeImages.length));
-    },
-    [safeImages.length],
-  );
-
-  if (!safeImages.length) {
-    return (
-      <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-slate-950/90 ring-1 ring-white/10">
-        <div className="absolute inset-0 grid place-items-center">
-          <div className="h-[70%] w-[86%] rounded-[18px] bg-gradient-to-br from-slate-800/70 via-slate-900/60 to-slate-800/70 ring-1 ring-white/10" />
-        </div>
-      </div>
-    );
-  }
-
-  const activeSrc = safeImages[active];
-
-  return (
-    <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-slate-950/90 shadow-[0_30px_80px_rgba(0,0,0,0.35)] ring-1 ring-white/10">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.28),transparent_60%),radial-gradient(circle_at_90%_40%,rgba(34,211,238,0.22),transparent_55%),radial-gradient(circle_at_40%_90%,rgba(14,165,233,0.20),transparent_55%)]" />
-
-      <div className="relative h-full w-full p-1">
-        <div className="relative h-full w-full overflow-hidden rounded-[20px] bg-gradient-to-b from-slate-900/80 to-slate-950/80 ring-1 ring-white/10">
-          <img src={activeSrc} alt={alt} className="h-full w-full object-contain" loading="lazy" draggable={false} />
-
-          <button
-            type="button"
-            onClick={() => go(-1)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white backdrop-blur-md ring-1 ring-white/20 transition hover:bg-white/15"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="h-5 w-5 text-black cursor-pointer" />
-          </button>
-          <button
-            type="button"
-            onClick={() => go(1)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white backdrop-blur-md ring-1 ring-white/20 transition hover:bg-white/15"
-            aria-label="Next image"
-          >
-            <ChevronRight className="h-5 w-5 text-black cursor-pointer" />
-          </button>
-
-          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-black/25 px-3 py-2 backdrop-blur-md ring-1 ring-white/10">
-            {safeImages.map((_, i) => (
-              <button
-                key={`${safeImages[i]}-${i}`}
-                type="button"
-                onClick={() => setActive(i)}
-                className={i === active ? "h-2 w-6 rounded-full bg-white/90" : "h-2 w-2 rounded-full bg-white/35 hover:bg-white/55"}
-                aria-label={`Go to image ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Card({ item, reversed }) {
   const { title, subtitle, description, tags = [], ctaLabel = "View Project", ctaHref, images = [] } = item;
@@ -175,7 +106,7 @@ function Card({ item, reversed }) {
 
       <div className={(reversed ? "order-1 md:order-1" : "order-1 md:order-2") + " min-h-0"}>
         <div className="h-[220px] w-full min-h-0 sm:h-[280px] md:h-[420px]">
-          <Carousel images={images} alt={`${title} preview`} />
+          <OptimizedCarousel images={images} alt={`${title} preview`} />
         </div>
       </div>
     </div>
