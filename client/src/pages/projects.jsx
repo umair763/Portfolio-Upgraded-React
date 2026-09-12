@@ -17,14 +17,18 @@ export const Projects = () => {
           </p>
         </div>
         <div className="mt-10 max-w-3xl text-center mx-auto">
+        <div className="mt-10 max-w-3xl text-center mx-auto">
           <p>
-            Here you'll find a mix of
-            <span className="font-bold mr-1 ml-1">
-              side projects, contributions and freelance work.
-            </span> Each project
-            shows how I approach frontend, code architecture, design and backend api's, data handling, and security; always focusing on things that can actually be used,
-            maintained and scaled.
+            Here you’ll find a mix of my{" "}
+            <span className="font-bold mx-1">
+              side projects, internship work on real-world SaaS products, and freelance
+              client projects.
+            </span>{" "}
+            Each project reflects how I approach frontend development, backend APIs,
+            architecture, design, data handling, and security with a focus on
+            building solutions that are practical, maintainable, and scalable.
           </p>
+        </div>
         </div>
         <div className="w-full">
           <StackedScrollCards />

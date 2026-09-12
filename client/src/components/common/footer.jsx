@@ -51,12 +51,11 @@ export const Footer = () => {
             About <span className="font-normal">—</span>
           </h3>
           <p className="text-[15px] text-gray-800 leading-relaxed">
-            I’m a full-stack developer specializing in the MERN stack (MongoDB,
-            Express.js, React, Node.js), with a focus on backend development. I
-            prioritize clean, scalable code, adhering to best practices.
-            Passionate about solving complex problems, I design systems that are
-            secure, scalable, and reliable. Always learning, I’m ready to take
-            on new challenges and build efficient solutions.
+            I’m a full-stack developer with hands-on experience building production SaaS
+            platforms, APIs, dashboards, and client applications. I work across the
+            frontend and backend using Node.js, NestJS, TypeScript, React, Vue.js, MySQL,
+            and MongoDB. I prioritize clean architecture, maintainable code, and reliable
+            systems while continuously learning and solving challenging problems.
           </p>
         </div>
         {/* Explore + Contact me stacked in one column */}

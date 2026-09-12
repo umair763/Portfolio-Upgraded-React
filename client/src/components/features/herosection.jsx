@@ -186,7 +186,7 @@ export const HeroSection = () => {
                         size={18}
                         className="inline-block align-middle shrink-0"
                       />
-                      20 hours response time
+                      01 hour response time
                     </span>,
                     <span className="flex items-center gap-1 font-bold">
                       <FileCode

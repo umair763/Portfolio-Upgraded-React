@@ -82,66 +82,101 @@ export const About = () => {
                   className="px-6 py-6 text-[13px] leading-6 whitespace-pre-wrap font-mono"
                   style={{ background: "transparent" }}
                 >
-                  <span className="text-[#c792ea]">const</span>
-                  <span className="text-[#82aaff]">developer</span>
+                  <span className="text-[#c792ea]">const</span>{" "}
+                  <span className="text-[#82aaff]">developer</span>{" "}
                   <span className="text-white">= {"{"}</span>
                   {"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">
-                    nickName
-                  </span>: <span className="text-[#c3e88d]">'Beardguy'</span>,
-                  {"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">fullName</span>:
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">name</span>:{" "}
                   <span className="text-[#c3e88d]">'Muhammad Umair'</span>,
                   {"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">role</span>:
-                  <span className="text-[#c3e88d]">'Full-Stack Developer'</span>
-                  ,{"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">
-                    focus
-                  </span>: <span className="text-[#89ddff]">[</span>
-                  <span className="text-[#c3e88d]">
-                    'backend', 'web performance', 'clean UI'
-                  </span>
-                  <span className="text-[#89ddff]">]</span>,{"\n"}
-                  &nbsp;&nbsp;
-                  <span className="text-[#ffcb6b]">availability</span>:
-                  <span className="text-[#c3e88d]">
-                    'Open to opportunities'
-                  </span>
-                  ,{"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">hardWorker</span>
-                  : <span className="text-[#f78c6c]">true</span>,{"\n"}
-                  &nbsp;&nbsp;
-                  <span className="text-[#ffcb6b]">quickLearning</span>:
-                  <span className="text-[#f78c6c]">true</span>,{"\n"}
-                  &nbsp;&nbsp;
-                  <span className="text-[#ffcb6b]">problemSolver</span>:
-                  <span className="text-[#f78c6c]">true</span>,{"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">
-                    hireable
-                  </span>: <span className="text-[#82aaff]">function</span>()
-                  <span className="text-white">{"{"}</span>
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">alias</span>:{" "}
+                  <span className="text-[#c3e88d]">'Beardguy'</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">role</span>:{" "}
+                  <span className="text-[#c3e88d]">'Full-Stack Developer'</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">experience</span>:{" "}
+                  <span className="text-[#f78c6c]">2+</span>{" "}
+                  <span className="text-[#c3e88d]">'years'</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">stack</span>:{" "}
+                  <span className="text-[#89ddff]">[</span>
                   {"\n"}
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-[#89ddff]">return</span>
-                  <span className="text-[#f78c6c]">true</span>;{"\n"}
-                  &nbsp;&nbsp;<span className="text-white">{"}"},</span>
-                  {"\n"}
-                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">
-                    connect
-                  </span>: <span className="text-[#82aaff]">function</span>()
-                  <span className="text-white">{"{"}</span>
+                  <span className="text-[#c3e88d]">'Node.js'</span>,{" "}
+                  <span className="text-[#c3e88d]">'NestJS'</span>,{" "}
+                  <span className="text-[#c3e88d]">'Express.js'</span>,
                   {"\n"}
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-[#89ddff]">return</span>
+                  <span className="text-[#c3e88d]">'TypeScript'</span>,{" "}
+                  <span className="text-[#c3e88d]">'React'</span>,{" "}
+                  <span className="text-[#c3e88d]">'Vue.js'</span>,
+                  {"\n"}
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <span className="text-[#c3e88d]">'MySQL'</span>,{" "}
+                  <span className="text-[#c3e88d]">'MongoDB'</span>,{" "}
+                  <span className="text-[#c3e88d]">'AWS'</span>
+                  {"\n"}
+                  &nbsp;&nbsp;<span className="text-[#89ddff]">]</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">specializesIn</span>:{" "}
+                  <span className="text-[#89ddff]">[</span>
                   <span className="text-[#c3e88d]">
-                    "Let's build something amazing together!"
+                    'REST APIs', 'SaaS', 'dashboards', 'scalable systems'
+                  </span>
+                  <span className="text-[#89ddff]">]</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">engineering</span>:{" "}
+                  <span className="text-[#89ddff]">{"{"}</span>
+                  {"\n"}
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#ffcb6b]">architecture</span>:{" "}
+                  <span className="text-[#c3e88d]">'clean & maintainable'</span>,
+                  {"\n"}
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#ffcb6b]">code</span>:{" "}
+                  <span className="text-[#c3e88d]">'consistent & scalable'</span>,
+                  {"\n"}
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#ffcb6b]">performance</span>:{" "}
+                  <span className="text-[#c3e88d]">'always considered'</span>
+                  {"\n"}
+                  &nbsp;&nbsp;<span className="text-[#89ddff]">{"}"}</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">mindset</span>:{" "}
+                  <span className="text-[#c3e88d]">
+                    'understand first, build with purpose'
+                  </span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">currently</span>:{" "}
+                  <span className="text-[#c3e88d]">'building & learning'</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">openTo</span>:{" "}
+                  <span className="text-[#c3e88d]">'interesting opportunities'</span>,
+                  {"\n"}
+
+                  &nbsp;&nbsp;<span className="text-[#ffcb6b]">connect</span>:{" "}
+                  <span className="text-[#82aaff]">function</span>()
+                  <span className="text-white">{"{"}</span>
+                  {"\n"}
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#89ddff]">return</span>{" "}
+                  <span className="text-[#c3e88d]">
+                    'Let&apos;s build something meaningful.'
                   </span>
                   ;{"\n"}
                   &nbsp;&nbsp;<span className="text-white">{"}"}</span>
                   {"\n"}
+
                   <span className="text-white">{"}"};</span>
                 </pre>
+
               </motion.div>
             </motion.div>
 
@@ -184,73 +219,63 @@ export const About = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <p>
-  I am a{" "}
-  <span className="font-semibold text-black/85">
-    Full Stack Developer
-  </span>{" "}
-  with over{" "}
-  <span className="font-semibold text-black/85">
-    3+ years of experience
-  </span>{" "}
-  building scalable and high-performance web applications. I have a keen eye
-  for crafting modern and intuitive{" "}
-  <span className="font-semibold text-black/85">
-    frontend experiences
-  </span>
-  , with experience designing and developing dashboards, landing pages,
-  analytics platforms, portfolios, and responsive user interfaces that balance
-  aesthetics with usability.
-  <br />
-  <br />
-  My core expertise lies in the{" "}
-  <span className="font-semibold text-black/85">
-    MERN Stack
-  </span>{" "}
-  (MongoDB, Express.js, React, Node.js), while also working extensively with{" "}
-  <span className="font-semibold text-black/85">
-    Next.js, NestJS, and Vue.js
-  </span>
-  . I specialize in developing robust{" "}
-  <span className="font-semibold text-black/85">
-    RESTful APIs
-  </span>
-  , designing efficient{" "}
-  <span className="font-semibold text-black/85">
-    database architectures
-  </span>
-  , and building scalable backend systems. I also have hands-on experience
-  with{" "}
-  <span className="font-semibold text-black/85">
-    cloud deployment and backend optimization
-  </span>{" "}
-  using AWS. Beyond writing code, I focus on clean architecture, maintainable
-  solutions, and industry best practices to deliver reliable and scalable
-  applications.
-</p>
-                <p>
-                  With a keen interest in problem-solving and designing
-                  architecture for complex systems, I am continuously refining
-                  my ability to understand system operations while considering
-                  key factors like{" "}
-                  <span className="font-semibold text-black/85">security</span>,{" "}
+                  I’m a{" "}
                   <span className="font-semibold text-black/85">
-                    scalability
-                  </span>
-                  , and{" "}
+                    Full-Stack Developer
+                  </span>{" "}
+                  with hands-on industry experience building and maintaining production{" "}
                   <span className="font-semibold text-black/85">
-                    reliability
+                    SaaS platforms, RESTful APIs, dashboards, and business-critical web
+                    applications
                   </span>
-                  . Always striving to improve, I'm eager to take on new
-                  challenges and build efficient, robust systems.
+                  . I work across both frontend and backend, with experience in{" "}
+                  <span className="font-semibold text-black/85">
+                    Node.js, NestJS, Express.js, TypeScript, MySQL, MongoDB, TypeORM, Vue.js,
+                    and React.js
+                  </span>
+                  .
+                  <br />
+                  <br />
+                  I’m comfortable working across the{" "}
+                  <span className="font-semibold text-black/85">
+                    full development lifecycle
+                  </span>
+                  , from understanding requirements and designing data models to building
+                  APIs, developing interfaces, integrating systems, debugging, refactoring,
+                  and deploying applications to AWS. I value{" "}
+                  <span className="font-semibold text-black/85">
+                    clean architecture, maintainable code, data consistency, and reliable
+                    solutions
+                  </span>{" "}
+                  that continue to scale as systems evolve.
+                  <br />
+                  <br />
+                  I pay close attention to details such as{" "}
+                  <span className="font-semibold text-black/85">
+                    naming conventions, module structure, API patterns, component
+                    organization, data flow, validation, and error handling
+                  </span>
+                  . I also care about the small details that are easy to overlook but make a
+                  codebase more coherent, consistent, and maintainable.
+                  <br />
+                  <br />
+                  I enjoy understanding{" "}
+                  <span className="font-semibold text-black/85">
+                    how systems work as a whole
+                  </span>{" "}
+                  rather than treating development as simply writing code. Whether I’m
+                  designing a feature, tracing a difficult bug, refactoring an existing
+                  module, or translating a business requirement into a working solution, I
+                  take the time to understand the reasoning behind the existing system before
+                  making changes.
                 </p>
                 <p>
                   In short: I build with
                   <span className="font-semibold text-black/85 ml-1">
                     purpose
                   </span>
-                  , design with
-                  <span className="font-semibold text-black/85"> intent</span>,
-                  and stay
+                  , solve with
+                  <span className="font-semibold text-black/85"> clarity</span>, and stay
                   <span className="font-semibold text-black/85"> curious</span>.
                 </p>
               </motion.div>
