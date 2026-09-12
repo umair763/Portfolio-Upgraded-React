@@ -2,7 +2,7 @@ import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
-import { OptimizedCarousel } from "./optimized.image.carousel";
+import { OptimizedCarousel } from "./optimized.carousel";
 import lungCancer1 from "../../assets/images/webp/lungcancerdetection-1.webp";
 import lungCancer2 from "../../assets/images/webp/lungcancerdetection-2.webp";
 import lungCancer3 from "../../assets/images/webp/lungcancerdetection-3.webp";
@@ -118,6 +118,7 @@ function Card({ item, reversed }) {
  * - Uses a sticky container (CSS) and ties timeline progress to scroll position
  * - Each subsequent card starts below the viewport and slides up to overlap
  * - Scrubbed timeline means reverse scroll plays back step-by-step automatically
+ * - Optimized to prevent blocking during image loading
  */
 function useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCount }) {
   useLayoutEffect(() => {
@@ -135,11 +136,19 @@ function useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCoun
           yPercent: i === 0 ? 0 : 150,
           rotate: 0,
           transformOrigin: "50% 50%",
+          // Performance optimizations
+          force3D: true,
+          willChange: "transform",
         });
       });
 
       const tl = gsap.timeline({
-        defaults: { ease: "power2.out" },
+        defaults: { 
+          ease: "power2.out",
+          // Performance optimizations
+          force3D: true,
+          willChange: "transform",
+        },
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
@@ -147,6 +156,9 @@ function useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCoun
           scrub: 0.9,
           // Sticky is handled by CSS; ScrollTrigger only drives the timeline.
           invalidateOnRefresh: true,
+          // Performance optimizations
+          anticipatePin: 1,
+          smoothScroll: true,
         },
       });
 
@@ -157,13 +169,19 @@ function useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCoun
           {
             yPercent: 0,
             duration: 1,
+            // Performance optimizations
+            force3D: true,
+            willChange: "transform",
           },
           i - 1,
         );
       }
 
       // Keep ScrollTrigger in sync with layout changes (fonts/images/resizes).
-      ScrollTrigger.refresh();
+      // Use requestAnimationFrame for smoother refresh
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
     }, stickyRef);
 
     return () => ctx.revert();

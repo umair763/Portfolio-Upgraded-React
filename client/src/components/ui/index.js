@@ -14,4 +14,4 @@ export * from "./hanging.card.wrapper";
 export * from "./linkedin.3d.model";
 export * from "./github.3d.model";
 export * from "./lanyard";
-export * from "./optimized.image.carousel";
+export * from "./optimized.carousel";
