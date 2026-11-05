@@ -121,6 +121,24 @@ export const HeroSection = () => {
             <br /> Umair
           </MotionH1>
 
+          {/* Prominent Current Employment Line */}
+          <MotionDiv
+            variants={leftItemVariants}
+            className="flex items-center gap-2.5 mt-2"
+          >
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-600 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-700"></span>
+            </span>
+            <span className="text-base sm:text-lg md:text-xl font-bold text-[#004e63] animate-pulse">
+              Full Stack Developer at{" "}
+              <span className="text-[#006580] font-extrabold">Quickup</span>
+              <span className="text-[#1a2a36]/80 font-semibold text-sm sm:text-base ml-1.5">
+                (UK &bull; Remote)
+              </span>
+            </span>
+          </MotionDiv>
+
           <MotionP
             variants={leftItemVariants}
             className="text-lg md:text-2xl font-semibold text-[#1a2a36] mt-2 font-bold"

@@ -4,11 +4,9 @@ import {
   Award,
   BarChart,
   BookOpen,
-  Brain,
   Briefcase,
   ChevronLeft,
   ChevronRight,
-  Film,
   Globe,
   GraduationCap,
   HeartHandshake,
@@ -18,7 +16,9 @@ import {
   Play,
   Rocket,
   School,
+  Server,
   Shield,
+  TrendingUp,
   Users,
 } from "lucide-react";
 
@@ -27,137 +27,146 @@ const UNITS_PER_YEAR = 10; // 9 small + 1 major
 
 const MILESTONES = [
   {
-    at: 2021.1,
-    label: "2021",
-    title: "Chose Software Engineering",
+    at: 2021.65,
+    label: "Aug 2021",
+    title: "FSc in Computer Science (ICS)",
     description:
-      "Committed to Software Engineering as my career.\nStarted learning programming from the ground up.",
+      "Fazaia Inter College\nGraduated ICS and embarked on my software development and computing journey.",
     icon: School,
     color: "rgb(79, 70, 229)",
   },
   {
-    at: 2022.2,
-    label: "2nd Semester, 2022",
+    at: 2022.45,
+    label: "June 2022",
     title: "Merit-Based Scholarship — 3rd Position",
     description:
-      "Bahria University\nAwarded for achieving a CGPA of 3.94/4.00.",
+      "Bahria University (2nd Semester)\nAwarded merit scholarship for securing 3rd highest GPA (3.94/4.00) in the batch.",
     icon: Award,
     color: "rgb(217, 119, 6)",
   },
   {
-    at: 2023.3,
-    label: "3rd Semester, 2023",
+    at: 2023.15,
+    label: "Feb 2023",
     title: "Certificate of Appreciation — 2nd Position",
     description:
-      "Project Gala (DSA)\nSecured 2nd position among competing teams.",
+      "Project Gala — DSA Course (Bahria University)\nSecured 2nd position among competing teams for algorithmic excellence.",
     icon: Medal,
     color: "rgb(147, 51, 234)",
   },
   {
-    at: 2024.9,
-    label: "Dec 2024",
-    title: "Lung Cancer Image Classification",
+    at: 2025.15,
+    label: "Jan – Mar 2025",
+    title: "Heart2Heart LMS Platform",
     description:
-      "Semester Project\nTensorFlow, Keras, Flask\nBuilt a CNN model with 97% accuracy.",
-    icon: Brain,
-    color: "rgb(220, 38, 38)",
-  },
-  {
-    at: 2025.2,
-    label: "Mar 2025",
-    title: "Heart2Heart",
-    description:
-      "h2hcourses.com\nReact, Tailwind CSS, Firebase\nBuilt a modern online course platform.",
+      "Freelance Project — h2hcourses.com\nReact.js, Tailwind CSS v4, Firestore\nDelivered an LMS dashboard with responsive UI, real-time course data, and enrollment tracking.",
     icon: HeartHandshake,
     color: "rgb(219, 39, 119)",
   },
   {
-    at: 2025.6,
-    label: "Aug 2025",
-    title: "AI-Powered SocialSight",
+    at: 2025.45,
+    label: "June – Sep 2025",
+    title: "AI-Powered SocialSight (FYP)",
     description:
-      "socialsight.me\nReact, Node.js, Express, MongoDB, OAuth, AI\nBuilt a unified social media management platform.",
+      "Final Year Project — socialsight.me\nOAuth 2.0, RTK, Node.js, Transformers\nCentralized social media manager with analytics, scheduling, and fine-tuned RoBERTa sentiment analysis.",
     icon: BarChart,
     color: "rgb(37, 99, 235)",
   },
   {
-    at: 2025.8,
-    label: "8th Semester, 2025",
-    title: "PM Youth Laptop Scheme",
+    at: 2025.7,
+    label: "Sep 2025",
+    title: "PM Youth Laptop Scheme Award",
     description:
-      "Government of Pakistan\nReceived a merit-based laptop award.",
+      "Government of Pakistan\nAwarded laptop based on academic excellence and merit.",
     icon: Laptop,
     color: "rgb(22, 163, 74)",
   },
   {
-    at: 2025.9,
-    label: "Nov 2025",
-    title: "theothersfarhan",
-    description:
-      "theothers-farhan.com\nNext.js, React, Tailwind CSS, Framer Motion\nBuilt a professional portfolio website.",
-    icon: Film,
-    color: "rgb(234, 88, 12)",
-  },
-  {
-    at: 2026.0,
+    at: 2026.05,
     label: "Jan 2026",
-    title: "Bachelor of Science in Information Technology",
+    title: "Graduated BS in Information Technology",
     description:
-      "Bahria University\nGraduated with a CGPA of 3.57/4.00.",
+      "Bahria University Islamabad Campus\nGraduated with a CGPA of 3.57/4.00.",
     icon: GraduationCap,
     color: "rgb(15, 118, 110)",
   },
   {
-    at: 2026.2,
+    at: 2026.18,
     label: "Mar 2026",
     title: "Joined Quickup as Full Stack Developer Intern",
     description:
-      "Quickup (UK)\nNestJS, Vue 3, MySQL, AWS\nStarted building enterprise SaaS applications.",
+      "Quickup (UK, Remote)\nStarted professional journey building RESTful APIs, 40+ SaaS dashboard modules, auth flows, and AWS releases.",
     icon: Briefcase,
     color: "rgb(37, 99, 235)",
   },
   {
-    at: 2026.3,
-    label: "Apr 2026",
-    title: "Multi-Vendor Food Delivery Platform",
+    at: 2026.24,
+    label: "Mar 2026",
+    title: "Profit Edge Financial Platform",
     description:
-      "customerweb.quickup.uk\nVue 3, TypeScript, Pinia, NestJS, Stripe\nBuilt customer ordering & authentication flows.",
+      "FullStack Intern — profit-edge-webdev.quickup.uk\nNestJS, TypeORM, MySQL, TypeScript, Firebase, Bcrypt\nEngineered investment APIs, PIN auth, 15-day lock workflows, ledger tracking, and analytics dashboards.",
+    icon: TrendingUp,
+    color: "rgb(13, 148, 136)",
+  },
+  {
+    at: 2026.31,
+    label: "Apr 2026",
+    title: "Food Ordering & Checkout Website",
+    description:
+      "FullStack Intern — customerweb.quickup.uk\nVue 3, Vuetify, TypeScript, Pinia, NestJS, Stripe\nIntegrated store discovery APIs, multi-auth flows (OTP, Google OAuth, guest), and multi-currency Stripe payments.",
     icon: Globe,
     color: "rgb(6, 182, 212)",
   },
   {
-    at: 2026.4,
-    label: "Jun 2026",
-    title: "Quickup SaaS Admin Dashboard",
+    at: 2026.39,
+    label: "May 2026",
+    title: "SaaS Multi-Vendor Admin Dashboard (Frontend Lead)",
     description:
-      "saas-dashboard-dev.quickup.uk\nVue 3, TypeScript, Pinia, Vuetify, NestJS\nLed development of 40+ admin modules.",
+      "Team Lead (Frontend) — saas-dashboard-dev.quickup.uk\nVue 3, Vuetify 3, TypeScript, Pinia, vee-validate\nLed frontend team: built 40+ modular CRUD & analytics modules, managed GitHub workflows, and deployed to AWS.",
     icon: Users,
     color: "rgb(14, 165, 233)",
   },
   {
-    at: 2026.45,
-    label: "Jun 2026",
-    title: "Frontend Team Lead",
+    at: 2026.48,
+    label: "June – July 2026",
+    title: "Quick-Up Multi-Vendor Admin Dashboard",
     description:
-      "Quickup SaaS\nManaged frontend delivery, GitHub workflow,\nteam coordination and AWS deployments.",
+      "FullStack Intern — dashboard-dev.quickup.uk\nVue 3, Vuex, Axios, ApexCharts, CASL\nImplemented dynamic RBAC with CASL (15+ rules), modular component refactoring, and interactive KPI metrics dashboards.",
     icon: Shield,
     color: "rgb(59, 130, 246)",
   },
   {
-    at: 2026.6,
-    label: "Jul 2026",
+    at: 2026.56,
+    label: "July 2026",
     title: "IEEE Access Journal Publication",
     description:
-      "DOI: 10.1109/ACCESS.2026.3715064\nPublished research on AI-powered social media analytics.",
+      "DOI: 10.1109/ACCESS.2026.3715064\nCo-authored research: 'A Unified Social Media Framework for Real-Time Post-Comparison and RoBERTa Sentiment Analysis'.",
     icon: BookOpen,
     color: "rgb(16, 185, 129)",
   },
   {
-    at: 2026.8,
-    label: "Present",
-    title: "Full Stack SaaS Engineer",
+    at: 2026.63,
+    label: "July – Sep 2026",
+    title: "IBM Full-Stack JavaScript Developer Certification",
     description:
-      "NestJS, Vue, AWS, MySQL\nBuilding scalable cloud-based SaaS platforms.",
+      "IBM — Coursera (via NAVTTC) at NASTP Alpha\nEarned professional certification in modern JavaScript, cloud, full-stack application development, and DevOps practices.",
+    icon: Award,
+    color: "rgb(2, 132, 199)",
+  },
+  {
+    at: 2026.71,
+    label: "Aug – Sep 2026",
+    title: "SaaS Multi-Vendor Portal Backend",
+    description:
+      "FullStack Intern — saasdev.quickup.uk\nNestJS, TypeORM, TypeScript, MySQL, JWT\nEngineered core backend modules: orders, vendors, hierarchy, hall booking, KOT, and dine-in lifecycle workflows.",
+    icon: Server,
+    color: "rgb(168, 85, 247)",
+  },
+  {
+    at: 2026.85,
+    label: "Sep 2026 – Present",
+    title: "Promoted to Full Stack Developer",
+    description:
+      "Quickup (UK, Remote)\nTransitioned from intern to developer! Driving SaaS products & client apps with Vue 3, TypeScript, Pinia, Vuetify, NestJS, TypeORM, MySQL, and AWS deployments.",
     icon: Rocket,
     color: "rgb(124, 58, 237)",
   },
@@ -254,10 +263,14 @@ export const JourneyCard = () => {
   }, [isPaused]);
 
   const totalYears = endYear - startYear;
-  const totalUnits = totalYears * UNITS_PER_YEAR;
+  const maxUnit =
+    milestonesWithUnits.length > 0
+      ? milestonesWithUnits[milestonesWithUnits.length - 1].unit
+      : totalYears * UNITS_PER_YEAR;
+  const totalUnits = Math.max(totalYears * UNITS_PER_YEAR, Math.ceil(maxUnit) + 4);
 
-  const currentMilestone = milestonesWithUnits[currentIndex];
-  const activeUnit = currentMilestone.unit;
+  const currentMilestone = milestonesWithUnits[currentIndex] || milestonesWithUnits[0];
+  const activeUnit = currentMilestone ? currentMilestone.unit : 0;
 
   const unitWidth =
     viewportWidth !== null && viewportWidth < 640
