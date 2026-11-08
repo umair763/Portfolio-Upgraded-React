@@ -1,11 +1,11 @@
-import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useLayoutEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { OptimizedCarousel } from "./optimized.carousel";
-import lungCancer1 from "../../assets/images/webp/lungcancerdetection-1.webp";
-import lungCancer2 from "../../assets/images/webp/lungcancerdetection-2.webp";
-import lungCancer3 from "../../assets/images/webp/lungcancerdetection-3.webp";
+// import lungCancer1 from "../../assets/images/webp/lungcancerdetection-1.webp";
+// import lungCancer2 from "../../assets/images/webp/lungcancerdetection-2.webp";
+// import lungCancer3 from "../../assets/images/webp/lungcancerdetection-3.webp";
 import h2h1 from "../../assets/images/webp/h2h-1.webp";
 import h2h2 from "../../assets/images/webp/h2h-2.webp";
 import h2h3 from "../../assets/images/webp/h2h-3.webp";
@@ -47,6 +47,17 @@ import sv1 from "../../assets/images/webp/Sv1.webp";
 import sv2 from "../../assets/images/webp/Sv2.webp";
 import sv3 from "../../assets/images/webp/Sv3.webp";
 import sv4 from "../../assets/images/webp/Sv4.webp";
+import adn1 from "../../assets/images/ADN-1 (1).png";
+import adn2 from "../../assets/images/ADN-1 (2).png";
+import adn3 from "../../assets/images/ADN-1 (3).png";
+import adn4 from "../../assets/images/ADN-1 (4).png";
+import adn5 from "../../assets/images/ADN-1 (5).png";
+import adn6 from "../../assets/images/ADN-1 (6).png";
+import adn7 from "../../assets/images/ADN-1 (7).png";
+import adn8 from "../../assets/images/ADN-1 (8).png";
+import adn9 from "../../assets/images/ADN-1 (9).png";
+import adn10 from "../../assets/images/ADN-1 (10).png";
+import adn11 from "../../assets/images/ADN-1 (11).png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -194,6 +205,17 @@ export const StackedScrollCards = ({ items }) => {
 
     // Demo content (replace with your real projects).
     return [
+        {
+        id: "Apni-Dukan-—-Multi-Tenant-Quick-Commerce-&-Grocery-Delivery-Platform",
+        title: "Apni Dukan — Multi-Tenant Quick-Commerce & Grocery Delivery Platform",
+        subtitle: "Sep 2026 - Present | FullStack Developer",
+        description:
+          "<ul class='list-disc pl-5 space-y-2'><li>Collaborating with the frontend team to develop responsive Vue 3 and TypeScript portals using Pinia, enforcing CASL-based RBAC across products, inventory, client stores, orders, and driver fleets.</li><li>Co-architecting modular NestJS and TypeORM REST APIs with MySQL across 45+ domain modules, managing master data for countries, cities, zip codes, and multi-tenant vendors.</li><li>Working within a cross-functional team to engineer real-time cart validation and checkout pipelines, supporting promotional discounts, free-delivery thresholds, and automated stock checks.</li><li>Implementing distance-based delivery calculations using geospatial per-mile tiers, out-of-range rates, and robust audit trails via payment-method and wallet transaction logs.</li></ul>",
+        tags: ["VUE 3", "PINIA", "TYPESCRIPT", "NESTJS", "TYPEORM", "MYSQL", "CASL", "REST API"],
+        ctaLabel: "View Project",
+        ctaHref: "https://apni-dukan-dev.quickup.uk",
+        images: [adn1, adn2, adn3, adn4, adn5, adn6, adn7, adn8, adn9, adn10, adn11],
+      },
       {
         id: "saas-multi-vendor-portal",
         title: "SaaS-Multi-Vendor Portal (Food Delivery & Ordering Platform)",

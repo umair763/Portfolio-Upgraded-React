@@ -170,6 +170,15 @@ const MILESTONES = [
     icon: Rocket,
     color: "rgb(124, 58, 237)",
   },
+  {
+    at: 2026.85,
+    label: "Sep 2026 – Present",
+    title: "Apni Dukan — Multi-Tenant Quick-Commerce & Grocery Delivery Platform",
+    description:
+      "FullStack Developer — apni-dukan-dev.quickup.ukApni \nVue 3, Pinia, TypeScript, NestJS, TypeORM, MySQL, CASL\nBuilding quick-commerce platforms across inventory, orders, client stores, driver fleets, cart pricing, and delivery rate engines",
+    icon: Server,
+    color: "rgb(124, 58, 237)",
+  },
 ];
 
 export const JourneyCard = () => {
