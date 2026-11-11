@@ -8,21 +8,21 @@ export const About = () => {
     <div className="w-full">
       <HeroSection />
 
-      <section className="w-full bg-[#e4d5b7] py-10 overflow-x-hidden">
-        <div className="mx-auto w-full max-w-7xl px-6 overflow-x-hidden">
+      <section className="w-full bg-[#e4d5b7] py-10 sm:py-14 md:py-16 overflow-x-hidden">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           {/* Header */}
           <div className="text-center">
-            <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#006580]">
               About Me
             </h2>
-            <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
+            <p className="mt-2 sm:mt-3 text-base sm:text-lg md:text-2xl text-black/70 font-semibold">
               Get to know me through <span className="italic">code</span>
             </p>
           </div>
 
           {/* Content */}
           <motion.div
-            className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center overflow-x-hidden pb-4"
+            className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center overflow-x-hidden pb-4"
             initial="hidden"
             whileInView="visible"
             exit="hidden"
@@ -79,7 +79,7 @@ export const About = () => {
                   </span>
                 </div>
                 <pre
-                  className="px-6 py-6 text-[13px] leading-6 whitespace-pre-wrap font-mono"
+                  className="px-4 py-4 sm:px-6 sm:py-6 text-xs sm:text-[13px] leading-5 sm:leading-6 whitespace-pre-wrap font-mono overflow-x-auto"
                   style={{ background: "transparent" }}
                 >
                   <span className="text-[#c792ea]">const</span>{" "}
@@ -203,7 +203,7 @@ export const About = () => {
               }}
             >
               <motion.h3
-                className="text-4xl md:text-5xl font-extrabold tracking-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 exit={{ y: 20, opacity: 0 }}
@@ -212,7 +212,7 @@ export const About = () => {
                 My Introduction
               </motion.h3>
               <motion.div
-                className="mt-6 space-y-5 text-base md:text-lg leading-relaxed text-black/70"
+                className="mt-4 sm:mt-6 space-y-4 sm:space-y-5 text-sm sm:text-base md:text-base lg:text-lg leading-relaxed text-black/75"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 exit={{ y: 30, opacity: 0 }}
@@ -281,22 +281,22 @@ export const About = () => {
               </motion.div>
 
               <motion.div
-                className="mt-8 flex flex-wrap gap-3"
+                className="mt-6 sm:mt-8 flex flex-wrap gap-2 sm:gap-3"
                 initial={{ y: 0, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 exit={{ y: 0, opacity: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <span className="inline-flex items-center rounded-full bg-[#e4d5b7] px-4 py-2 text-sm font-semibold text-black/75 shadow-sm">
+                <span className="inline-flex items-center rounded-full bg-[#e4d5b7] px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-black/75 shadow-sm">
                   Clean UI
                 </span>
-                <span className="inline-flex items-center rounded-full bg-[#d9b99b] px-4 py-2 text-sm font-semibold text-black/75 shadow-sm">
+                <span className="inline-flex items-center rounded-full bg-[#d9b99b] px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-black/75 shadow-sm">
                   Performance
                 </span>
-                <span className="inline-flex items-center rounded-full bg-[#e4d5b7] px-4 py-2 text-sm font-semibold text-black/75 shadow-sm">
+                <span className="inline-flex items-center rounded-full bg-[#e4d5b7] px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-black/75 shadow-sm">
                   Accessibility
                 </span>
-                <span className="inline-flex items-center rounded-full bg-[#d9b99b] px-4 py-2 text-sm font-semibold text-black/75 shadow-sm">
+                <span className="inline-flex items-center rounded-full bg-[#d9b99b] px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-black/75 shadow-sm">
                   Modern Stack
                 </span>
               </motion.div>

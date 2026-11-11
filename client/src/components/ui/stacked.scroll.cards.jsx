@@ -67,26 +67,26 @@ function Card({ item, reversed }) {
   return (
     <div
       className={
-        "grid h-full w-full min-h-0 grid-cols-1 items-center gap-6 overflow-hidden rounded-4xl bg-white/85 p-6 shadow-[0_10px_70px_rgba(2,6,23,0.02)] ring-1 ring-slate-900/10 backdrop-blur-xl sm:gap-8 sm:p-8 md:grid-cols-2 md:gap-10 md:p-14"
+        "grid h-full w-full min-h-0 grid-cols-1 items-center gap-4 overflow-hidden rounded-2xl sm:rounded-3xl md:rounded-4xl bg-white/90 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-[0_10px_70px_rgba(2,6,23,0.06)] ring-1 ring-slate-900/10 backdrop-blur-xl md:grid-cols-2 md:gap-8 lg:gap-10"
       }
     >
-      <div className={(reversed ? "order-2 md:order-2" : "order-2 md:order-1") + " min-h-0"}>
+      <div className={(reversed ? "order-2 md:order-2" : "order-2 md:order-1") + " min-h-0 flex flex-col justify-center"}>
         <div className="min-h-0 max-w-xl">
-          {subtitle ? <p className="text-sm font-medium tracking-wide text-slate-500">{subtitle}</p> : null}
-          <h2 className="mt-3 text-lg font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-2xl md:text-4xl">{title}</h2>
+          {subtitle ? <p className="text-xs sm:text-sm font-semibold tracking-wide text-slate-500">{subtitle}</p> : null}
+          <h2 className="mt-1.5 sm:mt-2.5 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight tracking-tight text-slate-900">{title}</h2>
           {description ? (
-            <div className="mt-5 min-h-0 max-h-[26vh] overflow-auto pr-1 text-[14px] leading-7 text-slate-600 sm:max-h-[28vh] md:max-h-none md:overflow-visible md:pr-0 md:text-[16px]">
+            <div className="mt-3 sm:mt-4 min-h-0 max-h-[18vh] sm:max-h-[22vh] md:max-h-[26vh] lg:max-h-[30vh] overflow-y-auto pr-1 text-[13px] sm:text-sm md:text-sm lg:text-[15px] leading-relaxed text-slate-600">
               <div 
                 dangerouslySetInnerHTML={{ __html: description }} 
-                className="list-disc pl-5"
+                className="list-disc pl-4 space-y-1 sm:space-y-1.5"
               />
             </div>
           ) : null}
 
           {tags.length > 0 ? (
-            <div className="mt-7 flex flex-wrap gap-2">
+            <div className="mt-3 sm:mt-5 flex flex-wrap gap-1.5 sm:gap-2">
               {tags.map((t) => (
-                <span key={t} className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-medium text-sky-700 sm:text-xs">
+                <span key={t} className="rounded-full border border-sky-200 bg-sky-50 px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-sky-700">
                   {t}
                 </span>
               ))}
@@ -98,25 +98,25 @@ function Card({ item, reversed }) {
               href={ctaHref}
               target="_blank"
               rel="noreferrer"
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 sm:mt-8 sm:w-fit"
+              className="mt-4 sm:mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 sm:w-fit"
             >
               {ctaLabel}
-              <ExternalLink className="h-4 w-4" />
+              <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </a>
           ) : (
             <button
               type="button"
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 sm:mt-8 sm:w-fit"
+              className="mt-4 sm:mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 sm:w-fit"
             >
               {ctaLabel}
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </button>
           )}
         </div>
       </div>
 
-      <div className={(reversed ? "order-1 md:order-1" : "order-1 md:order-2") + " min-h-0"}>
-        <div className="h-[220px] w-full min-h-0 sm:h-[280px] md:h-[420px]">
+      <div className={(reversed ? "order-1 md:order-1" : "order-1 md:order-2") + " min-h-0 flex items-center justify-center"}>
+        <div className="h-[180px] w-full min-h-0 sm:h-[240px] md:h-[300px] lg:h-[360px] xl:h-[400px]">
           <OptimizedCarousel images={images} alt={`${title} preview`} />
         </div>
       </div>
@@ -140,59 +140,43 @@ function useStackedScrollAnimation({ sectionRef, stickyRef, cardElsRef, cardCoun
       const cardEls = cardElsRef.current.filter(Boolean);
       if (!cardEls.length) return;
 
-      // Initial state: first card visible, others start below.
+      // Initial state: first card visible, subsequent cards placed just below viewport
       cardEls.forEach((el, i) => {
         gsap.set(el, {
           zIndex: i + 1,
-          yPercent: i === 0 ? 0 : 150,
-          rotate: 0,
-          transformOrigin: "50% 50%",
-          // Performance optimizations
+          yPercent: i === 0 ? 0 : 105,
           force3D: true,
-          willChange: "transform",
         });
       });
 
       const tl = gsap.timeline({
         defaults: { 
-          ease: "power2.out",
-          // Performance optimizations
+          ease: "none",
           force3D: true,
-          willChange: "transform",
         },
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.9,
-          // Sticky is handled by CSS; ScrollTrigger only drives the timeline.
+          scrub: 0.3,
           invalidateOnRefresh: true,
-          // Performance optimizations
-          anticipatePin: 1,
-          smoothScroll: true,
         },
       });
 
-      // Each transition takes an equal slice of scroll.
+      // Each transition takes an equal slice of scroll with zero lag
       for (let i = 1; i < cardEls.length; i += 1) {
         tl.to(
           cardEls[i],
           {
             yPercent: 0,
             duration: 1,
-            // Performance optimizations
             force3D: true,
-            willChange: "transform",
           },
           i - 1,
         );
       }
 
-      // Keep ScrollTrigger in sync with layout changes (fonts/images/resizes).
-      // Use requestAnimationFrame for smoother refresh
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
+      ScrollTrigger.refresh();
     }, stickyRef);
 
     return () => ctx.revert();
@@ -366,8 +350,8 @@ export const StackedScrollCards = ({ items }) => {
       <div ref={stickyRef} className="sticky top-0 h-dvh w-full overflow-hidden">
         <div className="pointer-events-none absolute inset-0" />
 
-        <div className="relative mx-auto flex h-full max-w-7xl items-center px-6">
-          <div className="relative h-[92vh] w-full sm:h-[88vh] md:h-[82vh]">
+        <div className="relative mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+          <div className="relative h-[88vh] w-full sm:h-[86vh] md:h-[82vh] lg:h-[80vh] max-h-[820px]">
             {data.map((item, index) => (
               <div
                 key={item.id ?? index}

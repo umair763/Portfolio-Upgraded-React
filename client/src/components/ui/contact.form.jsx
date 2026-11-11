@@ -83,7 +83,7 @@ export const ContactForm = () => {
   return (
     <form
       onSubmit={handleSubmitWithReset}
-      className="max-w-xl w-full mx-auto bg-white rounded-2xl shadow-xl p-6 md:p-10 border border-gray-200 backdrop-blur-md"
+      className="max-w-xl w-full mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 lg:p-10 border border-gray-200 backdrop-blur-md"
     >
       <div className="flex flex-col sm:flex-row gap-4 mb-4 ">
         <div className="flex-1 ">
@@ -159,7 +159,7 @@ export const ContactForm = () => {
               type="button"
               key={tag}
               onClick={() => handleTagClick(tag)}
-              className={`px-4 py-1 rounded-full cursor-pointer border text-xs font-medium transition-colors duration-150 flex items-center gap-1
+              className={`px-2.5 sm:px-3.5 py-1 rounded-full cursor-pointer border text-[11px] sm:text-xs font-medium transition-colors duration-150 flex items-center gap-1
                 ${
                   form.tags.includes(tag)
                     ? "bg-[#b78654] text-white border-[#b78654] shadow-md"
@@ -197,7 +197,7 @@ export const ContactForm = () => {
       <button
         type="submit"
         disabled={state.submitting}
-        className="w-full flex items-center justify-center gap-2 bg-[#b78654] hover:bg-[#a97443] cursor-pointer text-white font-semibold py-3 rounded-xl text-lg shadow-lg transition-colors duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full flex items-center justify-center gap-2 bg-[#b78654] hover:bg-[#a97443] cursor-pointer text-white font-semibold py-2.5 sm:py-3 rounded-xl text-base sm:text-lg shadow-lg transition-colors duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {state.submitting ? (
           <>

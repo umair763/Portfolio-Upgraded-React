@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ServiceCard } from "./service.card";
 import PixelCard from "./pixel.card";
+import { Waves } from "../common/waves";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,9 +20,9 @@ gsap.registerPlugin(ScrollTrigger);
  */
 export const MarqueesScroll = ({
   items = [],
-  cardClassName = "w-[320px] sm:w-[620px] max-w-none",
-  gapClassName = "gap-4 sm:gap-10",
-  startOffsetPx = 80,
+  cardClassName = "w-[280px] sm:w-[440px] md:w-[500px] lg:w-[560px] h-full min-h-[380px] sm:min-h-[400px] md:min-h-[420px] max-w-[85vw]",
+  gapClassName = "gap-4 sm:gap-6 md:gap-8",
+  startOffsetPx = 60,
 }) => {
   const sectionRef = useRef(null);
   const stickyRef = useRef(null);
@@ -42,6 +43,8 @@ export const MarqueesScroll = ({
     if (!safeItems.length) return;
 
     const ctx = gsap.context(() => {
+      const getOffset = () => (window.innerWidth < 640 ? 16 : startOffsetPx);
+
       const getMaxX = () => {
         // Measure the actual visible area (max-width container), not the full window.
         const viewportWidth =
@@ -53,30 +56,30 @@ export const MarqueesScroll = ({
       };
 
       const getTravel = () => {
-        // We pad both the start and end by startOffsetPx, so total travel includes it twice.
-        return getMaxX() + startOffsetPx * 2;
+        // We pad both the start and end by offset, so total travel includes it twice.
+        return getMaxX() + getOffset() * 2;
       };
 
       const measureAndSetHeight = () => {
-        // One full viewport + the horizontal travel distance + some breathing room.
-        setSectionHeightPx(Math.ceil(window.innerHeight + getTravel() + 200));
+        // One full viewport + exact horizontal travel distance for 1:1 sync with sticky unpin
+        setSectionHeightPx(Math.ceil(window.innerHeight + getTravel()));
       };
 
       // Start slightly to the right so scroll-down feels like right -> left.
-      gsap.set(trackRef.current, { x: startOffsetPx });
+      gsap.set(trackRef.current, { x: getOffset() });
 
       const tween = gsap.fromTo(
         trackRef.current,
-        { x: () => startOffsetPx },
+        { x: () => getOffset() },
         {
-          x: () => -(getMaxX() + startOffsetPx),
+          x: () => -(getMaxX() + getOffset()),
           ease: "none",
+          force3D: true,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            // Make the scroll distance match the full horizontal travel.
-            end: () => `+=${Math.max(1, getTravel())}`,
-            scrub: 0.9,
+            end: "bottom bottom",
+            scrub: 0.3,
             invalidateOnRefresh: true,
           },
         },
@@ -123,18 +126,18 @@ export const MarqueesScroll = ({
     >
       <div
         ref={stickyRef}
-        className="sticky top-0 h-[70dvh] w-full overflow-hidden"
+        className="sticky top-0 h-screen sm:h-dvh w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] overflow-hidden flex items-center"
       >
 
-        <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-6">
+        <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
           <div ref={viewportRef} className="w-full overflow-hidden">
             <div
               ref={trackRef}
               className={`flex items-stretch ${gapClassName} will-change-transform`}
             >
               {safeItems.map((item, idx) => (
-                <div key={item.id ?? `${item.title}-${idx}`} className={`shrink-0`}>
-                  <PixelCard className={`${cardClassName} rounded-2xl bg-white`} variant="blue" gap={8} speed={60}>
+                <div key={item.id ?? `${item.title}-${idx}`} className="shrink-0 flex self-stretch">
+                  <PixelCard className={`${cardClassName} rounded-2xl bg-white h-full flex flex-col`} variant="blue" gap={8} speed={60}>
                     <ServiceCard
                       icon={item.icon}
                       title={item.title}
@@ -150,6 +153,9 @@ export const MarqueesScroll = ({
             </div>
           </div>
         </div>
+
+        {/* Animated waves at the bottom of the pinned viewport spanning full screen width */}
+        <Waves className="z-10" />
       </div>
     </section>
   );

@@ -281,8 +281,12 @@ export const JourneyCard = () => {
   const currentMilestone = milestonesWithUnits[currentIndex] || milestonesWithUnits[0];
   const activeUnit = currentMilestone ? currentMilestone.unit : 0;
 
+  const isMobile = viewportWidth !== null && viewportWidth < 640;
+  const trackHeight = isMobile ? 180 : 210;
+  const baselineTop = isMobile ? 92 : 110;
+
   const unitWidth =
-    viewportWidth !== null && viewportWidth < 640
+    isMobile
       ? 10
       : viewportWidth !== null && viewportWidth < 1024
         ? 12
@@ -359,53 +363,53 @@ export const JourneyCard = () => {
   };
 
   return (
-    <MotionSection className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] pb-16 will-change-transform">
+    <MotionSection className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] pb-8 sm:pb-12 md:pb-16 will-change-transform">
       <MotionDiv
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="mx-auto w-full max-w-7xl px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#006580] mb-2 mt-26">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-3 sm:mb-6 md:mb-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#006580] mb-1 sm:mb-2 mt-4 sm:mt-8 md:mt-12">
               My Journey
             </h2>
-            <p className="text-lg md:text-xl text-black/70 max-w-2xl mx-auto">
+            <p className="text-xs sm:text-base md:text-lg text-black/70 max-w-2xl mx-auto px-4">
               A timeline of my learning, projects, and major milestones.
             </p>
           </div>
 
           {/* Controls */}
           {isInitialized && (
-          <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2.5 sm:mb-4 md:mb-6">
             <button
               onClick={goPrev}
               disabled={currentIndex === 0}
-              className="w-10 h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-black/10"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-black/10 touch-manipulation"
               aria-label="Previous milestone"
             >
-              <ChevronLeft size={20} className="text-black/70" />
+              <ChevronLeft size={16} className="text-black/70" />
             </button>
             <button
               onClick={() => setIsPaused((v) => !v)}
-              className="w-10 h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center border border-black/10"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center border border-black/10 touch-manipulation"
               aria-label={isPaused ? "Play" : "Pause"}
             >
               {isPaused ? (
-                <Play size={18} className="text-black/70 ml-0.5" />
+                <Play size={15} className="text-black/70 ml-0.5" />
               ) : (
-                <Pause size={18} className="text-black/70" />
+                <Pause size={15} className="text-black/70" />
               )}
             </button>
             <button
               onClick={goNext}
               disabled={currentIndex === milestones.length - 1}
-              className="w-10 h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-black/10"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/10 hover:bg-black/15 transition flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-black/10 touch-manipulation"
               aria-label="Next milestone"
             >
-              <ChevronRight size={20} className="text-black/70" />
+              <ChevronRight size={16} className="text-black/70" />
             </button>
-            <span className="ml-2 text-sm font-semibold text-black/70">
+            <span className="ml-1 sm:ml-2 text-xs sm:text-sm font-semibold text-black/70">
               {currentIndex + 1} / {milestones.length}
             </span>
           </div>
@@ -413,7 +417,7 @@ export const JourneyCard = () => {
 
           {/* Dots */}
           {isInitialized && (
-          <div className="flex items-center justify-center gap-3 mb-10 flex-wrap">
+          <div className="flex items-center justify-center gap-1 sm:gap-2 mb-3 sm:mb-6 md:mb-8 flex-wrap max-w-lg mx-auto px-4">
             {milestones.map((m, index) => {
               const isActive = index === currentIndex;
               return (
@@ -421,7 +425,7 @@ export const JourneyCard = () => {
                   key={`${m.at}-${m.title}`}
                   onClick={() => goTo(index)}
                   className={
-                    "relative h-3 w-3 rounded-full bg-black/20 hover:bg-black/30 transition" +
+                    "relative h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-black/20 hover:bg-black/30 transition touch-manipulation" +
                     (isActive ? " bg-transparent" : "")
                   }
                   aria-label={`Go to milestone ${index + 1}`}
@@ -434,7 +438,7 @@ export const JourneyCard = () => {
                   )}
                   {isActive && (
                     <span
-                      className="absolute -inset-3 rounded-full border"
+                      className="absolute -inset-1.5 sm:-inset-2 rounded-full border"
                       style={{ borderColor: currentMilestone.color }}
                     />
                   )}
@@ -448,33 +452,41 @@ export const JourneyCard = () => {
           <div
             ref={viewportRef}
             className="relative mx-auto max-w-6xl overflow-hidden"
-            style={{ minHeight: '210px' }}
+            style={{ minHeight: `${trackHeight}px` }}
           >
             {!isInitialized ? (
-              <div className="relative h-[210px]" />
+              <div className="relative" style={{ height: `${trackHeight}px` }} />
             ) : (
-            <div className="relative h-[210px]">
+            <div className="relative" style={{ height: `${trackHeight}px` }}>
               {/* Baseline */}
-              <div className="absolute left-0 right-0 top-[110px] h-px bg-black/25" />
+              <div
+                className="absolute left-0 right-0 h-px bg-black/25"
+                style={{ top: `${baselineTop}px` }}
+              />
 
               {/* Fixed center needle (accurate pointer) */}
               <div
-                className="absolute left-1/2 top-[34px] bottom-[48px] w-px -translate-x-1/2 pointer-events-none"
+                className="absolute left-1/2 w-px -translate-x-1/2 pointer-events-none"
                 style={{
+                  top: `${baselineTop - (isMobile ? 58 : 76)}px`,
+                  bottom: `${trackHeight - baselineTop - (isMobile ? 42 : 48)}px`,
                   backgroundColor: currentMilestone.color,
                   opacity: 0.28,
                 }}
               />
               <div
-                className="absolute left-1/2 top-[44px] h-[78px] w-[2px] -translate-x-1/2 pointer-events-none rounded-full"
+                className="absolute left-1/2 w-[2px] -translate-x-1/2 pointer-events-none rounded-full"
                 style={{
+                  top: `${baselineTop - (isMobile ? 48 : 66)}px`,
+                  height: `${isMobile ? 64 : 78}px`,
                   backgroundColor: currentMilestone.color,
                   opacity: 0.92,
                 }}
               />
               <div
-                className="absolute left-1/2 top-[110px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                 style={{
+                  top: `${baselineTop}px`,
                   width: 0,
                   height: 0,
                   borderLeft: "6px solid transparent",
@@ -484,8 +496,9 @@ export const JourneyCard = () => {
                 }}
               />
               <div
-                className="absolute left-1/2 top-[110px] -translate-x-1/2 -translate-y-1/2 pointer-events-none rounded-full"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none rounded-full"
                 style={{
+                  top: `${baselineTop}px`,
                   width: 10,
                   height: 10,
                   backgroundColor: currentMilestone.color,
@@ -517,14 +530,14 @@ export const JourneyCard = () => {
                       className="relative"
                       style={{
                         width: unitWidth,
-                        height: 210,
+                        height: trackHeight,
                         flex: "0 0 auto",
                       }}
                     >
                       <div
                         className="absolute left-1/2 -translate-x-1/2 rounded-full"
                         style={{
-                          top: 110 - tickHeight,
+                          top: baselineTop - tickHeight,
                           width: tickWidth,
                           height: tickHeight,
                           backgroundColor: tickColor,
@@ -553,7 +566,9 @@ export const JourneyCard = () => {
                   // Alternate icon positions: top, bottom, top, bottom...
                   const showIconTop = index % 2 === 1;
                   // Give more space from the scale for readability.
-                  const iconTopPx = showIconTop ? 60 : 156;
+                  const iconTopPx = showIconTop
+                    ? (isMobile ? 44 : 60)
+                    : (isMobile ? 130 : 156);
                   const activeNudge = showIconTop
                     ? "-translate-y-2"
                     : "translate-y-2";
@@ -570,14 +585,13 @@ export const JourneyCard = () => {
                           type="button"
                           onClick={() => goTo(index)}
                           className={
-                            "absolute left-1/2 top-5 -translate-x-1/2 font-bold tracking-[0.18em] whitespace-nowrap transition-all duration-500 " +
+                            "absolute left-1/2 top-3 sm:top-5 -translate-x-1/2 font-bold tracking-[0.18em] whitespace-nowrap transition-all duration-500 " +
                             (isActive ? "scale-110" : "")
                           }
                           style={{
                             color: milestone.color,
                             opacity: isActive ? 1 : 0.62,
-                            fontSize:
-                              viewportWidth !== null && viewportWidth < 640 ? 11 : 13,
+                            fontSize: isMobile ? 11 : 13,
                           }}
                           aria-label={`Select ${milestone.label}`}
                         >
@@ -590,10 +604,11 @@ export const JourneyCard = () => {
                         type="button"
                         onClick={() => goTo(index)}
                         className={
-                          "absolute left-1/2 top-[110px] -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-500 " +
+                          "absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-500 " +
                           (isActive ? "w-3 h-3" : "w-2 h-2")
                         }
                         style={{
+                          top: `${baselineTop}px`,
                           backgroundColor: milestone.color,
                           opacity: isActive ? 1 : 0.26,
                         }}
@@ -622,7 +637,7 @@ export const JourneyCard = () => {
                           }}
                         >
                           {React.createElement(milestone.icon, {
-                            size: isActive ? 40 : 24,
+                            size: isActive ? (isMobile ? 32 : 40) : (isMobile ? 20 : 24),
                             strokeWidth: isActive ? 2.2 : 2,
                           })}
                         </div>
@@ -637,7 +652,7 @@ export const JourneyCard = () => {
 
           {/* Card */}
           {isInitialized && (
-          <div className="relative mt-2 mb-10">
+          <div className="relative mt-1 sm:mt-2 mb-4 sm:mb-8 md:mb-10 px-4 sm:px-0">
             <AnimatePresence mode="wait" initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
@@ -648,20 +663,20 @@ export const JourneyCard = () => {
                 exit="exit"
                 className="max-w-xl mx-auto"
               >
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-[0_22px_50px_rgba(0,0,0,0.16)] px-7 py-7 md:px-10 md:py-8">
+                <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-[0_22px_50px_rgba(0,0,0,0.16)] p-4 sm:p-7 md:px-10 md:py-8">
                   <div
-                    className="text-center text-xs font-extrabold tracking-[0.22em] mb-2"
+                    className="text-center text-xs font-extrabold tracking-[0.22em] mb-1.5 sm:mb-2"
                     style={{ color: "rgba(0,0,0,0.55)" }}
                   >
                     {currentMilestone.label}
                   </div>
                   <h3
-                    className="text-2xl md:text-3xl font-extrabold text-center mb-3"
+                    className="text-xl sm:text-2xl md:text-3xl font-extrabold text-center mb-2 sm:mb-3 leading-snug"
                     style={{ color: currentMilestone.color }}
                   >
                     {currentMilestone.title}
                   </h3>
-                  <p className="text-base md:text-lg text-black/70 text-center leading-relaxed whitespace-pre-line">
+                  <p className="text-sm sm:text-base md:text-lg text-black/75 text-center leading-relaxed whitespace-pre-line">
                     {currentMilestone.description}
                   </p>
                 </div>
@@ -670,8 +685,8 @@ export const JourneyCard = () => {
           </div>
           )}
 
-          <div className="text-center">
-            <p className="text-base md:text-xl text-black/70 max-w-md font-semibold mx-auto">
+          <div className="text-center px-4">
+            <p className="text-sm sm:text-base md:text-xl text-black/70 max-w-md font-semibold mx-auto">
               The journey continues — always learning, building, and leveling
               up.
             </p>

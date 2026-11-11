@@ -64,7 +64,7 @@ export const Linkedin3dModel = ({
   }, []);
 
   return (
-    <div ref={containerRef} className="relative z-0 w-full h-screen flex justify-center items-center transform scale-100 origin-center">
+    <div ref={containerRef} className="relative z-0 w-full h-[320px] sm:h-[400px] md:h-[480px] lg:h-[520px] flex justify-center items-center transform scale-100 origin-center">
       <Canvas
         camera={{ position: position, fov: fov }}
         dpr={[1, isMobile ? 1.5 : 2]}

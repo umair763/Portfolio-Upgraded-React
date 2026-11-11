@@ -234,7 +234,7 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
       tabIndex={finalNoFocus ? -1 : 0}
     >
       <canvas className="w-full h-full block absolute inset-0 z-0" ref={canvasRef} />
-      <div className="relative z-10">
+      <div className="relative z-10 w-full h-full flex flex-col">
         {children}
       </div>
     </div>

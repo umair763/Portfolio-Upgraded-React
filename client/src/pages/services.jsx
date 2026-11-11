@@ -14,6 +14,7 @@ export const Services = () => {
         "Modern, responsive UI builds with clean architecture and great UX performance.",
       checkmark: [
         "React + Vite UI development",
+        "Vue UI development",
         "Responsive layouts with Tailwind",
         "Animations and micro-interactions",
         "Accessibility-first components",
@@ -54,37 +55,40 @@ export const Services = () => {
   ];
  
   return (
-    <section className="w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] mt-20 ">
-      <div className="relative mx-auto w-full px-0 md:px-6 lg:px-6">
-        {/* Header */}
+    <section className="relative w-full bg-gradient-to-b from-[#e4d5b7] to-[#d9b99b] pt-4 sm:pt-6 pb-20 sm:pb-28">
+      {/* Header Container */}
+      <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center">
-          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
+          <h2 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#006580]">
             What I Can Do For You
           </h2>
-          <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
+          <p className="mt-2 sm:mt-3 text-base sm:text-lg md:text-2xl text-black/70 font-semibold">
             Professional services to bring your vision to
             <span className="font-bold ml-1">life</span>
           </p>
         </div>
-        <div className="w-full h-full">
-          <MarqueesScroll items={services} />
-        </div>
-        {/* Header */}
-        <div className="text-center">
-          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#006580]">
+      </div>
+
+      {/* MarqueesScroll: Full-bleed width across screen */}
+      <div className="w-full mt-6 sm:mt-8">
+        <MarqueesScroll items={services} />
+      </div>
+
+      {/* How I Work Section Container */}
+      <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="text-center mt-8 sm:mt-12 md:mt-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#006580]">
             How I Work
           </h2>
-          <p className="mt-3 text-lg md:text-3xl text-black/70 font-semibold">
+          <p className="mt-2 sm:mt-3 text-base sm:text-lg md:text-2xl text-black/70 font-semibold">
             A structured approach to deliver quality results
           </p>
-          <div className="w-full h-full">
-            <StackedCard />
-          </div>
+        </div>
+        <div className="w-full h-full">
+          <StackedCard />
         </div>
       </div>
-      <div className="w-full pointer-events-none relative z-10 pt-20">
-        <Waves />
-      </div>
+      <Waves className="z-10" />
     </section>
   );
 };

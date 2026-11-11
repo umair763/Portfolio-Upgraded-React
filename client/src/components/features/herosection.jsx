@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import profileImg from "../../assets/images/noBG.png";
 import {
   Linkedin,
-  Facebook,
   Github,
-  Twitter,
-  Coffee,
   Mail,
-  Dribbble,
-  Instagram,
+  Globe,
+  Gamepad2,
+  X,
+  MessageCircle,
   ChevronDown,
 } from "lucide-react";
 import { ArrowDownToLine } from "lucide-react";
@@ -25,6 +24,32 @@ import { TextSlideup } from "../ui/text.slideup";
 import DynamicBg from "../ui/dynamic.bg";
 import { Waves } from "../common/waves";
 import { motion, useAnimation, useReducedMotion } from "framer-motion";
+
+const socialLinks = [
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/muhammad-umair-khan-012549265/",
+    label: "LinkedIn",
+  },
+  { icon: Github, href: "https://github.com/umair763", label: "GitHub" },
+  {
+    icon: Globe,
+    href: "https://www.upwork.com/freelancers/~0118077421d2458c2f",
+    label: "Upwork",
+  },
+  {
+    icon: Gamepad2,
+    href: "https://discord.com/channels/@me",
+    label: "Discord",
+  },
+  { icon: X, href: "https://x.com/Umairkhan039", label: "X" },
+  {
+    icon: MessageCircle,
+    href: "https://wa.me/03405688540",
+    label: "WhatsApp",
+  },
+  { icon: Mail, href: "mailto:muhammadumairkhan945@gmail.com", label: "Mail" },
+];
 
 export const HeroSection = () => {
   const MotionDiv = motion.div;
@@ -271,50 +296,20 @@ export const HeroSection = () => {
           {/* Socials */}
           <MotionDiv
             variants={leftItemVariants}
-            className="flex gap-4 text-2xl text-[#006580] flex-wrap"
+            className="flex gap-2 sm:gap-2.5 text-2xl text-[#006580] flex-wrap mt-1"
           >
-            <a
-              href="#"
-              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
-            <a
-              href="#"
-              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
-              aria-label="Github"
-            >
-              <Github size={20} />
-            </a>
-            <a
-              href="#"
-              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
-              aria-label="Mail"
-            >
-              <Mail size={20} />
-            </a>
-            <a
-              href="#"
-              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
-              aria-label="Facebook"
-            >
-              <Facebook size={20} />
-            </a>
-            <a
-              href="#"
-              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
-              aria-label="Instagram"
-            >
-              <Instagram size={20} />
-            </a>
-            <a
-              href="#"
-              className="p-1 rounded-lg text-gray-200 hover:text-white bg-[#006580]"
-              aria-label="Twitter"
-            >
-              <Twitter size={20} />
-            </a>
+            {socialLinks.map(({ icon: Icon, href, label }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="p-1.5 sm:p-2 rounded-lg text-gray-200 hover:text-white bg-[#006580] hover:bg-[#004e63] transition-colors flex items-center justify-center shadow-sm"
+              >
+                <Icon size={18} className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+              </a>
+            ))}
           </MotionDiv>
         </MotionDiv>
         {/* Right: Image with Circle */}

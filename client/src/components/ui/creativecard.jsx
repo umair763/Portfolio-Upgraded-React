@@ -158,14 +158,14 @@ export const CreativeCard = ({ items = DEFAULT_ITEMS, title }) => {
     <section
       className="w-full rounded-[28px] bg-[#d9b99b]/90 ring-1 ring-white/25"
     >
-      <div className="px-8 pt-10 pb-10">
-        <h2 className="text-center font-extrabold tracking-tight text-[#0B1220] text-[40px] leading-[0.98] md:text-[52px]">
+      <div className="px-3 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
+        <h2 className="text-center font-extrabold tracking-tight text-[#0B1220] text-xl sm:text-3xl md:text-3xl lg:text-[35px] leading-tight">
           {renderedTitle}
         </h2>
 
-        <div className="mt-10">
-          <div className="relative mx-auto w-full max-w-[520px]">
-            <div className="relative mx-auto aspect-square w-full max-w-[460px] overflow-visible">
+        <div className="mt-6 sm:mt-10">
+          <div className="relative mx-auto w-full max-w-[400px]">
+            <div className="relative mx-auto aspect-square w-full max-w-[440px] overflow-visible">
               {/* Radar + connectors */}
               <svg
                 viewBox="0 0 400 400"
@@ -295,7 +295,7 @@ export const CreativeCard = ({ items = DEFAULT_ITEMS, title }) => {
                   >
                     <div className="relative">
                       <div
-                        className={`absolute ${labelPlacement} ${labelAlign} select-none text-[12px] leading-[1.05] text-[#0B1220]`}
+                        className={`absolute ${labelPlacement} ${labelAlign} select-none text-[10px] sm:text-[11px] md:text-[12px] leading-[1.1] text-[#0B1220]`}
                         style={{
                           textShadow: "0 1px 0 rgba(255,255,255,0.35)",
                           opacity: 0.95,
@@ -313,8 +313,8 @@ export const CreativeCard = ({ items = DEFAULT_ITEMS, title }) => {
                         aria-label={(item.labelLines ?? []).join(" ")}
                         className="group grid place-items-center rounded-full ring-1 ring-black/15 shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition-transform duration-200 ease-out hover:scale-[1.18] active:scale-[1.08] cursor-pointer"
                         style={{
-                          width: "clamp(34px, 5vw, 44px)",
-                          height: "clamp(34px, 5vw, 44px)",
+                          width: "clamp(28px, 4.5vw, 42px)",
+                          height: "clamp(28px, 4.5vw, 42px)",
                           background: `radial-gradient(circle at 30% 25%, rgba(255,255,255,0.30), rgba(255,255,255,0) 58%), ${
                             item.bubbleBg ?? "#0B1220"
                           }`,
@@ -327,7 +327,7 @@ export const CreativeCard = ({ items = DEFAULT_ITEMS, title }) => {
                             filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.25))",
                           }}
                         >
-                          <BubbleIcon className="h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
+                          <BubbleIcon className="h-[14px] w-[14px] sm:h-[18px] sm:w-[18px] md:h-[20px] md:w-[20px]" />
                         </span>
                       </button>
                     </div>

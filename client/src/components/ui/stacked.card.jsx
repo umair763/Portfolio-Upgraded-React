@@ -174,38 +174,41 @@ export const StackedCard = ({ cards = CARD_DATA }) => {
 
   return (
     <>
-      <div className="spacer w-full " />
-      <div ref={wrapperRef} className="wrapper w-full py-[100px] ">
-        <div className="cards w-[90%] max-w-[1000px] min-w-[300px] mx-auto">
+      <div className="spacer w-full" />
+      <div ref={wrapperRef} className="wrapper w-full py-8 sm:py-12 md:py-16">
+        <div className="cards w-full max-w-[900px] mx-auto px-4">
           {cards.map((card, i) => (
             <div
               key={`${card.number}-${i}`}
               ref={(el) => (cardWrapperRefs.current[i] = el)}
-              className={`card-wrapper w-full mb-[50px] last:mb-0 perspective-[100px]`}
+              className={`card-wrapper w-full mb-6 sm:mb-8 md:mb-10 last:mb-0 perspective-[100px]`}
             >
               <SpotlightCard
                 ref={(el) => (cardRefs.current[i] = el)}
-                className={`card w-full h-[400px] flex justify-center items-center text-[30px] rounded-xl text-black shadow-xl bg-gradient-to-br ${card.gradient} relative`}
+                className={`card w-full h-[280px] sm:h-[340px] md:h-[380px] flex justify-center items-center rounded-2xl text-black shadow-xl bg-gradient-to-br ${card.gradient} relative overflow-hidden`}
                 spotlightColor={"rgba(0, 229, 255, 0.08)"}
               >
                 {/* Card background image overlay */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 z-0 rounded-xl"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 z-0 rounded-2xl"
                   style={{ backgroundImage: `url(${card.image})` }}
                 />
                 {/* Card content layout preserved */}
-                <div className="flex flex-col items-center w-full text-white relative z-10">
-                  <div className="font-mono mb-2 ">{card.number}</div>
-                  <div className="mb-6 text-5xl" aria-hidden>{card.icon && React.createElement(card.icon, { size: 48, color: "#ffffff" })}</div>
-                  <h3 className="mb-4 text-2xl font-semibold">{card.title}</h3>
-                  <p className="text-base max-w-[80%] mx-auto text-center ">{card.description}</p>
+                <div className="flex flex-col items-center w-full text-white relative z-10 px-4">
+                  <div className="font-mono text-xs sm:text-sm mb-1">{card.number}</div>
+                  <div className="mb-3 sm:mb-5" aria-hidden>
+                    {card.icon && React.createElement(card.icon, { size: 36, color: "#ffffff", className: "w-8 h-8 sm:w-10 sm:h-10" })}
+                  </div>
+                  <h3 className="mb-2 sm:mb-3 text-lg sm:text-xl md:text-2xl font-bold">{card.title}</h3>
+                  <p className="text-xs sm:text-sm md:text-base max-w-[90%] sm:max-w-[80%] mx-auto text-center leading-relaxed opacity-95">
+                    {card.description}
+                  </p>
                 </div>
               </SpotlightCard>
             </div>
           ))}
         </div>
       </div>
-      <div className="spacer w-full mb-20" />
     </>
   );
 };
